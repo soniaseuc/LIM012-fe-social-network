@@ -32,5 +32,17 @@
     "serve": "^11.0.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paula113/LIM012-fe-social-network.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/paula113/LIM012-fe-social-network/issues"
+  },
+  "homepage": "https://github.com/paula113/LIM012-fe-social-network#readme"
 }
