@@ -1,6 +1,4 @@
 export default () => {
-  //   const sectionLog = document.getElementById('logIn');
-
   const signUpform = `
     <section id="signUpform">
     <form>
@@ -14,7 +12,6 @@ export default () => {
 
   const divElemt = document.createElement('div');
   divElemt.classList.add('position');
-  // sectionLog.innerHTML = '';
   divElemt.innerHTML = signUpform;
   return divElemt;
 };
