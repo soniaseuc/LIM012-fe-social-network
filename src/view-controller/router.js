@@ -11,8 +11,6 @@ export const changeTmp = (hash) => {
     case '#/':
     { return sectionMain.appendChild(components.logInform()); }
     case '#/signUpform':
-    // case '#/accesorios':
-    // case '#/lugares':
     { return sectionMain.appendChild(components[id]()); }
     default:
       return sectionMain.appendChild(components.different());

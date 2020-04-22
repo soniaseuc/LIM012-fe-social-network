@@ -1,9 +1,11 @@
 export default () => {
   const logInform = `
   <h2>¡Bienvenid@, estudiante!</h2>
-    <input type="text" placeholder="Email">
-    <input type="text" placeholder="Password">
-    <button>Log in</button>
+  <form>
+    <input type="text" placeholder="Email" required>
+    <input type="text" placeholder="Password" required>
+    <button type="submit">Log in</button>
+    </form>
     <p>O bien ingresa con...</p>
   <ul>
     <li><a href="#/Facebook">Facebook</a></li>
