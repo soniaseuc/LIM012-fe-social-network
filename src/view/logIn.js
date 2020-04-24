@@ -2,8 +2,8 @@ export default () => {
   const logInform = `
   <h2>¡Bienvenid@, estudiante!</h2>
   <form>
-    <input type="text" placeholder="Email" required>
-    <input type="text" placeholder="Password" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
     <button type="submit">Log in</button>
     </form>
     <p>O bien ingresa con...</p>
@@ -19,3 +19,8 @@ export default () => {
   divElemt.innerHTML = logInform;
   return divElemt;
 };
+
+// Funcion de Login debe validar si existe el usuario y luego redireccionar al #home
+
+// HOME: 
+ // Validar la existencia del usuario "currentUser"
