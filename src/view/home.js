@@ -9,7 +9,7 @@ const navMenu = () => {
                 <a href="#/profile">Perfil</a>
             </li>
             <li>
-                <a href="#/logOut">Cerrar Sesion</a>
+                <a href="#/">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
@@ -23,7 +23,7 @@ const navMenu = () => {
 const avatarProfile = () => {
   const avatar = `
     <figure>
-    <img class="image" src="img/avatar.png">
+    <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
     <label>Fulanita</label>
     `;
@@ -52,10 +52,16 @@ const mainPublication = () => {
   return sectionPublication;
 };
 
+
+
+// funcion que exporte y dentro estas tres funciones
+
 export const hometemplate = () => {
   const mainElem = document.createElement('main');
-  mainElem.appendChild(mainPublication());
-  mainElem.appendChild(avatarProfile());
   mainElem.appendChild(navMenu());
+  mainElem.appendChild(avatarProfile());
+  mainElem.appendChild(mainPublication());
+
+
   return mainElem;
 };

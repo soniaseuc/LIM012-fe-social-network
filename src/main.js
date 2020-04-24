@@ -1,5 +1,5 @@
 import { data } from './data.js'; // MVC para correr test
-import { changeTmp, changeHome } from './view-controller/router.js';
+import { changeTmp } from './view-controller/router.js';
 
 const init = () => {
 	changeTmp(window.location.hash);
