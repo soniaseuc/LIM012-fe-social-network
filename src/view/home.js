@@ -53,6 +53,7 @@ const mainPublication = () => {
 };
 
 
+
 // funcion que exporte y dentro estas tres funciones
 
 export const hometemplate = () => {
@@ -60,5 +61,7 @@ export const hometemplate = () => {
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublication());
+
+
   return mainElem;
 };

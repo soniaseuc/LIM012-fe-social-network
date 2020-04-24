@@ -1,26 +1,3 @@
-import { components } from '../view/index.js';
-// controlar el cambio de la vista == view-controler
-export const changeTmp = (hash) => {
-
-  const id = hash.split('/')[1];
-  const sectionMain = document.getElementById('logIn');
-  sectionMain.innerHTML = '';
-
-  switch (hash) {
-    case '':
-    case '#':
-    case '#/':
-    { return sectionMain.appendChild(components.logInform()); }
-    case '#/signUpform':
-    { return sectionMain.appendChild(components[id]()); }
-    case '#/home':
-    { return sectionMain.appendChild(components.home()); }
-    default:
-      return sectionMain.appendChild(components.different());
-  }
-};
-
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: 'AIzaSyDIY0_9hxFXSshWgzZz6SZA7kZBy4LDXVg',
@@ -34,9 +11,9 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
+const auth = firebase.auth();
 
-export const signUp = () => {
+const signUp = () => {
 	const email = document.getElementById('email');
 	const password = document.getElementById('password');
 	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
@@ -44,14 +21,14 @@ export const signUp = () => {
 	alert('Signed Up');
 };
 
-export const signIn = () => {
+const signIn = () => {
 	const email = document.getElementById('email');
 	const password = document.getElementById('password');
 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
 	promise.catch(e => alert(e.message));
 };
 
-export const signOut = () => {
+const signOut = () => {
 	auth.signOut();
 	alert('Signed Out');
 };
@@ -62,10 +39,12 @@ auth.onAuthStateChanged((user) => {
 		alert(`Active User ${email}`);
 		// Take user to a different or home page
 		// is signed in
+		window.location.hash = '#/home';
 	} else {
 		alert('No Active User');
-		// no user is signed in
+		// no user is signed i
+		window.location.hash = '#/signUpform';
 	}
 });
 
-
+export { auth };

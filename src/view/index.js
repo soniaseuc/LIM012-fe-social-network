@@ -6,6 +6,7 @@ import Different from './404.js';
 
 
 const components = {
+
   logInform: LogInform,
   signUpform: SignUpform,
   different: Different,
