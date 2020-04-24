@@ -9,7 +9,7 @@ const navMenu = () => {
                 <a href="#/profile">Perfil</a>
             </li>
             <li>
-                <a href="#/logOut">Cerrar Sesion</a>
+                <a href="#/">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
