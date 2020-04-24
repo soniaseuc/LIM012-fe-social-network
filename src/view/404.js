@@ -1,7 +1,7 @@
 export default () => {
   const viewDifferent = `
             <figure>
-            <img class="image" src="img/404.png">
+            <img class="image" src="img/404.png" width="450px" height="250px" >
             </figure>
             <h1>OOPS!!</h1>
             <h2>Página no encontrada</h2>
@@ -11,7 +11,7 @@ export default () => {
           `;
 
   const divElemt = document.createElement('div');
-  divElemt.setAttribute('id', 'message');
+  divElemt.setAttribute('id', 'notFound');
   divElemt.innerHTML = viewDifferent;
   return divElemt;
 };
