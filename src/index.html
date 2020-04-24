@@ -6,8 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Red Social</title>
   <link rel="stylesheet" href="css/main.css">
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 </head>
 <body>
+  <!-- The surrounding HTML is left untouched by FirebaseUI.
+        Your app may use that space for branding, controls and other customizations.-->
+    
 
   <main>
     <figure>
@@ -16,6 +22,14 @@
     <h1>EducaChat</h1>
     <section id="logIn"></section>
   </main>
+
+  <!-- <div id="formContainer">
+    <input type="email" id="email" placeholder="email" required>
+    <input type="password" id="password" placeholder="password" required>
+    <button onclick="signIn()" id="SignIn">SignIn</button>
+    <button onclick="signUp()" id="SignUp">Sign up</button>
+    <button onclick="signOut()" id="SignOut">SignOut</button>
+  </div> -->
 
   <section id="container"></section>
 
@@ -27,5 +41,6 @@
   
   <script type="module" src="/src/view/index.js"></script>
   <script type="module" src="main.js"></script>
+  <script src="form.js"></script>
 </body>
 </html>

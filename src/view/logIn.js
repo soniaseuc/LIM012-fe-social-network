@@ -1,11 +1,13 @@
 export default () => {
   const logInform = `
   <h2>¡Bienvenid@, estudiante!</h2>
-  <form>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
-    <button type="submit">Log in</button>
-    </form>
+  <div id="formContainer">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signIn()" id="SignIn">SignIn</button>
+    <button onclick="signUp()" id="SignUp">Sign up</button>
+    <button onclick="signOut()" id="SignOut">SignOut</button>
+  </div>
     <p>O bien ingresa con...</p>
   <ul>
     <li><a href="#/Facebook">Facebook</a></li>
@@ -22,5 +24,5 @@ export default () => {
 
 // Funcion de Login debe validar si existe el usuario y luego redireccionar al #home
 
-// HOME: 
- // Validar la existencia del usuario "currentUser"
+// HOME:
+// Validar la existencia del usuario "currentUser"
