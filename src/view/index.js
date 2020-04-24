@@ -9,9 +9,7 @@ const components = {
   logInform: LogInform,
   signUpform: SignUpform,
   different: Different,
-  homeMenu: navMenu,
-  homeProfile: avatarProfile,
-  homePublication: mainPublication,
+  home: [navMenu, avatarProfile, mainPublication],
 
 };
 
