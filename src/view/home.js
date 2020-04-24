@@ -1,4 +1,4 @@
-export const navMenu = () => {
+const navMenu = () => {
   const menu = `
     <a href="#/home">
         <h1>EducaChat</h1>
@@ -20,10 +20,10 @@ export const navMenu = () => {
   return headerMenu;
 };
 
-export const avatarProfile = () => {
+const avatarProfile = () => {
   const avatar = `
     <figure>
-    <img class="image" src="img/avatar.png">
+    <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
     <label>Fulanita</label>
     `;
@@ -32,7 +32,7 @@ export const avatarProfile = () => {
   return sectionProfile;
 };
 
-export const mainPublication = () => {
+const mainPublication = () => {
   const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div>
@@ -50,4 +50,15 @@ export const mainPublication = () => {
   const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;
   return sectionPublication;
+};
+
+
+// funcion que exporte y dentro estas tres funciones
+
+export const hometemplate = () => {
+  const mainElem = document.createElement('main');
+  mainElem.appendChild(navMenu());
+  mainElem.appendChild(avatarProfile());
+  mainElem.appendChild(mainPublication());
+  return mainElem;
 };
