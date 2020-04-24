@@ -27,12 +27,12 @@ export const changeHome = (hash) => {
     case '':
     case '#':
     case '#/':
-    { return sectionMain.appendChild(components.logInform()); }
+    { return menuHome.appendChild(components.logInform()); }
     case '#/signUpform':
     // case '#/home':
-    { return sectionMain.appendChild(components[id]()); }
+    { return menuHome.appendChild(components[id]()); }
     // { return menuHome.appendChild(components.home()); }
     default:
-      return sectionMain.appendChild(components.different());
+      return menuHome.appendChild(components.different());
   }
 };
