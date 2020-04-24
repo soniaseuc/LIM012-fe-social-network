@@ -55,15 +55,11 @@ const mainPublication = () => {
 };
 
 
-
-// funcion que exporte y dentro estas tres funciones
-
 export const hometemplate = () => {
 	const mainElem = document.createElement('main');
 	mainElem.appendChild(navMenu());
 	mainElem.appendChild(avatarProfile());
 	mainElem.appendChild(mainPublication());
-
 
 	return mainElem;
 };

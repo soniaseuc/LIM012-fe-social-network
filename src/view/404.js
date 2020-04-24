@@ -1,5 +1,5 @@
 export default () => {
-  const viewDifferent = `
+	const viewDifferent = `
             <figure>
             <img class="image" src="img/404.png" width="450px" height="250px" >
             </figure>
@@ -10,8 +10,8 @@ export default () => {
             <button>Volver página principal</button>
           `;
 
-  const divElemt = document.createElement('div');
-  divElemt.setAttribute('id', 'notFound');
-  divElemt.innerHTML = viewDifferent;
-  return divElemt;
+	const divElemt = document.createElement('div');
+	divElemt.setAttribute('id', 'notFound');
+	divElemt.innerHTML = viewDifferent;
+	return divElemt;
 };
