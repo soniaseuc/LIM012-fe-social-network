@@ -18,20 +18,20 @@ export const changeTmp = (hash) => {
   }
 };
 
-export const changeHome = (hash) => {
-  const id = hash.split('/')[1];
-  const menuHome = document.getElementsByTagName('main');
-  menuHome.innerHTML = '';
-  // INCONCLUSO SOLO SE CLONO
-  // FALTA MODIFICAS COMO SE LLAMA A CHANGEHOME EN MAIN.JS
-  switch (hash) {
-    case '':
-    case '#':
-    case '#/':
-    { return menuHome.appendChild(components.home()); }
-    case '#/profile':
-    { return menuHome.appendChild(components[id]()); }
-    default:
-      return menuHome.appendChild(components.different());
-  }
-};
+// export const changeHome = (hash) => {
+//   const id = hash.split('/')[1];
+//   const menuHome = document.getElementsByTagName('main');
+//   menuHome.innerHTML = '';
+//   // INCONCLUSO SOLO SE CLONO
+//   // FALTA MODIFICAS COMO SE LLAMA A CHANGEHOME EN MAIN.JS
+//   switch (hash) {
+//     case '':
+//     case '#':
+//     case '#/':
+//     { return menuHome.appendChild(components.home()); }
+//     case '#/profile':
+//     { return menuHome.appendChild(components[id]()); }
+//     default:
+//       return menuHome.appendChild(components.different());
+//   }
+// };
