@@ -1,5 +1,5 @@
 export default () => {
-  const signUpform = `
+	const signUpform = `
     <section id="signUpform">
     <form>
         <h3>Ingresa tus datos aquí para registarte:</h3>
@@ -10,8 +10,8 @@ export default () => {
     </section>
   `;
 
-  const divElemt = document.createElement('div');
-  divElemt.classList.add('position');
-  divElemt.innerHTML = signUpform;
-  return divElemt;
+	const divElemt = document.createElement('div');
+	divElemt.classList.add('position');
+	divElemt.innerHTML = signUpform;
+	return divElemt;
 };

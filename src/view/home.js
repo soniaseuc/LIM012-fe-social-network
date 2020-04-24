@@ -1,5 +1,5 @@
 const navMenu = () => {
-  const menu = `
+	const menu = `
     <a href="#/home">
         <h1>EducaChat</h1>
     </a>
@@ -14,31 +14,33 @@ const navMenu = () => {
         </ul>
     </nav>
     `;
-  const headerMenu = document.createElement('header');
-  // divElemt.classList.add('position');
-  headerMenu.innerHTML = menu;
-  return headerMenu;
+	const headerMenu = document.createElement('header');
+	// divElemt.classList.add('position');
+	headerMenu.innerHTML = menu;
+	return headerMenu;
 };
 
 const avatarProfile = () => {
-  const avatar = `
+	const avatar = `
     <figure>
     <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
     <label>Fulanita</label>
     `;
-  const sectionProfile = document.createElement('section');
-  sectionProfile.innerHTML = avatar;
-  return sectionProfile;
+	const sectionProfile = document.createElement('section');
+	sectionProfile.innerHTML = avatar;
+	return sectionProfile;
 };
 
 const mainPublication = () => {
-  const publication = `
+	const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div>
       <input id="insertImg"></input>
       <label for="insertImg">
-      <img class="icons" src="../img/icons/images.svg" alt="">
+      <button>
+      <img class="icons" src="img/icons/images.svg"  width="40px" height="50px" alt="">
+      </button>
       </label>
       <select>
         <option default>Publico</option>
@@ -47,9 +49,9 @@ const mainPublication = () => {
       <button>Compartir</button>
       </div>
       `;
-  const sectionPublication = document.createElement('section');
-  sectionPublication.innerHTML = publication;
-  return sectionPublication;
+	const sectionPublication = document.createElement('section');
+	sectionPublication.innerHTML = publication;
+	return sectionPublication;
 };
 
 
@@ -57,11 +59,11 @@ const mainPublication = () => {
 // funcion que exporte y dentro estas tres funciones
 
 export const hometemplate = () => {
-  const mainElem = document.createElement('main');
-  mainElem.appendChild(navMenu());
-  mainElem.appendChild(avatarProfile());
-  mainElem.appendChild(mainPublication());
+	const mainElem = document.createElement('main');
+	mainElem.appendChild(navMenu());
+	mainElem.appendChild(avatarProfile());
+	mainElem.appendChild(mainPublication());
 
 
-  return mainElem;
+	return mainElem;
 };

@@ -1,5 +1,5 @@
 export default () => {
-  const logInform = `
+	const logInform = `
   <h2>¡Bienvenid@, estudiante!</h2>
   <div id="formContainer">
     <input type="email" id="email" placeholder="Email">
@@ -16,10 +16,10 @@ export default () => {
   <p>¿No tienes una cuenta? <span><a href="#/signUpform">Registrate</a></span></p>
     `;
 
-  const divElemt = document.createElement('div');
-  // divElemt.classList.add('position');
-  divElemt.innerHTML = logInform;
-  return divElemt;
+	const divElemt = document.createElement('div');
+	// divElemt.classList.add('position');
+	divElemt.innerHTML = logInform;
+	return divElemt;
 };
 
 // Funcion de Login debe validar si existe el usuario y luego redireccionar al #home
