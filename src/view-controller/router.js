@@ -11,6 +11,7 @@ export const changeTmp = (hash) => {
     case '#/':
     { return sectionMain.appendChild(components.logInform()); }
     case '#/signUpform':
+    case '#/home':
     { return sectionMain.appendChild(components[id]()); }
     default:
       return sectionMain.appendChild(components.different());
@@ -19,7 +20,7 @@ export const changeTmp = (hash) => {
 
 export const changeHome = (hash) => {
   const id = hash.split('/')[1];
-  const menuHome = document.getElementsByTagName('header');
+  const menuHome = document.getElementsByTagName('main');
   menuHome.innerHTML = '';
   // INCONCLUSO SOLO SE CLONO
   // FALTA MODIFICAS COMO SE LLAMA A CHANGEHOME EN MAIN.JS
@@ -27,12 +28,10 @@ export const changeHome = (hash) => {
     case '':
     case '#':
     case '#/':
-    { return sectionMain.appendChild(components.logInform()); }
-    case '#/signUpform':
-    // case '#/home':
-    { return sectionMain.appendChild(components[id]()); }
-    // { return menuHome.appendChild(components.home()); }
+    { return menuHome.appendChild(components.home()); }
+    case '#/profile':
+    { return menuHome.appendChild(components[id]()); }
     default:
-      return sectionMain.appendChild(components.different());
+      return menuHome.appendChild(components.different());
   }
 };

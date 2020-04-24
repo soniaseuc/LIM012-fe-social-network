@@ -1,18 +1,15 @@
 export const navMenu = () => {
   const menu = `
-    <a class="link color" href="#/">
-        <h1 class="not-margin">EducaChat</h1>
+    <a href="#/home">
+        <h1>EducaChat</h1>
     </a>
     <nav>
-        <ul class="menu flex">
-            <li class="container-link">
-                <a class="link color" href="#/catalogo">Catalogo de conejos</a>
+        <ul>
+            <li>
+                <a href="#/profile">Perfil</a>
             </li>
-            <li class="container-link">
-                <a class="link color" href="#/accesorios">Accesorios</a>
-            </li>
-            <li class="container-link">
-                <a class="link color" href="#/lugares">Lugares de adopción</a>
+            <li>
+                <a href="#/logOut">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
@@ -30,7 +27,7 @@ export const avatarProfile = () => {
     </figure>
     <label>Fulanita</label>
     `;
-  const sectionProfile = document.createElement('secction');
+  const sectionProfile = document.createElement('section');
   sectionProfile.innerHTML = avatar;
   return sectionProfile;
 };
@@ -50,7 +47,7 @@ export const mainPublication = () => {
       <button>Compartir</button>
       </div>
       `;
-  const sectionPublication = document.createElement('secction');
+  const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;
   return sectionPublication;
 };

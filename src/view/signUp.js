@@ -3,8 +3,8 @@ export default () => {
     <section id="signUpform">
     <form>
         <h2>Ingresa tus datos aquí para registarte:</h2>
-        <input type="text" placeholder="Email" required>
-        <input type="text" placeholder="Password" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
         <button type="submit" >Registrarse</button>
     </form>
     </section>
