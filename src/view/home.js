@@ -1,5 +1,5 @@
 const navMenu = () => {
-  const menu = `
+	const menu = `
     <a href="#/home">
         <h1>EducaChat</h1>
     </a>
@@ -9,31 +9,33 @@ const navMenu = () => {
                 <a href="#/profile">Perfil</a>
             </li>
             <li>
-                <a href="#/">Cerrar Sesion</a>
+                <a onclick="signOut()" id="SignOut" href="#/">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
     `;
-  const headerMenu = document.createElement('header');
-  // divElemt.classList.add('position');
-  headerMenu.innerHTML = menu;
-  return headerMenu;
+	const headerMenu = document.createElement('header');
+	// divElemt.classList.add('position');
+	headerMenu.innerHTML = menu;
+	return headerMenu;
 };
 
+
+
 const avatarProfile = () => {
-  const avatar = `
+	const avatar = `
     <figure>
     <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
     <label>Fulanita</label>
     `;
-  const sectionProfile = document.createElement('section');
-  sectionProfile.innerHTML = avatar;
-  return sectionProfile;
+	const sectionProfile = document.createElement('section');
+	sectionProfile.innerHTML = avatar;
+	return sectionProfile;
 };
 
 const mainPublication = () => {
-  const publication = `
+	const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div>
       <input id="insertImg"></input>
@@ -47,21 +49,19 @@ const mainPublication = () => {
       <button>Compartir</button>
       </div>
       `;
-  const sectionPublication = document.createElement('section');
-  sectionPublication.innerHTML = publication;
-  return sectionPublication;
+	const sectionPublication = document.createElement('section');
+	sectionPublication.innerHTML = publication;
+	return sectionPublication;
 };
 
 
 
 // funcion que exporte y dentro estas tres funciones
 
-export const hometemplate = () => {
-  const mainElem = document.createElement('main');
-  mainElem.appendChild(navMenu());
-  mainElem.appendChild(avatarProfile());
-  mainElem.appendChild(mainPublication());
-
-
-  return mainElem;
+export const homeTemplate = () => {
+	const mainElem = document.createElement('main');
+	mainElem.appendChild(navMenu());
+	mainElem.appendChild(avatarProfile());
+	mainElem.appendChild(mainPublication());
+	return mainElem;
 };

@@ -7,8 +7,12 @@
   <title>Red Social</title>
   <link rel="stylesheet" href="css/main.css">
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script> -->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 </head>
 <body>
 
@@ -25,14 +29,14 @@
     <section id="logIn"></section>
   </main>
 
-
-  <!-- <div id="formContainer">
-    <input type="email" id="email" placeholder="email" required>
-    <input type="password" id="password" placeholder="password" required>
+  <h1>Miniproyecto firebase auth</h1>
+  <div id="formContainer">
+    <input type="email" id="email" placeholder="email">
+    <input type="password" id="password" placeholder="password">
     <button onclick="signIn()" id="SignIn">SignIn</button>
     <button onclick="signUp()" id="SignUp">Sign up</button>
     <button onclick="signOut()" id="SignOut">SignOut</button>
-  </div> -->
+  </div>
 
 
   <section id="container"></section>
@@ -43,8 +47,8 @@
       </div>
   </footer>
 
-  <script type="module" src="/src/view/index.js"></script>
+  <!-- <script type="module" src="/src/view/index.js"></script> -->
   <script type="module" src="main.js"></script>
-  <script src="form.js"></script>
+  <script src="data.js"></script>
 </body>
 </html>
