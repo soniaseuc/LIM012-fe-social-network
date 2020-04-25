@@ -17,70 +17,70 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
   
-// const signUp = () => {
-// 	const email = document.getElementById('email');
-// 	const password = document.getElementById('password');
-// 	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
-// 	promise.catch(e => alert(e.message));
-// 	alert('Signed Up');
-// };
+const signUp = () => {
+	const email = document.getElementById('email');
+	const password = document.getElementById('password');
+	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+	promise.catch(e => alert(e.message));
+	alert('Signed Up');
+};
 
-// const signIn = () => {
-// 	const email = document.getElementById('email');
-// 	const password = document.getElementById('password');
-// 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
-// 	promise.catch(e => alert(e.message));
-// };
+const signIn = () => {
+	const email = document.getElementById('email');
+	const password = document.getElementById('password');
+	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+	promise.catch(e => alert(e.message));
+};
 
-// const signOut = () => {
-// 	auth.signOut();
-// 	alert('Signed Out');
-// };
-
-// auth.onAuthStateChanged((user) => {
-// 	if (user) {
-// 		const email = user.email;
-// 		alert(`Active User ${email}`);
-// 		// Take user to a different or home page
-// 		// is signed in
-// 		window.location.hash = '#/home';
-// 	} else {
-// 		alert('No Active User');
-// 		// no user is signed i
-// 		window.location.hash = '#/';
-// 	}
-// });
-
-function signUp(){	
-	var email = document.getElementById('email');	
-	var password = document.getElementById('password');	
-	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);	
-	promise.catch(e => alert(e.message));	
-	alert('Signed Up');	
-}
-
-function signIn(){	
-	var email = document.getElementById('email');	
-	var password = document.getElementById('password');	
-	const promise = auth.signInWithEmailAndPassword(email.value, password.value);	
-	promise.catch(e => alert(e.message));	
-}
-
-function signOut(){
-	auth.signOut();	
+const signOut = () => {
+	auth.signOut();
 	alert('Signed Out');
-}
+};
 
-auth.onAuthStateChanged(function(user){
-	if(user){
-		var email = user.email;
-		alert('Active User ' + email);	
-		//Take user to a different or home page	
-		//is signed in
+auth.onAuthStateChanged((user) => {
+	if (user) {
+		const email = user.email;
+		alert(`Active User ${email}`);
+		// Take user to a different or home page
+		// is signed in
 		window.location.hash = '#/home';
-	}else{	
+	} else {
 		alert('No Active User');
-		window.location.hash = '#/signUpform';
-		//no user is signed in	
-	}	
+		// no user is signed i
+		window.location.hash = '#/';
+	}
 });
+
+// function signUp(){	
+// 	var email = document.getElementById('email');	
+// 	var password = document.getElementById('password');	
+// 	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);	
+// 	promise.catch(e => alert(e.message));	
+// 	alert('Signed Up');	
+// }
+
+// function signIn(){	
+// 	var email = document.getElementById('email');	
+// 	var password = document.getElementById('password');	
+// 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);	
+// 	promise.catch(e => alert(e.message));	
+// }
+
+// function signOut(){
+// 	auth.signOut();	
+// 	alert('Signed Out');
+// }
+
+// auth.onAuthStateChanged(function(user){
+// 	if(user){
+// 		var email = user.email;
+// 		alert('Active User ' + email);	
+// 		//Take user to a different or home page	
+// 		//is signed in
+// 		window.location.hash = '#/home';
+// 	}else{	
+// 		alert('No Active User');
+// 		window.location.hash = '#/';
+// 		//no user is signed in	
+// 	}	
+// });

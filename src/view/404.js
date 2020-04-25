@@ -1,5 +1,5 @@
 export default () => {
-  const viewDifferent = `
+	const viewDifferent = `
             <figure>
             <img class="image" src="img/404.png" width="450px" height="250px" >
             </figure>
@@ -7,11 +7,11 @@ export default () => {
             <h2>Página no encontrada</h2>
             <p>El archivo especificado no se encontró en este sitio web.
             Por favor, compruebe la URL para errores y vuelva a intentarlo.</p>
-            <button>Volver página principal</button>
+            <a onclick="signIn()" id="SignIn" href="#/home">Volver página principal</a>
           `;
 
-  const divElemt = document.createElement('div');
-  divElemt.setAttribute('id', 'notFound');
-  divElemt.innerHTML = viewDifferent;
-  return divElemt;
+	const divElemt = document.createElement('div');
+	divElemt.setAttribute('id', 'notFound');
+	divElemt.innerHTML = viewDifferent;
+	return divElemt;
 };
