@@ -2,11 +2,9 @@ export default () => {
 	const logInform = `
   <h2>¡Bienvenid@, estudiante!</h2>
   <div id="formContainer">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <input type="email" id="email" placeholder="email">
+    <input type="password" id="password" placeholder="password">
     <button onclick="signIn()" id="SignIn">SignIn</button>
-    <button onclick="signUp()" id="SignUp">Sign up</button>
-    <button onclick="signOut()" id="SignOut">SignOut</button>
   </div>
     <p>O bien ingresa con...</p>
   <ul>

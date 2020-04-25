@@ -7,7 +7,7 @@ export default () => {
             <h2>Página no encontrada</h2>
             <p>El archivo especificado no se encontró en este sitio web.
             Por favor, compruebe la URL para errores y vuelva a intentarlo.</p>
-            <button>Volver página principal</button>
+            <a onclick="signIn()" id="SignIn" href="#/home">Volver página principal</a>
           `;
 
 	const divElemt = document.createElement('div');

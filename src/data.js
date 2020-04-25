@@ -1,16 +1,16 @@
-export const data = () => {
-	// aquí tu código
-};
-  
+// export const data = () => {
+// 	// aquí tu código
+// };
+
 // Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: 'AIzaSyDIY0_9hxFXSshWgzZz6SZA7kZBy4LDXVg',
-	authDomain: 'testauthentication-f576c.firebaseapp.com',
-	databaseURL: 'https://testauthentication-f576c.firebaseio.com',
-	projectId: 'testauthentication-f576c',
-	storageBucket: 'testauthentication-f576c.appspot.com',
-	messagingSenderId: '602622699268',
-	appId: '1:602622699268:web:ca55eac0521d4da60c9251',
+var firebaseConfig = {
+	apiKey: 'AIzaSyCeNrkvdzWB6_ox2aAbSB_RcooqZzS4KHc',
+	authDomain: 'social-network-a68c0.firebaseapp.com',
+	databaseURL: 'https://social-network-a68c0.firebaseio.com',
+	projectId: 'social-network-a68c0',
+	storageBucket: 'social-network-a68c0.appspot.com',
+	messagingSenderId: '427677359698',
+	appId: '1:427677359698:web:27d4064d69fbe191ed898b'
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -45,10 +45,42 @@ auth.onAuthStateChanged((user) => {
 		// is signed in
 		window.location.hash = '#/home';
 	} else {
-		// alert('No Active User');
+		alert('No Active User');
 		// no user is signed i
-		window.location.hash = '#/signUpform';
+		window.location.hash = '#/';
 	}
 });
 
-export { auth };
+// function signUp(){	
+// 	var email = document.getElementById('email');	
+// 	var password = document.getElementById('password');	
+// 	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);	
+// 	promise.catch(e => alert(e.message));	
+// 	alert('Signed Up');	
+// }
+
+// function signIn(){	
+// 	var email = document.getElementById('email');	
+// 	var password = document.getElementById('password');	
+// 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);	
+// 	promise.catch(e => alert(e.message));	
+// }
+
+// function signOut(){
+// 	auth.signOut();	
+// 	alert('Signed Out');
+// }
+
+// auth.onAuthStateChanged(function(user){
+// 	if(user){
+// 		var email = user.email;
+// 		alert('Active User ' + email);	
+// 		//Take user to a different or home page	
+// 		//is signed in
+// 		window.location.hash = '#/home';
+// 	}else{	
+// 		alert('No Active User');
+// 		window.location.hash = '#/';
+// 		//no user is signed in	
+// 	}	
+// });

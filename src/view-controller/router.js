@@ -12,6 +12,7 @@ export const changeTmp = (hash) => {
 	case '#/':
 	{ return sectionMain.appendChild(components.logInform()); }
 	case '#/signUpform':
+	case '#/logInform':
 	{ return sectionMain.appendChild(components[id]()); }
 	case '#/home':
 	{ return sectionMain.appendChild(components.home()); }
@@ -20,8 +21,8 @@ export const changeTmp = (hash) => {
 	}
 };
 
-
 // Your web app's Firebase configuration
+
 // const firebaseConfig = {
 // 	apiKey: 'AIzaSyDIY0_9hxFXSshWgzZz6SZA7kZBy4LDXVg',
 // 	authDomain: 'testauthentication-f576c.firebaseapp.com',
@@ -64,7 +65,9 @@ export const changeTmp = (hash) => {
 // 		// Take user to a different or home page
 // 		// is signed in
 // 	} else {
-// 		// alert('No Active User');
+
+// 		alert('No Active User');
+
 // 		// no user is signed in
 // 	}
 // });

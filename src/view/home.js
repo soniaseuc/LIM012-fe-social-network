@@ -9,7 +9,7 @@ const navMenu = () => {
                 <a href="#/profile">Perfil</a>
             </li>
             <li>
-                <a href="#/">Cerrar Sesion</a>
+                <a onclick="signOut()" id="SignOut" href="#/">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
@@ -19,6 +19,8 @@ const navMenu = () => {
 	headerMenu.innerHTML = menu;
 	return headerMenu;
 };
+
+
 
 const avatarProfile = () => {
 	const avatar = `
@@ -54,12 +56,11 @@ const mainPublication = () => {
 	return sectionPublication;
 };
 
+export const homeTemplate = () => {
 
-export const hometemplate = () => {
 	const mainElem = document.createElement('main');
 	mainElem.appendChild(navMenu());
 	mainElem.appendChild(avatarProfile());
 	mainElem.appendChild(mainPublication());
-
 	return mainElem;
 };

@@ -1,4 +1,4 @@
-import { data } from './data.js'; // MVC para correr test
+// import { data } from './data.js'; // MVC para correr test
 import { changeTmp } from './view-controller/router.js';
 
 const init = () => {
@@ -7,5 +7,5 @@ const init = () => {
 };
 window.addEventListener('load', init);
 
-data();
+// data();
 // MVC para correr test
