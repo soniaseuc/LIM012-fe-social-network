@@ -30,6 +30,7 @@ const signIn = () => {
 	const password = document.getElementById('password');
 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
 	promise.catch(e => alert(e.message));
+	window.alert('email' + email + ' ' + 'password' + password);
 };
 
 const signOut = () => {
@@ -39,14 +40,15 @@ const signOut = () => {
 
 auth.onAuthStateChanged((user) => {
 	if (user) {
-		const email = user.email;
-		alert(`Active User ${email}`);
 		// Take user to a different or home page
-		// is signed in
+		// User is signed in
+		const email = user.email;
+		// alert(`Active User ${email}`);
+
 		window.location.hash = '#/home';
 	} else {
 		alert('No Active User');
-		// no user is signed i
+		// no user is signed in
 		window.location.hash = '#/';
 	}
 });
