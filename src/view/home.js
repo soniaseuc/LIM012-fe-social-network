@@ -27,7 +27,7 @@ const avatarProfile = () => {
     <figure>
     <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
-    <label>Fulanita</label>
+    <label id="myUserName">Fulanita</label>
     `;
 	const sectionProfile = document.createElement('section');
 	sectionProfile.innerHTML = avatar;

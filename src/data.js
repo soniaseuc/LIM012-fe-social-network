@@ -30,7 +30,9 @@ const signIn = () => {
 	const password = document.getElementById('password');
 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
 	promise.catch(e => alert(e.message));
-	window.alert('email' + email + ' ' + 'password' + password);
+
+	// otro tonto alert para probar. Lo quitaremos porque no es necesario
+	window.alert(`email: ${email.value}, password ${password.value}`);
 };
 
 const signOut = () => {
@@ -42,16 +44,31 @@ auth.onAuthStateChanged((user) => {
 	if (user) {
 		// Take user to a different or home page
 		// User is signed in
-		const email = user.email;
+		// const email = user.email;
 		// alert(`Active User ${email}`);
-
 		window.location.hash = '#/home';
-	} else {
-		alert('No Active User');
-		// no user is signed in
-		window.location.hash = '#/';
-	}
-});
+
+		const user = firebase.auth().currentUser;
+		// let name;
+		let email;
+		// let photoUrl; 
+		// let uid;
+		// let emailVerified;		
+		if (user != null) {
+		//   name = user.displayName;
+			email = user.email;
+			alert(`Active User ${email}`);
+			//   photoUrl = user.photoURL;
+			//   emailVerified = user.emailVerified;
+			//   uid = user.uid;
+			document.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
+		
+		} else {
+			alert('No Active User');
+			// no user is signed in
+			window.location.hash = '#/';
+		}
+	}});
 
 // function signUp(){	
 // 	var email = document.getElementById('email');	
