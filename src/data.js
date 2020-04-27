@@ -25,7 +25,7 @@ const signUp = () => {
 	alert('Signed Up');
 };
 
-const signIn = () => {
+export const signIn = () => {
 	const email = document.getElementById('email');
 	const password = document.getElementById('password');
 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
