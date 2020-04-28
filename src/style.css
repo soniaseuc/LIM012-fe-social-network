@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    background: linear-gradient(#FFFFFF, #F4A82C);
+    height: 100vh;
+    width: 100%;
+    font-size: 12px;
+    font-family: 'Roboto';
+    text-decoration: none;
+    list-style-type: none;
+    line-height:1rem;
+}
+
+main {
+    flex-direction: column;
+    margin:auto;
+    align-items: center;
+    text-align: center;
+    line-height: 2rem;
+}
+
+/* imagen de la laptop */
+body main figure img {
+    width: 10rem;
+}
+
+/* input del email */
+#email {
+border-radius: 2rem;
+padding: 1rem;
+margin: 1rem;
+}
+
+/* input del password */
+#password {
+    border-radius: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+#logIn {
+    line-height:2rem;
+}
+
+/*Bton Sign */
+.btnSign {
+    border-radius: 2rem;
+    padding: 0.5rem 3rem;
+    align-content: center;
+    background-color: #3376BC;
+    margin: 1rem;
+    color: #FFFFFF;
+}
+
+#formContainer {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#fbInput {
+    display: none;
+}
+#googleInput {
+    display: none;
+}
+
+#fbIcon img {
+    width: 20px;
+    height: 20px;
+}
+
+#googleIcon img {
+    width: 20px;
+    height: 20px;
+}
+
+p span a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+  }
