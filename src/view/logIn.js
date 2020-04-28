@@ -2,7 +2,6 @@ import { signIn, authentification } from '../firebase.js';
 
 export default () => {
   const logInform = `
-<main>
 <figure>
 <img src="./img/laptop.png" alt="">
   </figure>

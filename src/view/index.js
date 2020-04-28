@@ -7,10 +7,10 @@ import Different from './404.js';
 
 const components = {
 
-	logInform: LogInform,
-	signUpform: SignUpform,
-	different: Different,
-	home: homeTemplate,
+  logInform: LogInform,
+  signUpform: SignUpform,
+  different: Different,
+  home: homeTemplate,
 };
 
 export { components };

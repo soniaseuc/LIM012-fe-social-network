@@ -31,8 +31,7 @@ const navMenu = () => {
 
 
 const avatarProfile = () => {
-  const avatar = `
-    
+  const avatar = `    
       <p class="headerHomeAvatar"></p>
       <img class="imageAvatar" src="img/avatar.png">
       <label id="myUserName">Nombre</label>
