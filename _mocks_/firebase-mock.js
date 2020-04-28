@@ -1,14 +1,12 @@
-const auth = jest.fn(() => ({ 
-    signInWithEmailAndPassword: (email, password) => { 
-        return new Promise((resolve) => { 
-            resolve({ email: email }) 
-        }) 
-    } 
-}))
+const auth = jest.fn(() => ({
+  signInWithEmailAndPassword: (email, password) => new Promise((resolve) => {
+    resolve({ email });
+  }),
+}));
 
-const firebase = {
-    auth : auth,
-}
+// const firebase = {
+//   auth,
+// };
 
 
 // export default jest.fn(()=> firebase);
