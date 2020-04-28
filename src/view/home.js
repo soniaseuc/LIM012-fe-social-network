@@ -1,7 +1,7 @@
 import { signOut, authentification } from '../firebase.js';
 
 const navMenu = () => {
-	const menu = `
+  const menu = `
     <a href="#/home">
         <h1>EducaChat</h1>
     </a>
@@ -16,22 +16,22 @@ const navMenu = () => {
         </ul>
     </nav>
     `;
-	const headerMenu = document.createElement('header');
-	headerMenu.classList.add('divNav');
-	headerMenu.innerHTML = menu;
-	const anchorSignOut = headerMenu.querySelector('#SignOut');
-	anchorSignOut.addEventListener('click', (event) => {
-		event.preventDefault();
-		console.log('SignOut Ok');
-		signOut();
-		authentification();
-	});
-	return headerMenu;
+  const headerMenu = document.createElement('header');
+  headerMenu.classList.add('divNav');
+  headerMenu.innerHTML = menu;
+  const anchorSignOut = headerMenu.querySelector('#SignOut');
+  anchorSignOut.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('SignOut Ok');
+    signOut();
+    authentification();
+  });
+  return headerMenu;
 };
 
 
 const avatarProfile = () => {
-	const avatar = `
+  const avatar = `
     
       <p class="headerHomeAvatar"></p>
       <img class="imageAvatar" src="img/avatar.png">
@@ -39,16 +39,16 @@ const avatarProfile = () => {
     
     
     `;
-	const sectionProfile = document.createElement('section');
-    sectionProfile.classList.add('homeAvatarContainer');
-    sectionProfile.innerHTML = avatar;
-	authentification();
-	// sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
-	return sectionProfile;
+  const sectionProfile = document.createElement('section');
+  sectionProfile.classList.add('homeAvatarContainer');
+  sectionProfile.innerHTML = avatar;
+  authentification();
+  // sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
+  return sectionProfile;
 };
 
 const mainPublication = () => {
-	const publication = `
+  const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
         <input id="pic-icon"></input>
@@ -62,18 +62,18 @@ const mainPublication = () => {
         <button>Compartir</button>
       </div>
       `;
-	const sectionPublication = document.createElement('section');
-    sectionPublication.innerHTML = publication;
-    sectionPublication.classList.add('homePublicationContainer');
-	return sectionPublication;
+  const sectionPublication = document.createElement('section');
+  sectionPublication.innerHTML = publication;
+  sectionPublication.classList.add('homePublicationContainer');
+  return sectionPublication;
 };
 
 export const homeTemplate = () => {
-    const homeElem = document.getElementById('homeContainer');
-	const mainElem = document.createElement('main');
-	mainElem.appendChild(navMenu());
-	mainElem.appendChild(avatarProfile());
-    mainElem.appendChild(mainPublication());
-    homeElem.appendChild(mainElem);
-	return homeElem;
+  const homeElem = document.getElementById('homeContainer');
+  const mainElem = document.createElement('main');
+  mainElem.appendChild(navMenu());
+  mainElem.appendChild(avatarProfile());
+  mainElem.appendChild(mainPublication());
+  homeElem.appendChild(mainElem);
+  return homeElem;
 };
