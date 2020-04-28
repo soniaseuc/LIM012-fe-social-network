@@ -2,18 +2,20 @@
 import mockFirebase from '../_mocks_/firebase-mock.js';
 global.firebase = mockFirebase();
 */
-import { signIn, signUp, signOut } from '../src/firebase.js';
 
-const firebasemock = require('...firebase-mock');
+import firebasemock from 'firebase-mock';
 
 const mockauth = new firebasemock.MockAuthentication();
 mockauth.autoFlush();
+
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   () => null,
   () => mockauth,
 );
 
+// eslint-disable-next-line import/first
+import { signIn, signUp, signOut } from '../src/firebase.js';
 
 describe('signIn', () => {
   it('debería porder iniciar sesion con email: paula@gmail.com y password: 123456', () => signIn('paula@gmail.com', '123456')
@@ -26,6 +28,7 @@ describe('signOut', () => {
   it('debería porder cerrar sesion con email: paula@gmail.com y password: 123456', () => signOut()
     .then((user) => {
       expect(user).toBe(undefined);
+
     }));
 });
 
