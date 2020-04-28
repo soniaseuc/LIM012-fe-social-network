@@ -1,7 +1,7 @@
 import { signUp, authentification } from '../firebase.js';
 
 export default () => {
-	const signUpform = `
+  const signUpform = `
     <section id="signUpform">
     <form>
         <h3>Ingresa tus datos aquí para registarte:</h3>
@@ -12,18 +12,18 @@ export default () => {
     </section>
   `;
 
-	const divElemt = document.createElement('div');
-	// divElemt.classList.add('position');
-	divElemt.innerHTML = signUpform;
+  const divElemt = document.createElement('div');
+  // divElemt.classList.add('position');
+  divElemt.innerHTML = signUpform;
 
-	const btnSignUp = divElemt.querySelector('button');
-	btnSignUp.addEventListener('click', (event) => {
-		event.preventDefault();
-		console.log('SignUp Ok');
-		const email = divElemt.querySelector('[type="email"]').value;
-		const password = divElemt.querySelector('[type="password"]').value;
-		signUp(email, password);
-		authentification();
-	});
-	return divElemt;
+  const btnSignUp = divElemt.querySelector('button');
+  btnSignUp.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('SignUp Ok');
+    const email = divElemt.querySelector('[type="email"]').value;
+    const password = divElemt.querySelector('[type="password"]').value;
+    signUp(email, password);
+    authentification();
+  });
+  return divElemt;
 };

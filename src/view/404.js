@@ -1,5 +1,5 @@
 export default () => {
-	const viewDifferent = `
+  const viewDifferent = `
             <figure class=>
             <img class="image" src="img/404.png" width="450px" height="250px" >
             </figure>
@@ -12,6 +12,6 @@ export default () => {
 
   const divElemt = document.createElement('div');
   divElemt.setAttribute('class', 'divNotFound');
-	divElemt.innerHTML = viewDifferent;
-	return divElemt;
+  divElemt.innerHTML = viewDifferent;
+  return divElemt;
 };

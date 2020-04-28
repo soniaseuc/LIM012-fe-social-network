@@ -1,7 +1,7 @@
 import { signOut, authentification } from '../firebase.js';
 
 const navMenu = () => {
-	const menu = `
+  const menu = `
     <a href="#/home">
         <h1>EducaChat</h1>
     </a>
@@ -16,36 +16,36 @@ const navMenu = () => {
         </ul>
     </nav>
     `;
-	const headerMenu = document.createElement('header');
-	divElemt.classList.add('divNav');
-	headerMenu.innerHTML = menu;
-	const anchorSignOut = headerMenu.querySelector('#SignOut');
-	anchorSignOut.addEventListener('click', (event) => {
-		event.preventDefault();
-		console.log('SignOut Ok');
-		signOut();
-		authentification();
-	});
-	return headerMenu;
+  const headerMenu = document.createElement('header');
+  headerMenu.classList.add('divNav');
+  headerMenu.innerHTML = menu;
+  const anchorSignOut = headerMenu.querySelector('#SignOut');
+  anchorSignOut.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('SignOut Ok');
+    signOut();
+    authentification();
+  });
+  return headerMenu;
 };
 
 
 const avatarProfile = () => {
-	const avatar = `
+  const avatar = `
     <figure>
     <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
     <label id="myUserName">Nombre</label>
     `;
-	const sectionProfile = document.createElement('section');
-	sectionProfile.innerHTML = avatar;
-	authentification();
-	// sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
-	return sectionProfile;
+  const sectionProfile = document.createElement('section');
+  sectionProfile.innerHTML = avatar;
+  // const emailUser = authentification();
+  // sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
+  return sectionProfile;
 };
 
 const mainPublication = () => {
-	const publication = `
+  const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div>
       <input id="insertImg"></input>
@@ -61,16 +61,15 @@ const mainPublication = () => {
       <button>Compartir</button>
       </div>
       `;
-	const sectionPublication = document.createElement('section');
-	sectionPublication.innerHTML = publication;
-	return sectionPublication;
+  const sectionPublication = document.createElement('section');
+  sectionPublication.innerHTML = publication;
+  return sectionPublication;
 };
 
 export const homeTemplate = () => {
-
-	const mainElem = document.createElement('main');
-	mainElem.appendChild(navMenu());
-	mainElem.appendChild(avatarProfile());
-	mainElem.appendChild(mainPublication());
-	return mainElem;
+  const mainElem = document.createElement('main');
+  mainElem.appendChild(navMenu());
+  mainElem.appendChild(avatarProfile());
+  mainElem.appendChild(mainPublication());
+  return mainElem;
 };
