@@ -11,11 +11,7 @@ export default () => {
           `;
 
   const divElemt = document.createElement('div');
-<<<<<<< HEAD
   divElemt.setAttribute('id', 'notFound');
-=======
-  divElemt.setAttribute('class', 'divNotFound');
->>>>>>> 9517ae6985d9615bfa826612c78d3658807e2eae
   divElemt.innerHTML = viewDifferent;
   return divElemt;
 };
