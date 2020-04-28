@@ -17,70 +17,51 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 
-const signUp = () => {
-	const email = document.getElementById('email');
-	const password = document.getElementById('password');
-	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+  
+export const signUp = (email, password) => {
+	const promise = auth.createUserWithEmailAndPassword(email, password);
 	promise.catch(e => alert(e.message));
 	alert('Signed Up');
 };
 
-export const signIn = () => {
-	const email = document.getElementById('email');
-	const password = document.getElementById('password');
-	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+
+export const signIn = (email, password) => {
+	const promise = auth.signInWithEmailAndPassword(email, password);
 	promise.catch(e => alert(e.message));
+
+	// otro tonto alert para probar. Lo quitaremos porque no es necesario
+	// window.alert(`email: ${email.value}, password ${password.value}`);
 };
 
-const signOut = () => {
+export const signOut = () => {
 	auth.signOut();
 	alert('Signed Out');
 };
 
-auth.onAuthStateChanged((user) => {
-	if (user) {
-		const email = user.email;
-		// alert(`Active User ${email}`);
-		// Take user to a different or home page
-		// is signed in
-		window.location.hash = '#/home';
-	} else {
-		alert('No Active User');
-		// no user is signed i
-		window.location.hash = '#/';
-	}
-});
 
-// function signUp(){	
-// 	var email = document.getElementById('email');	
-// 	var password = document.getElementById('password');	
-// 	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);	
-// 	promise.catch(e => alert(e.message));	
-// 	alert('Signed Up');	
-// }
+export const authentification = () => {
+	auth.onAuthStateChanged((user) => {
+		if (user) {			
+			// Take user to a different or home page
+			// User is signed in
+			const email = user.email;
+			console.log(`active user ${email}`);
+			alert(`Active User ${email}`);
+			window.location.hash = '#/home';	
+		} else {
+			alert('No Active User');
+			// no user is signed in
+			window.location.hash = '#/';
+		}
+	});
+};
 
-// function signIn(){	
-// 	var email = document.getElementById('email');	
-// 	var password = document.getElementById('password');	
-// 	const promise = auth.signInWithEmailAndPassword(email.value, password.value);	
-// 	promise.catch(e => alert(e.message));	
-// }
-
-// function signOut(){
-// 	auth.signOut();	
-// 	alert('Signed Out');
-// }
-
-// auth.onAuthStateChanged(function(user){
-// 	if(user){
-// 		var email = user.email;
-// 		alert('Active User ' + email);	
-// 		//Take user to a different or home page	
-// 		//is signed in
-// 		window.location.hash = '#/home';
-// 	}else{	
-// 		alert('No Active User');
-// 		window.location.hash = '#/';
-// 		//no user is signed in	
-// 	}	
-// });
+// export const signInWithGoogle = () => {
+// 	const provider = new firebase.auth.GoogleAuthProvider();
+// 	return firebase.auth().signInWithPopup(provider);
+// };
+  
+// export const signInWithFacebook = () => {
+// 	const provider = new firebase.auth.FacebookAuthProvider();
+// 	return firebase.auth().signInWithPopup(provider);
+// };

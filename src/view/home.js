@@ -1,3 +1,5 @@
+import { signOut, authentification } from '../firebase.js';
+
 const navMenu = () => {
 	const menu = `
     <a href="#/home">
@@ -9,7 +11,7 @@ const navMenu = () => {
                 <a href="#/profile">Perfil</a>
             </li>
             <li>
-                <a onclick="signOut()" id="SignOut" href="#/">Cerrar Sesion</a>
+                <a id="SignOut" href="#/">Cerrar Sesion</a>
             </li>
         </ul>
     </nav>
@@ -17,9 +19,15 @@ const navMenu = () => {
 	const headerMenu = document.createElement('header');
 	divElemt.classList.add('divNav');
 	headerMenu.innerHTML = menu;
+	const anchorSignOut = headerMenu.querySelector('#SignOut');
+	anchorSignOut.addEventListener('click', (event) => {
+		event.preventDefault();
+		console.log('SignOut Ok');
+		signOut();
+		authentification();
+	});
 	return headerMenu;
 };
-
 
 
 const avatarProfile = () => {
@@ -27,10 +35,12 @@ const avatarProfile = () => {
     <figure>
     <img class="image" src="img/avatar.png" width="100px" height="100px">
     </figure>
-    <label>Fulanita</label>
+    <label id="myUserName">Nombre</label>
     `;
 	const sectionProfile = document.createElement('section');
 	sectionProfile.innerHTML = avatar;
+	authentification();
+	// sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
 	return sectionProfile;
 };
 
