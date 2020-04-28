@@ -17,7 +17,7 @@ const navMenu = () => {
     </nav>
     `;
 	const headerMenu = document.createElement('header');
-	// divElemt.classList.add('position');
+	divElemt.classList.add('divNav');
 	headerMenu.innerHTML = menu;
 	const anchorSignOut = headerMenu.querySelector('#SignOut');
 	anchorSignOut.addEventListener('click', (event) => {
@@ -50,7 +50,9 @@ const mainPublication = () => {
       <div>
       <input id="insertImg"></input>
       <label for="insertImg">
-      <img class="icons" src="../img/icons/images.svg" alt="">
+      <button>
+      <img class="icons" src="img/icons/images.svg"  width="40px" height="50px" alt="">
+      </button>
       </label>
       <select>
         <option default>Publico</option>
@@ -64,11 +66,8 @@ const mainPublication = () => {
 	return sectionPublication;
 };
 
-
-
-// funcion que exporte y dentro estas tres funciones
-
 export const homeTemplate = () => {
+
 	const mainElem = document.createElement('main');
 	mainElem.appendChild(navMenu());
 	mainElem.appendChild(avatarProfile());

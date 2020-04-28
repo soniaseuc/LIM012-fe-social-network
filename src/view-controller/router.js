@@ -21,8 +21,8 @@ export const changeTmp = (hash) => {
 	}
 };
 
+// Your web app's Firebase configuration
 
-// // Your web app's Firebase configuration
 // const firebaseConfig = {
 // 	apiKey: 'AIzaSyDIY0_9hxFXSshWgzZz6SZA7kZBy4LDXVg',
 // 	authDomain: 'testauthentication-f576c.firebaseapp.com',
@@ -32,6 +32,7 @@ export const changeTmp = (hash) => {
 // 	messagingSenderId: '602622699268',
 // 	appId: '1:602622699268:web:ca55eac0521d4da60c9251',
 // };
+
 // // Initialize Firebase
 // firebase.initializeApp(firebaseConfig);
 
@@ -64,7 +65,9 @@ export const changeTmp = (hash) => {
 // 		// Take user to a different or home page
 // 		// is signed in
 // 	} else {
+
 // 		alert('No Active User');
+
 // 		// no user is signed in
 // 	}
 // });

@@ -11,7 +11,6 @@ const components = {
 	signUpform: SignUpform,
 	different: Different,
 	home: homeTemplate,
-
 };
 
 export { components };

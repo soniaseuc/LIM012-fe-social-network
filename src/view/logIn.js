@@ -18,7 +18,7 @@ export default () => {
     `;
 
 	const divElemt = document.createElement('div');
-	// divElemt.classList.add('position');
+	divElemt.classList.add('signInForm');
 	divElemt.innerHTML = logInform;
 	const btnSignIn = divElemt.querySelector('button');
 	btnSignIn.addEventListener('click', (event) => {

@@ -16,12 +16,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+
   
 export const signUp = (email, password) => {
 	const promise = auth.createUserWithEmailAndPassword(email, password);
 	promise.catch(e => alert(e.message));
 	alert('Signed Up');
 };
+
 
 export const signIn = (email, password) => {
 	const promise = auth.signInWithEmailAndPassword(email, password);
@@ -35,6 +37,7 @@ export const signOut = () => {
 	auth.signOut();
 	alert('Signed Out');
 };
+
 
 export const authentification = () => {
 	auth.onAuthStateChanged((user) => {
