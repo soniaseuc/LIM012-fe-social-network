@@ -2,14 +2,25 @@ import { signUp, authentification } from '../firebase.js';
 
 export default () => {
   const signUpform = `
-    <section id="signUpform">
-    <form>
+<main>
+<figure>
+<img src="./img/laptop.png" alt="">
+  </figure>
+  <h1>EducaChat</h1>
+  
+  <h2>La red de educación para jóvenes!</h2>
+    
+<section class="formContainer">
         <h3>Ingresa tus datos aquí para registarte:</h3>
         <input type="email" id="email" placeholder="email">
         <input type="password" id="password" placeholder="password">
         <button class="btnSign" id="SignUp">Sign up</button>
-    </form>
-    </section>
+</section>
+
+  <p>¿Ya tienes una cuenta? <span><a href="#/logInform">Logueate</a></span></p>
+</main>
+
+</main>
   `;
 
   const divElemt = document.createElement('div');

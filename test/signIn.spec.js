@@ -27,7 +27,8 @@ describe('signIn', () => {
 describe('signOut', () => {
   it('debería porder cerrar sesion con email: paula@gmail.com y password: 123456', () => signOut()
     .then((user) => {
-      expect(user.email).toBe(undefined);
+      expect(user).toBe(undefined);
+
     }));
 });
 
