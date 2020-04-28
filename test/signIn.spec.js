@@ -2,7 +2,19 @@
 import mockFirebase from '../_mocks_/firebase-mock.js';
 global.firebase = mockFirebase();
 */
-import { signIn, signUp, signOut } from '../src/data.js';
+
+const firebasemock = require('firebase-mock');
+const mockauth = new firebasemock.MockAuthentication();
+mockauth.autoFlush();
+
+global.firebase = firebasemock.MockFirebaseSdk(
+  // use null if your code does not use RTDB
+  () => null,
+  () => mockauth,
+);
+
+
+import { signIn, signUp, signOut } from '../src/firebase.js';
 
 
 describe('signIn', () => {

@@ -45,8 +45,8 @@ export const authentification = () => {
 			// Take user to a different or home page
 			// User is signed in
 			const email = user.email;
-			console.log(`active user ${email}`);
-			alert(`Active User ${email}`);
+			// console.log(`active user ${email}`);
+			// alert(`Active User ${email}`);
 			window.location.hash = '#/home';	
 		} else {
 			alert('No Active User');
