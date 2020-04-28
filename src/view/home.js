@@ -15,7 +15,7 @@ const navMenu = () => {
     </nav>
     `;
 	const headerMenu = document.createElement('header');
-	// divElemt.classList.add('position');
+	divElemt.classList.add('divNav');
 	headerMenu.innerHTML = menu;
 	return headerMenu;
 };

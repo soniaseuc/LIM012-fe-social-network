@@ -15,7 +15,7 @@ export default () => {
     `;
 
 	const divElemt = document.createElement('div');
-	// divElemt.classList.add('position');
+	divElemt.classList.add('signInForm');
 	divElemt.innerHTML = logInform;
 	return divElemt;
 };
