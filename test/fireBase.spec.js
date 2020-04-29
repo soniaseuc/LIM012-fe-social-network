@@ -1,8 +1,3 @@
-/* // intentando manual mock.
-import mockFirebase from '../_mocks_/firebase-mock.js';
-global.firebase = mockFirebase();
-*/
-
 import firebasemock from 'firebase-mock';
 
 const mockauth = new firebasemock.MockAuthentication();

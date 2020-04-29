@@ -1,130 +1,129 @@
 * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 body {
-    display: flex;    
-    height: 100vh;
-    width: 100%;
-    font-size: 12px;
-    font-family: Roboto, serif ;
-    text-decoration: none;
-    list-style-type: none;
-    line-height:1rem;
-    box-sizing: border-box;
+  display: flex;    
+  height: 100vh;
+  width: 100%;
+  font-size: 12px;
+  font-family: Roboto, serif ;
+  text-decoration: none;
+  list-style-type: none;
+  line-height:1rem;
+  box-sizing: border-box;
 }
 
 /* imagen de la laptop */
 body main figure img {
-    width: 10rem;
+  width: 10rem;
 }
 
 /* input del email */
 #email {
-border-radius: 2rem;
-padding: 1rem;
-margin: 1rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 /* input del password */
 #password {
-    border-radius: 2rem;
-    padding: 1rem;
-    margin: 1rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 }
 
  /* Seccion SignIn y SignUp en el html*/
 #logIn {
-    line-height:2rem;
+  line-height:2rem;
 }
 
 /*Bton Sign tanto signIn como signUp*/
 .btnSign {
-    border-radius: 2rem;
-    padding: 0.5rem 3rem;
-    align-content: center;
-    background-color: #3376BC;
-    margin: 1rem;
-    color: #FFFFFF;
+  border-radius: 2rem;
+  padding: 0.5rem 3rem;
+  align-content: center;
+  background-color: #3376BC;
+  margin: 1rem;
+  color: #FFFFFF;
 }
 
 /*section donde esta el email, password y el boton*/
 .formContainer {
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /*el input y label de fb y google*/
 #fbInput {
-    display: none;
+  display: none;
 }
 #googleInput {
-    display: none;
+  display: none;
 }
 #fbIcon img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 #googleIcon img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 li a{
-    display: block;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #292929;
-    font-size: 1rem;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #292929;
+  font-size: 1rem;
 }
 
 p span a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: bold;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: bold;
 }
 
 /*HOME*/
 /*clase creada dinamicamente para albergar las 3 secciones del home*/
 .homeContainer {
-    background-color: #FFFFFF;
-
-    
+  background-color: #FFFFFF;   
 }
- /*box donde esta la foto y el nombre del usuario*/
+
+/*box donde esta la foto y el nombre del usuario*/
 .homeAvatarContainer {
-border: 1px solid #292929;
-margin: 2rem 5rem;
-flex-direction: row;
+  border: 1px solid #292929;
+  margin: 2rem 5rem;
+  flex-direction: row;
 }
 
 /*franja amarilla sobre el nombre y foto del usuario*/
 .headerHomeAvatar {
-background-color: #F4A82C;
-padding: 1rem;
+  background-color: #F4A82C;
+  padding: 1rem;
 }
 
 .imageAvatar {
-    width: 30vw;
+  width: 30vw;
 }
 
 /*nombre del usuario*/
 #myUserName {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /*home publication section*/
 .homePublicationContainer {
-border: 1px solid #292929;
+  border: 1px solid #292929;
 }
 
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 .footerHomePublication {
-padding: 1rem;
-background-color: #3376BC;
+  padding: 1rem;
+  background-color: #3376BC;
 }
 
 
@@ -179,36 +178,36 @@ li:hover {
 
 /*RESPONSIVE MODO MOBIL/MENU HAMBURGUESA*/
 @media (max-width:768px) {
-    header{
-      background: #F4A82C;
-    
-    }
-  
-    header label {
-      display: block;
-      margin-top: 0;
-    }
-  
-    nav {
-      position:absolute;
-      background: #F4A82C;
-      width: 91%;
-      margin-left: -110%;
-      transition: all 0.5s;
-    }
-  
-    ul{
-      flex-direction: column;
-      z-index: 1100;
-    }
-  
-    li {
-      border-bottom: inset 0.5px #3376BC;  /*borde solo a la parte superior*/  
-    }
-  
-    #btn-menu:checked ~ nav {
-      margin: 0;
-      z-index: 1;
-    }
+  header{
+    background: #F4A82C;
   
   }
+
+  header label {
+    display: block;
+    margin-top: 0;
+  }
+
+  nav {
+    position:absolute;
+    background: #F4A82C;
+    width: 91%;
+    margin-left: -110%;
+    transition: all 0.5s;
+  }
+
+  ul{
+    flex-direction: column;
+    z-index: 1100;
+  }
+
+  li {
+    border-bottom: inset 0.5px #3376BC;  /*borde solo a la parte superior*/  
+  }
+
+  #btn-menu:checked ~ nav {
+    margin: 0;
+    z-index: 1;
+  }
+  
+}

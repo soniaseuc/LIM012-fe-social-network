@@ -2,28 +2,28 @@ import { signIn, authentification } from '../firebase.js';
 
 export default () => {
   const logInform = `
-<figure>
-<img src="./img/laptop.png" alt="">
-  </figure>
-  <h1>EducaChat</h1>
-  
-  <h2>La red de educación para jóvenes!</h2>
-  <h2>¡Bienvenid@, estudiante!</h2>
-  
-  <section class="formContainer">
-    <input type="email" id="email" placeholder="email">
-    <input type="password" id="password" placeholder="password">
-    <button class="btnSign" id="SignIn">Sign In</button>
-  </section>
+  <figure>
+  <img src="./img/laptop.png" alt="">
+    </figure>
+    <h1>EducaChat</h1>
+    
+    <h2>La red de educación para jóvenes!</h2>
+    <h2>¡Bienvenid@, estudiante!</h2>
+    
+    <section class="formContainer">
+      <input type="email" id="email" placeholder="email">
+      <input type="password" id="password" placeholder="password">
+      <button class="btnSign" id="SignIn">Sign In</button>
+    </section>
 
-<p>O bien ingresa con...</p>
-<input id="fbInput"></input>
-<label id="fbIcon" for=fbInput> <img src="../img/social-facebook-button-blue-icon.png"></img></label>
-<input id="googleInput"></input>
-<label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
+  <p>O bien ingresa con...</p>
+  <input id="fbInput"></input>
+  <label id="fbIcon" for=fbInput> <img src="../img/social-facebook-button-blue-icon.png"></img></label>
+  <input id="googleInput"></input>
+  <label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
 
-    <p>¿No tienes una cuenta? <span><a href="#/signUpform">Registrate</a></span></p>
-</main>
+      <p>¿No tienes una cuenta? <span><a href="#/signUpform">Registrate</a></span></p>
+  </main>
   `;
 
   const divElemt = document.createElement('div');
