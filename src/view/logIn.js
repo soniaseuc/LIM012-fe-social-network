@@ -18,7 +18,7 @@ export default () => {
 
 <p>O bien ingresa con...</p>
 <input id="fbInput"></input>
-<label id="fbIcon" for=fbInput> <img src="img/social-facebook-button-blue-icon.png"></img></label>
+<label id="fbIcon" for=fbInput> <img src="../img/social-facebook-button-blue-icon.png"></img></label>
 <input id="googleInput"></input>
 <label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
 
@@ -32,7 +32,7 @@ export default () => {
   const btnSignIn = divElemt.querySelector('button');
   btnSignIn.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('SignIn Ok');
+    // console.log('SignIn Ok');
     const email = divElemt.querySelector('[type="email"]').value;
     const password = divElemt.querySelector('[type="password"]').value;
     signIn(email, password);

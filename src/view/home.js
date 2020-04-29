@@ -22,7 +22,7 @@ const navMenu = () => {
   const anchorSignOut = headerMenu.querySelector('#SignOut');
   anchorSignOut.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('SignOut Ok');
+    // console.log('SignOut Ok');
     signOut();
     authentification();
   });

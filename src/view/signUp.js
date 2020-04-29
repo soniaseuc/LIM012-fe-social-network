@@ -30,7 +30,7 @@ export default () => {
   const btnSignUp = divElemt.querySelector('button');
   btnSignUp.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('SignUp Ok');
+    // console.log('SignUp Ok');
     const email = divElemt.querySelector('[type="email"]').value;
     const password = divElemt.querySelector('[type="password"]').value;
     signUp(email, password);
