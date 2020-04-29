@@ -25,24 +25,24 @@ export const signOut = () => {
   // alert('Signed Out');
 };
 
-export const myCurrentUser = () => {
-  const user =  firebase.auth().currentUser;
-  let email;
-  if (user != null) {
-  // User is signed in.
-    email = user.email;
-    console.log(`active user ${email}`);
-    // alert(`Active User ${email}`);
-  }
-  return firebase.auth().currentUser;
-};
+// export const myCurrentUser = () => {
+//   const user = firebase.auth().currentUser;
+//   let email;
+//   if (user != null) {
+//   // User is signed in.
+//     email = user.email;
+//     console.log(`active user ${email}`);
+//     // alert(`Active User ${email}`);
+//   }
+//   return firebase.auth().currentUser;
+// };
 
 export const authentification = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      myCurrentUser();
+      // myCurrentUser();
       window.location.hash = '#/home';
     } else {
       // no user is signed in
