@@ -1,4 +1,6 @@
-import { signUp, authentification } from '../firebase.js';
+import { signUp } from '../firebase.js';
+import { authentification } from '../authenticationRouter.js';
+
 
 export default () => {
   const signUpform = `

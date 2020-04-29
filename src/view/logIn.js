@@ -1,4 +1,5 @@
-import { signIn, authentification } from '../firebase.js';
+import { signIn } from '../firebase.js';
+import { authentification } from '../authenticationRouter.js';
 
 export default () => {
   const logInform = `
