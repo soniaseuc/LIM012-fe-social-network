@@ -6,8 +6,7 @@
 }
 
 body {
-    display: flex;
-    background: linear-gradient(#FFFFFF, #F4A82C);
+    display: flex;    
     height: 100vh;
     width: 100%;
     font-size: 12px;
@@ -15,14 +14,7 @@ body {
     text-decoration: none;
     list-style-type: none;
     line-height:1rem;
-}
-
-main {
-    flex-direction: column;
-    margin:auto;
-    align-items: center;
-    text-align: center;
-    line-height: 2rem;
+    box-sizing: border-box;
 }
 
 /* imagen de la laptop */
@@ -44,11 +36,12 @@ margin: 1rem;
     margin: 1rem;
 }
 
+ /* Seccion SignIn y SignUp en el html*/
 #logIn {
     line-height:2rem;
 }
 
-/*Bton Sign */
+/*Bton Sign tanto signIn como signUp*/
 .btnSign {
     border-radius: 2rem;
     padding: 0.5rem 3rem;
@@ -58,24 +51,24 @@ margin: 1rem;
     color: #FFFFFF;
 }
 
-#formContainer {
+/*section donde esta el email, password y el boton*/
+.formContainer {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
 }
 
+/*el input y label de fb y google*/
 #fbInput {
     display: none;
 }
 #googleInput {
     display: none;
 }
-
 #fbIcon img {
     width: 20px;
     height: 20px;
 }
-
 #googleIcon img {
     width: 20px;
     height: 20px;
@@ -87,3 +80,134 @@ p span a {
     font-weight: bold;
   }
 
+/*HOME*/
+/*clase creada dinamicamente para albergar las 3 secciones del home*/
+.homeContainer {
+    background-color: #FFFFFF;
+
+    
+}
+ /*box donde esta la foto y el nombre del usuario*/
+.homeAvatarContainer {
+border: 1px solid #292929;
+margin: 2rem 5rem;
+flex-direction: row;
+}
+
+/*franja amarilla sobre el nombre y foto del usuario*/
+.headerHomeAvatar {
+background-color: #F4A82C;
+padding: 1rem;
+}
+
+.imageAvatar {
+    width: 30vw;
+}
+
+/*nombre del usuario*/
+#myUserName {
+    font-weight: bold;
+}
+
+/*home publication section*/
+.homePublicationContainer {
+border: 1px solid #292929;
+}
+
+/*franja azul donde esta la opcion de publicar y si es publico o privado*/
+.footerHomePublication {
+padding: 1rem;
+background-color: #3376BC;
+}
+
+
+
+
+/* menu hamburguesa */
+/*input checkbox*/
+#btn-menu { 
+  display: none;/*para que no se vea el input en la pagina*/
+}
+
+/* dimensiones del label que contiene la img icono-menu */
+header label {
+  display: flex;
+  display: none;
+  width: 0.01rem;
+  height: 0.01rem;
+  border: 1px solid #292929;
+
+}
+
+/* estilo al label:cambia de color al hacer hover */
+header label:hover {
+  cursor: pointer;
+  background: #F4A82C;
+}
+
+/*PROPIEDADES DE UL PARA PODER TRABAJAR DINAMICAMENTE CON <LI>*/
+ul{
+  display: flex;
+  background-color: #F4A82C;
+  margin-top: 0; /*para poder separar la lista del header*/
+  flex-wrap: wrap;/*envoltura flexibe*/
+  border: 1px solid #292929;
+  box-shadow: 0 0 2px rgba(173, 173, 173, 0.726);
+}
+
+li{
+  font-family: 'Roboto', sans-serif;
+  flex-grow: 1;
+  text-align: center;
+  line-height: 2.5;
+  font-size: 1rem;
+}
+
+/* estilo a los <li>/animacion*/
+li:hover {
+  background: #3376BC;
+}
+
+li a{
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #292929;
+  font-size: 1rem;
+}
+
+/*RESPONSIVE MODO MOBIL/MENU HAMBURGUESA*/
+@media (max-width:768px) {
+    header{
+      background: #F4A82C;
+    
+    }
+  
+    header label {
+      display: block;
+      margin-top: 0;
+    }
+  
+    nav {
+      position:absolute;
+      background: #F4A82C;
+      width: 91%;
+      margin-left: -110%;
+      transition: all 0.5s;
+    }
+  
+    ul{
+      flex-direction: column;
+      z-index: 1100;
+    }
+  
+    li {
+      border-bottom: inset 0.5px #3376BC; ; /*borde solo a la parte superior*/  
+    }
+  
+    #btn-menu:checked ~ nav {
+      margin: 0;
+      z-index: 1;
+    }
+  
+  }

@@ -25,24 +25,33 @@ export const signOut = () => {
   // alert('Signed Out');
 };
 
+export const myCurrentUser = () => {
+  const user =  firebase.auth().currentUser;
+  let email;
+  if (user != null) {
+  // User is signed in.
+    email = user.email;
+    console.log(`active user ${email}`);
+    // alert(`Active User ${email}`);
+  }
+  return firebase.auth().currentUser;
+};
 
 export const authentification = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      // console.log(`active user ${user.email}`);
-      // alert(`Active User ${email}`);
+      myCurrentUser();
       window.location.hash = '#/home';
     } else {
-      // alert('No Active User');
       // no user is signed in
       window.location.hash = '#/';
     }
   });
 };
 
-
+// otra funcion solo para devolver el currentUser
 // export const signInWithGoogle = () => {
 //   // Create an instance of the Google provider object
 //   const provider = new firebase.auth.GoogleAuthProvider();
