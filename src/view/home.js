@@ -1,7 +1,10 @@
-import { signOut, authentification } from '../firebase.js';
+import { signOut, authentification, myCurrentUser } from '../firebase.js';
 
 const navMenu = () => {
   const menu = `
+  <input type="checkbox" id="btn-menu">
+  <label class="menuLabel" for="btn-menu"><img src="../img/icono-menu.png" alt="">
+  </label>
     <a href="#/home">
         <h1>EducaChat</h1>
     </a>
@@ -33,16 +36,15 @@ const navMenu = () => {
 const avatarProfile = () => {
   const avatar = `    
       <p class="headerHomeAvatar"></p>
-      <img class="imageAvatar" src="img/avatar.png">
-      <label id="myUserName">Nombre</label>
-    
-    
+      <label id="myUserName">Nombre</label>  
+      <img class="imageAvatar" src="img/avatar.png">        
     `;
   const sectionProfile = document.createElement('section');
   sectionProfile.classList.add('homeAvatarContainer');
   sectionProfile.innerHTML = avatar;
-  authentification();
-  // sectionProfile.getElementById('myUserName').innerHTML = `Bienvenid@ usuari@: ${email}`;
+  const userEmail = myCurrentUser();
+  console.log(userEmail);
+  // sectionProfile.querySelector('#myUserName').innerHTML = `Bienvenid@ usuari@:${userEmail.email}`;
   return sectionProfile;
 };
 
@@ -68,11 +70,10 @@ const mainPublication = () => {
 };
 
 export const homeTemplate = () => {
-  const homeElem = document.getElementById('homeContainer');
   const mainElem = document.createElement('main');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublication());
-  homeElem.appendChild(mainElem);
-  return homeElem;
+  mainElem.classList.add('homeContainer');
+  return mainElem;
 };
