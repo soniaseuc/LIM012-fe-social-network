@@ -1,61 +1,48 @@
-// export const data = () => {
-// // aquí tu código
+
+// eslint-disable-next-line max-len
+export const signUp = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+// promise.catch(e => alert(e.message));
+// alert('Signed Up');
 // };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyCeNrkvdzWB6_ox2aAbSB_RcooqZzS4KHc',
-  authDomain: 'social-network-a68c0.firebaseapp.com',
-  databaseURL: 'https://social-network-a68c0.firebaseio.com',
-  projectId: 'social-network-a68c0',
-  storageBucket: 'social-network-a68c0.appspot.com',
-  messagingSenderId: '427677359698',
-  appId: '1:427677359698:web:27d4064d69fbe191ed898b',
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
+// eslint-disable-next-line max-len
+export const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
+//   promise.catch(e => alert(e.message));
 
-
-export const signUp = (email, password) => {
-  const promise = auth.createUserWithEmailAndPassword(email, password);
-  promise.catch(e => alert(e.message));
-  alert('Signed Up');
-};
-
-
-export const signIn = (email, password) => {
-  const promise = auth.signInWithEmailAndPassword(email, password);
-  promise.catch(e => alert(e.message));
-
-  // otro tonto alert para probar. Lo quitaremos porque no es necesario
-  // window.alert(`email: ${email.value}, password ${password.value}`);
-};
+//   // otro tonto alert para probar. Lo quitaremos porque no es necesario
+//   // window.alert(`email: ${email.value}, password ${password.value}`);
+// };
 
 export const signOut = () => {
-  auth.signOut();
-  alert('Signed Out');
+  firebase.auth().signOut();
+  //   .then(() => {
+  //     // Sign-out successful.
+  //   }).catch((error) => {
+
+//     // An error happened.
+//   });
+  // alert('Signed Out');
 };
 
-export const myCurrentUser = () => {
-  const user = auth.currentUser;
-  let email;
-  if (user != null) {
-  // User is signed in.
-    email = user.email;
-    console.log(`active user ${email}`);
-    alert(`Active User ${email}`);
-  }
-  return auth.currentUser;
-};
+// export const myCurrentUser = () => {
+//   const user = firebase.auth().currentUser;
+//   let email;
+//   if (user != null) {
+//   // User is signed in.
+//     email = user.email;
+//     console.log(`active user ${email}`);
+//     // alert(`Active User ${email}`);
+//   }
+//   return firebase.auth().currentUser;
+// };
 
 export const authentification = () => {
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      myCurrentUser();
+      // myCurrentUser();
       window.location.hash = '#/home';
     } else {
       // no user is signed in
@@ -66,8 +53,9 @@ export const authentification = () => {
 
 // otra funcion solo para devolver el currentUser
 // export const signInWithGoogle = () => {
-// const provider = new firebase.auth.GoogleAuthProvider();
-// return firebase.auth().signInWithPopup(provider);
+//   // Create an instance of the Google provider object
+//   const provider = new firebase.auth.GoogleAuthProvider();
+//   return firebase.auth().signInWithPopup(provider);
 // };
 
 // export const signInWithFacebook = () => {

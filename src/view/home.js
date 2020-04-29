@@ -1,4 +1,4 @@
-import { signOut, authentification, myCurrentUser } from '../firebase.js';
+import { signOut, authentification } from '../firebase.js';
 
 const navMenu = () => {
   const menu = `
@@ -25,7 +25,7 @@ const navMenu = () => {
   const anchorSignOut = headerMenu.querySelector('#SignOut');
   anchorSignOut.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('SignOut Ok');
+    // console.log('SignOut Ok');
     signOut();
     authentification();
   });
@@ -42,9 +42,9 @@ const avatarProfile = () => {
   const sectionProfile = document.createElement('section');
   sectionProfile.classList.add('homeAvatarContainer');
   sectionProfile.innerHTML = avatar;
-  const userEmail = myCurrentUser();
-  console.log(userEmail);
-  // sectionProfile.querySelector('#myUserName').innerHTML = `Bienvenid@ usuari@:${userEmail.email}`;
+  // const userEmail = myCurrentUser();
+  // console.log(userEmail);
+  // sectionProfile.querySelector('#myUserName').innerHTML=`Bienvenid@ usuari@:${userEmail.email}`;
   return sectionProfile;
 };
 

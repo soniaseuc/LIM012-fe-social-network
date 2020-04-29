@@ -18,7 +18,7 @@ body {
 }
 
 /* imagen de la laptop */
-figure img {
+body main figure img {
     width: 10rem;
 }
 
@@ -35,26 +35,20 @@ margin: 1rem;
     padding: 1rem;
     margin: 1rem;
 }
+
  /* Seccion SignIn y SignUp en el html*/
 #logIn {
-    margin-top: 5rem;
     line-height:2rem;
-    background: linear-gradient(#FFFFFF, #F4A82C);
-    flex-direction: column;
-    margin:auto;
-    align-items: center;
-    text-align: center;
-    line-height: 2rem;
 }
 
 /*Bton Sign tanto signIn como signUp*/
 .btnSign {
     border-radius: 2rem;
     padding: 0.5rem 3rem;
+    align-content: center;
     background-color: #3376BC;
     margin: 1rem;
     color: #FFFFFF;
-    cursor: pointer;
 }
 
 /*section donde esta el email, password y el boton*/
@@ -74,20 +68,24 @@ margin: 1rem;
 #fbIcon img {
     width: 20px;
     height: 20px;
-    cursor: pointer;
 }
 #googleIcon img {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+li a{
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #292929;
+    font-size: 1rem;
 }
 
-/* anchor Registrate del SignIn*/
 p span a {
     text-decoration: none;
     color: #FFFFFF;
     font-weight: bold;
-  }
+}
 
 /*HOME*/
 /*clase creada dinamicamente para albergar las 3 secciones del home*/
@@ -177,13 +175,7 @@ li:hover {
   background: #3376BC;
 }
 
-li a{
-  display: block;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #292929;
-  font-size: 1rem;
-}
+
 
 /*RESPONSIVE MODO MOBIL/MENU HAMBURGUESA*/
 @media (max-width:768px) {
@@ -211,7 +203,7 @@ li a{
     }
   
     li {
-      border-bottom: inset 0.5px #3376BC; ; /*borde solo a la parte superior*/  
+      border-bottom: inset 0.5px #3376BC;  /*borde solo a la parte superior*/  
     }
   
     #btn-menu:checked ~ nav {
