@@ -1,29 +1,12 @@
 
 // eslint-disable-next-line max-len
 export const signUp = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
-// promise.catch(e => alert(e.message));
-// alert('Signed Up');
-// };
-
 
 // eslint-disable-next-line max-len
 export const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
-//   promise.catch(e => alert(e.message));
 
-//   // otro tonto alert para probar. Lo quitaremos porque no es necesario
-//   // window.alert(`email: ${email.value}, password ${password.value}`);
-// };
+export const signOut = () => firebase.auth().signOut();
 
-export const signOut = () => {
-  firebase.auth().signOut();
-  //   .then(() => {
-  //     // Sign-out successful.
-  //   }).catch((error) => {
-
-//     // An error happened.
-//   });
-  // alert('Signed Out');
-};
 
 // export const myCurrentUser = () => {
 //   const user = firebase.auth().currentUser;
