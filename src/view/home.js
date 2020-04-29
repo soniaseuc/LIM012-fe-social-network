@@ -1,4 +1,5 @@
-import { signOut, authentification } from '../firebase.js';
+import { signOut } from '../firebase.js';
+import { authentification } from '../authenticationRouter.js';
 
 const navMenu = () => {
   const menu = `

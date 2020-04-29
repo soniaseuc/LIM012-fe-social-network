@@ -1,5 +1,6 @@
 import { changeTmp } from './view-controller/router.js';
 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyCeNrkvdzWB6_ox2aAbSB_RcooqZzS4KHc',

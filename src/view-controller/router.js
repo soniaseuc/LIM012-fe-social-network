@@ -1,4 +1,5 @@
 import { components } from '../view/index.js';
+
 // controlar el cambio de la vista == view-controler
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
