@@ -118,8 +118,14 @@ p span a {
 /*home publication section*/
 .homePublicationContainer {
   border: 1px solid #292929;
+  margin:  auto;
 }
-
+.homePublicationContainer textarea {
+  width: 100%;
+}
+.homePublicationContainer select {
+  background-color: yellow;
+}
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 .footerHomePublication {
   padding: 1rem;
@@ -211,3 +217,11 @@ li:hover {
   }
   
 }
+
+/* MAIN PUBLICATION BOX */
+.compartirBtn{
+ background-color: violet;
+}
+
+
+

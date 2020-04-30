@@ -53,16 +53,11 @@ const mainPublication = () => {
   const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
-        <input id="pic-icon"></input>
-        <label id="picIcon" for=pic-icon> 
-          <img src="img/icons/images.svg></img>
-        </label>
-        <select>
-          <option default>Publico</option>
-          <option>Privado</option>
+        <select id="optionsPublic" class="selectPublic">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
         </select>
-        <button>Compartir</button>
-      </div>
+        <button class="compartirBtn">Compartir</button>
       `;
   const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;
