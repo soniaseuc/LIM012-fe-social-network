@@ -1,4 +1,4 @@
-import { signIn } from '../firebase.js';
+import { signIn, signInWithGoogle } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 
 export default () => {
@@ -28,6 +28,7 @@ export default () => {
   const divElemt = document.createElement('div');
   divElemt.classList.add('signInForm');
   divElemt.innerHTML = logInform;
+
   const btnSignIn = divElemt.querySelector('button');
   btnSignIn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -37,6 +38,14 @@ export default () => {
     signIn(email, password);
     authentification();
   });
+
+  const googleIcon = divElemt.querySelector('#googleIcon');
+  googleIcon.addEventListener('click', (event) => {
+    event.preventDefault();
+    signInWithGoogle();
+    authentification();
+  });
+
   return divElemt;
 };
 
