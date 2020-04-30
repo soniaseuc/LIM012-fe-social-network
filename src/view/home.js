@@ -116,18 +116,13 @@ const avatarProfile = () => {
 const mainPublication = () => {
   const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
-        <input id="pic-icon"></input>
-        <label id="picIcon" for=pic-icon> 
-          <img src="img/icons/images.svg></img>
-        </label>
-      <select>
-        <option default>Publico</option>
-        <option>Privado</option>
-      </select>
-      <button>Compartir</button>
-       <div class="footerHomePublication">
-       </div>
 
+      <div class="footerHomePublication">
+        <select id="optionsPublic" class="selectPublic">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+        <button class="compartirBtn">Compartir</button>
        <footer class="footer">
        <div>
            <p>Creado por Sonia Seuc y Paula Paredes</p>

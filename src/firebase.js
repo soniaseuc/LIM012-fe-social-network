@@ -21,15 +21,38 @@ export const signOut = () => firebase.auth().signOut();
 //   return ('anonimo');
 // };
 
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
 
-// otra funcion solo para devolver el currentUser
-// export const signInWithGoogle = () => {
-//   // Create an instance of the Google provider object
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   return firebase.auth().signInWithPopup(provider);
-// };
 
-// export const signInWithFacebook = () => {
-// const provider = new firebase.auth.FacebookAuthProvider();
-// return firebase.auth().signInWithPopup(provider);
-// };
+/*
+ const user = firebase.auth().currentUser;
+      if (user != null) {
+        user.providerData.forEach((profile) => {
+          console.log(`Sign-in provider: ${profile.providerId}`);
+          // console.log(`  Provider-specific UID: ${profile.uid}`);
+          console.log(`  Name: ${profile.displayName}`);
+          console.log(`  Email: ${profile.email}`);
+          console.log(`  Photo URL: ${profile.photoURL}`);
+        });
+      }
+*/
+
+/*
+// Handle Errors here.
+const errorCode = error.code;
+// console.log(`errorCode = ${errorCode}`);
+const errorMessage = error.message;
+// The email of the user's account used.
+// console.error(`errorMessage = ${errorMessage}`);
+
+const email = error.email;
+// The firebase.auth.AuthCredential type that was used.
+// console.log(`email = ${email}`);
+
+const credential = error.credential;
+// ...
+// console.log(`credential = ${credential}`);
+*/
