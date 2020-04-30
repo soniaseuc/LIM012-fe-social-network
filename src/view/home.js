@@ -114,7 +114,7 @@ const avatarProfile = () => {
 };
 
 const mainPublication = () => {
-  const publication = `
+  const publicationPublication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
         <input id="pic-icon"></input>
         <label id="picIcon" for=pic-icon> 
