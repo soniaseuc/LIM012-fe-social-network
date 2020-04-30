@@ -63,8 +63,6 @@ body figure img {
 }
 
 /*el input y label de google*/
-
-
 #googleInput {
   display: none;
 }
@@ -85,6 +83,7 @@ p span a {
 /*clase creada dinamicamente para albergar las 3 secciones del home*/
 .homeContainer {
   background-color: #FFFFFF;
+  height: 100vh;
   display: flex;  
   flex-direction: column;
 }
@@ -93,8 +92,6 @@ p span a {
 .homeAvatarContainer {
   border: 1px solid #292929;
   margin: 2rem 3rem;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-content: space-between;
 }
 
@@ -105,14 +102,14 @@ p span a {
 }
 
 .imageAvatar {
-  width: 30vw;
-  margin-right: 1rem;
+  width: 20vw;
+  padding-top: 1rem;
 }
 
 /*nombre del usuario*/
 #myUserName {
   font-weight: bold;
-  margin-left: 1rem;
+  
 }
 
 /*home publication section*/
@@ -132,10 +129,9 @@ p span a {
 
 
 
-
+/*contenedor creado dinamicamente que contiene NAV(menu y educachat)*/
 /* .divNav {
   display: flex;
-  
 } */
 
 /* menu hamburguesa */
@@ -147,12 +143,11 @@ p span a {
 /*Header de la vista home*/
 .EducaChat {
   color: #FFFFFF;
-  padding: 0 3rem;
+  padding-bottom: 1rem;
 }
 
 /* dimensiones del label que contiene la img icono-menu */
 header label {
-  display: flex;
   display: none;
   width: 1rem;
   height: 1rem;
@@ -197,10 +192,105 @@ li:hover {
   background: #3376BC;
 }
 
+/*MODAL DEL PERFIL*/
+.flex{
+	width: 100%;
+	height:100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center; 
+}
 
+/* .textos{
+	padding:300px;
+	color:#fff;
+	text-align: center;
+} */
+
+/* h1{
+	font-size: 40px;
+	margin-bottom:20px;
+} */
+
+/* a{
+	text-decoration: none;
+	font-size:20px;
+	display: inline-block;
+	padding: 7px;
+	width: 220px;
+	border:1px solid #fff;
+	border-radius: 10px;
+	color:#fff;
+}
+a:hover{background: #000; color:#fff; border:1px solid #000;} */
+
+.modal{
+	display: none;
+	position: fixed;
+	z-index:1;
+	overflow: auto;
+	left: 0;
+	top:0;
+	width: 100%;
+	height:100%;
+	background: rgba(0, 0, 0, 0.452);
+}
+
+.contenido-modal{
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	width: 30%;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, .4);
+	animation-name: modal;
+	animation-duration: 1s;
+}
+@keyframes modal{
+	from{top:-330px; opacity:0;}
+	to{top:0; opacity:1;}
+}
+.close{
+	color: #f2f2f2;
+	font-size:30px;
+	font-weight: bold;
+}
+.close:hover{
+	color:#7f8c8d;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-header, .footer{
+	padding: 8px 16px;
+	background: #34495e;
+	color:#f2f2f2;
+}
+
+/* p{
+	text-align: justify;
+} */
+
+.modal-body{
+	padding: 20px 16px;
+}
+
+/* @media screen and (max-width:900px){
+	.contenido-modal{
+		width: 70%;
+	}
+	.textos{
+		padding: 150px;
+	}
+}
+
+@media screen and (max-width:500px){
+	.textos{
+		padding:50px;
+	}
+} */
 
 /*RESPONSIVE MODO MOBIL/MENU HAMBURGUESA*/
-@media (max-width:768px) {
+@media (max-width:400px) {
   header{
     background: #F4A82C;
   
@@ -211,7 +301,7 @@ li:hover {
     margin-top: 0;
   }
 
-  nav {
+  .nav-home {
     position:absolute;
     background:rgba(173, 173, 173, 0.726);
     width: 100%;
@@ -228,7 +318,7 @@ li:hover {
     border-bottom: inset 0.5px #3376BC;  /*borde solo a la parte superior*/  
   }
 
-  #btn-menu:checked ~ nav {
+  #btn-menu:checked ~ .nav-home {
     margin: 0;
     z-index: 1;
   }

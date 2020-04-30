@@ -11,3 +11,5 @@ export const authentification = () => {
     }
   });
 };
+
+export const user = () => firebase.auth().currentUser;
