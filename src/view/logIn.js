@@ -18,9 +18,7 @@ export default () => {
     </section>
 
   <p>O bien ingresa con...</p>
-  <input id="fbInput"></input>
-  <label id="fbIcon" for=fbInput> <img src="img/social-facebook-button-blue-icon.png"></img></label>
-  <input id="googleInput"></input>
+    <input id="googleInput"></input>
   <label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
 
       <p>¿No tienes una cuenta? <span><a href="#/signUpform">Registrate</a></span></p>

@@ -1,7 +1,7 @@
 import SignUpform from './signUp.js';
 import LogInform from './logIn.js';
 import { homeTemplate } from './home.js';
-// import Profile from './profile.js';
+import { profileTemplate } from './profile.js';
 import Different from './404.js';
 
 
@@ -11,6 +11,7 @@ const components = {
   signUpform: SignUpform,
   different: Different,
   home: homeTemplate,
+  profile: profileTemplate,
 };
 
 export { components };

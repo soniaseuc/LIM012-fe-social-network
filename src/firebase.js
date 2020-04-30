@@ -16,8 +16,9 @@ export const signOut = () => firebase.auth().signOut();
 //     email = user.email;
 //     console.log(`active user ${email}`);
 //     // alert(`Active User ${email}`);
+//     return user.email;
 //   }
-//   return firebase.auth().currentUser;
+//   return ('anonimo');
 // };
 
 export const signInWithGoogle = () => {
