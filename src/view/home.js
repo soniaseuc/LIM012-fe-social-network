@@ -6,9 +6,9 @@ const navMenu = () => {
   <input type="checkbox" id="btn-menu">
   <label class="menuLabel" for="btn-menu"><img src="../img/icono-menu.png" alt="">
   </label>
-    <a href="#/home">
-        <h1>EducaChat</h1>
-    </a>
+
+        <h1 class="EducaChat" >EducaChat</h1>
+
     <nav>
         <ul>
             <li>
@@ -33,7 +33,6 @@ const navMenu = () => {
   return headerMenu;
 };
 
-
 const avatarProfile = () => {
   const avatar = `    
       <p class="headerHomeAvatar"></p>
@@ -45,24 +44,24 @@ const avatarProfile = () => {
   sectionProfile.innerHTML = avatar;
   // const userEmail = myCurrentUser();
   // console.log(userEmail);
-  // sectionProfile.querySelector('#myUserName').innerHTML=`Bienvenid@ usuari@:${userEmail.email}`;
+  sectionProfile.querySelector('#myUserName').innerHTML = `Bienvenid@ usuari@:${window.localStorage.getItem('email')}`;
   return sectionProfile;
 };
 
 const mainPublication = () => {
   const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
-      <div class="footerHomePublication">
         <input id="pic-icon"></input>
         <label id="picIcon" for=pic-icon> 
           <img src="img/icons/images.svg></img>
         </label>
-        <select>
-          <option default>Publico</option>
-          <option>Privado</option>
-        </select>
-        <button>Compartir</button>
-      </div>
+      <select>
+        <option default>Publico</option>
+        <option>Privado</option>
+      </select>
+      <button>Compartir</button>
+       <div class="footerHomePublication">
+       </div>
       `;
   const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;

@@ -3,7 +3,7 @@ export const authentification = () => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      // myCurrentUser();
+      window.localStorage.setItem('email', user.email);
       window.location.hash = '#/home';
     } else {
       // no user is signed in
