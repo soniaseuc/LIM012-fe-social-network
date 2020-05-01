@@ -114,32 +114,40 @@ p span a {
 
 /*home publication section*/
 .homePublicationContainer {
-  border: 1px solid #aaaaaa;
-  border-radius: .5rem;
+  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
   margin: 0 auto;
   width: 80%;
 }
+.sharePublicationBox {
+  border: 1px solid #aaaaaa;
+  height: 99%;
+  border-radius: .5rem; 
+}
 
 /* Textare para compartir en publicacion*/
 .homePublicationContainer textarea {
-  margin: .5rem auto;
+  margin: .7rem auto;
   border: 1px solid #aaaaaa;
   border-radius: .3rem;
   width: 85%;
-  height: 3rem;
+  height: 3.1rem;
   padding: .2rem;
+  /* max-width: 50%; */
 }
 
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 .footerHomePublication {
   display: flex;
   flex-direction: row;
+  width: 100%;
   background-color: #91BBE5;
+  border: .2rem solid #91BBE5;
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
+  z-index: 3;
 }
 /* Boton subir Imagen */
 .footerHomePublication figure{
@@ -169,8 +177,93 @@ p span a {
   margin: .6rem  auto;
 }
 
+/* .publicationMainSection {
+  background-color: yellowgreen;
+  border: 2px solid red;
+} */
+.publicationSection {
+  /* background-color: rgb(122, 50, 205); */
+  border: .2px solid #aaaaaa;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* margin: 2rem auto; */
+}
+.publicationSection header {
+  background-color: #3376BC;
+  display: flex;
+}
+.publicOrPrivateSelector {
+  width: 4rem;
+  height: 2rem;
+  color: white;
+}
+.figureContainerIcons {
+  border: 1px solid white;
+  width: 2rem;
+  height: 2rem;
+}
+.nameTitlePublication {
+  color: white;
+}
+.notes {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.notes figure {
+  /* background-color: rgb(75, 214, 219); */
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem;
+}
+.notes figure img {
+  /* background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem; */
+}
+.comment {
+  border: .2px solid #aaaaaa;
+  /* border: 2px solid rgb(25, 207, 107); */
 
+}
+.comment .userComentDone {
+  display: flex;
+  background-color: #FFC86D;
+  border: 1px solid #FFC86D;
+  border-radius: .5rem;
+}
+.icons {
+  display: flex;
+  background-color: #E3E9EF;
+  /* border: 2px solid rgb(25, 74, 207); */
+}
+.icons figure{
+  /* margin: auto; */
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem;
+  /* border: 2px solid rgb(207, 68, 25); */
+  /* width: 2rem;
+  height: 2rem; */
+}
+.icons figure img{
+  /* background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem; */
+}
+.comment input {
+  background-color: #FFC86D;
+  border: 1px solid #FFC86D;
+  border-radius: .5rem;
+  height: 1.5rem;
+  width: 85%;
+  padding: 3%;
 
+}
 /*contenedor creado dinamicamente que contiene NAV(menu y educachat)*/
 /* .divNav {
   display: flex;
@@ -367,10 +460,7 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   
 }
 
-/* MAIN PUBLICATION BOX */
-.compartirBtn{
- /* background-color: violet; */
-}
+
 
 
 

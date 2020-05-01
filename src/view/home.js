@@ -112,8 +112,45 @@ const avatarProfile = () => {
   return sectionProfile;
 };
 
-const mainPublication = () => {
+const publicationCreated = (str) => {
+  const publicationSection = document.createElement('section');
+  publicationSection.classList.add('publicationSection');
+  publicationSection.innerHTML = `
+  <header>
+    <select id="" class="publicOrPrivateSelector">
+      <option value="public">Public</option>
+      <option value="private">Private</option>
+    </select>
+    <h1 class="nameTitlePublication">Nombre</h1>
+    <figure class="figureContainerIcons"><img></figure>
+  </header>
+  <section class="notes" id="content">
+    <p>${str}</p>
+    <div class="icons">
+    <figure id="likeHeart"><img></figure>
+    <figure id="comentIcon"><img></figure>
+    </div>
+  </section>
+  <section class="comment" id="comments">
+    <div class="userComentDone">
+      <h1>NOMBRE</h1>
+      <span>Comentario......</span>
+      <div class="icons">
+          <figure><img></figure>
+          <figure><img></figure>
+          <figure><img></figure>  
+      </div>
+    </div>
+      <input placeholder="Agrega tu Comentario"></input>
+  </section>
+  `;
+  return publicationSection;
+};
+
+
+export const mainPublicationForm = () => {
   const publication = `
+    <div class="sharePublicationBox">
       <textarea placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
       <figure>
@@ -123,11 +160,29 @@ const mainPublication = () => {
           <option value="public">Public</option>
           <option value="private">Private</option>
         </select>
-        <button class="compartirBtn publicationBtn">Compartir</button>
+        <button id="share" class="compartirBtn publicationBtn">Compartir</button>
+    </div>      
   `;
-  const sectionPublication = document.createElement('section');
+  const publicationMainSection = document.createElement('section');
+  const sectionPublication = document.createElement('form');
+  publicationMainSection.appendChild(sectionPublication);
+  publicationMainSection.classList.add('publicationMainSection');
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
+  const userInput = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
+  const shareButton = sectionPublication.querySelector('#share');
+  // const publicationMainSection = document.createElement('section');
+  shareButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const text = userInput.value;
+    sectionPublication.appendChild(publicationCreated(text));
+    console.log(text);
+  });
+  // const ul = sectionPublication.querySelector('#notes-list');
+  // str.forEach((string) => {
+  //  ul.appendChild(publicationCreated());
+  // });
+  // shareButton.addEventListener('click', addPublicationOnShare);
   return sectionPublication;
 };
 
@@ -135,7 +190,7 @@ export const homeTemplate = () => {
   const mainElem = document.createElement('main');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
-  mainElem.appendChild(mainPublication());
+  mainElem.appendChild(mainPublicationForm());
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
