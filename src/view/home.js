@@ -7,11 +7,15 @@ const perfil = () => {
   <div class="flex" id="flex">
     <div class="contenido-modal">
       <div class="modal-header flex">
-        <h2>ENCABEZADO</h2>
+        <h2>Modifica tu Perfil</h2>
         <span class="close" id="close">&times;</span>
       </div>
       <div class="modal-body">
-        <p>Lorem ipsum</p>
+        <input id="fulanita"></input>
+        <p>Tu nombre:</p>
+        <input placeholder="${firebase.auth().currentUser.displayName}"></input>
+        <p>Tu correo:</p>
+        <input placeholder="${firebase.auth().currentUser.email}"></input>
         <img src="http://icons.iconarchive.com/icons/artcore-illustrations/artcore-4/128/github-icon.png">
       </div>
       <div class="footer">
@@ -26,13 +30,9 @@ const perfil = () => {
   // modal del perfil
   const modal = profile.querySelector('#miModal');
   const flex = profile.querySelector('#flex');
-
   const cerrar = profile.querySelector('#close');
 
-  // abrir.addEventListener('click', () => {
   modal.style.display = 'block';
-  // });
-
 
   cerrar.addEventListener('click', () => {
     modal.style.display = 'none';
@@ -45,12 +45,6 @@ const perfil = () => {
     }
   });
 
-
-  // headerMenu.classList.add('divNav');
-  // profile.setAttribute('id', 'divProfile');
-  // const prueba = document.getElementById('divProfile').appendChild(perfilModal);
-  // prueba.appendChild(profile);
-  // profile.innerHTML = perfilModal;
   return profile;
 };
 
@@ -82,10 +76,6 @@ const navMenu = () => {
   abrir.addEventListener('click', (event) => {
     event.preventDefault();
     headerMenu.appendChild(perfil());
-  // const abrirProfile = profile.querySelector('#abrir');
-  // abrirProfile.addEventListener('click', (event) => {
-  // event.preventDefault();
-  // });
   });
   const anchorSignOut = headerMenu.querySelector('#SignOut');
   anchorSignOut.addEventListener('click', (event) => {
@@ -114,7 +104,7 @@ const avatarProfile = () => {
 };
 
 const mainPublication = () => {
-  const publicationPublication = `
+  const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
 
       <div class="footerHomePublication">
@@ -123,11 +113,7 @@ const mainPublication = () => {
           <option value="private">Private</option>
         </select>
         <button class="compartirBtn">Compartir</button>
-       <footer class="footer">
-       <div>
-           <p>Creado por Sonia Seuc y Paula Paredes</p>
-       </div>
-   </footer>
+
   `;
   const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;
