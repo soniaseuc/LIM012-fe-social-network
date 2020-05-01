@@ -15,3 +15,10 @@ export default () => {
   divElemt.innerHTML = viewDifferent;
   return divElemt;
 };
+/*
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
+
+*/

@@ -33,7 +33,6 @@ const perfil = () => {
   modal.style.display = 'block';
   // });
 
-
   cerrar.addEventListener('click', () => {
     modal.style.display = 'none';
   });
@@ -116,18 +115,15 @@ const avatarProfile = () => {
 const mainPublication = () => {
   const publication = `
       <textarea placeholder="¿Que quieres compartir?"></textarea>
-
       <div class="footerHomePublication">
-        <select id="optionsPublic" class="selectPublic">
+      <figure>
+      <img>
+      </figure>
+        <select id="optionsPublic" class="selectPublic publicationBtn">
           <option value="public">Public</option>
           <option value="private">Private</option>
         </select>
-        <button class="compartirBtn">Compartir</button>
-       <footer class="footer">
-       <div>
-           <p>Creado por Sonia Seuc y Paula Paredes</p>
-       </div>
-   </footer>
+        <button class="compartirBtn publicationBtn">Compartir</button>
   `;
   const sectionPublication = document.createElement('section');
   sectionPublication.innerHTML = publication;

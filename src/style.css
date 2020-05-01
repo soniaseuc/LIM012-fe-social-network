@@ -114,23 +114,59 @@ p span a {
 
 /*home publication section*/
 .homePublicationContainer {
-  border: 1px solid #292929;
+  border: 1px solid #aaaaaa;
+  border-radius: .5rem;
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
-    margin:  auto;
+  margin: 0 auto;
+  width: 80%;
 }
 
+/* Textare para compartir en publicacion*/
 .homePublicationContainer textarea {
-  width: 100%;
+  margin: .5rem auto;
+  border: 1px solid #aaaaaa;
+  border-radius: .3rem;
+  width: 85%;
+  height: 3rem;
+  padding: .2rem;
 }
-.homePublicationContainer select {
-  background-color: yellow;
-}  
+
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 .footerHomePublication {
-  padding: 1rem;
-  background-color: #3376BC;
+  display: flex;
+  flex-direction: row;
+  background-color: #91BBE5;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+/* Boton subir Imagen */
+.footerHomePublication figure{
+  background-color: #F4A82C;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  margin: .3rem  auto;
+}
+/* Icon imagen */
+.footerHomePublication figure img {
+  border: 1px solid #aa2121;
+  width: 1rem;
+  height: 1rem;
+  margin: .5rem auto;
+}
+/* Botones SELECT & COMPARTIR */
+.footerHomePublication .publicationBtn {
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  color: white;
+  border-radius: 1rem;
+  width: 30%;
+  height: 10%;
+  text-align: center;
+  padding: .1rem;
+  margin: .6rem  auto;
 }
 
 
@@ -333,7 +369,7 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
 
 /* MAIN PUBLICATION BOX */
 .compartirBtn{
- background-color: violet;
+ /* background-color: violet; */
 }
 
 
