@@ -126,21 +126,24 @@ const publicationCreated = (str) => {
   </header>
   <section class="notes" id="content">
     <p>${str}</p>
-    <div class="icons">
+    <div class="notesIcons">
     <figure id="likeHeart"><img></figure>
     <figure id="comentIcon"><img></figure>
     </div>
   </section>
   <section class="comment" id="comments">
     <div class="userComentDone">
-      <h1>NOMBRE</h1>
-      <span>Comentario......</span>
+    <div class="flexColumn">
+      <h5>NOMBRE</h5>
+      <p>Comentario......</p>
+    </div>
       <div class="icons">
           <figure><img></figure>
           <figure><img></figure>
           <figure><img></figure>  
       </div>
     </div>
+    <div class="line"><div>
       <input placeholder="Agrega tu Comentario"></input>
   </section>
   `;
