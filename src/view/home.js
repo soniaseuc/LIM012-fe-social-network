@@ -122,13 +122,13 @@ const publicationCreated = (str) => {
       <option value="private">Private</option>
     </select>
     <h1 class="nameTitlePublication">Nombre</h1>
-    <figure class="figureContainerIcons"><img></figure>
+    <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
   </header>
   <section class="notes" id="content">
-    <p>${str}</p>
+    <p class="textComent">${str}</p>
     <div class="notesIcons">
-    <figure id="likeHeart"><img></figure>
-    <figure id="comentIcon"><img></figure>
+    <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
+    <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
     </div>
   </section>
   <section class="comment" id="comments">
@@ -138,9 +138,9 @@ const publicationCreated = (str) => {
       <p>Comentario......</p>
     </div>
       <div class="icons">
-          <figure><img></figure>
-          <figure><img></figure>
-          <figure><img></figure>  
+          <figure><img src="img/icons/modificar.svg"></figure>
+          <figure><img src="img/icons/trash.svg"></figure>
+          <figure><img src="img/icons/heart-solid.svg"></figure>  
       </div>
     </div>
     <div class="line"><div>
@@ -154,10 +154,10 @@ const publicationCreated = (str) => {
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
-      <textarea placeholder="¿Que quieres compartir?"></textarea>
+      <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
       <figure>
-      <img>
+      <img src="img/icons/images.svg">
       </figure>
         <select id="optionsPublic" class="selectPublic publicationBtn">
           <option value="public">Public</option>

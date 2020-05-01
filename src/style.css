@@ -117,11 +117,11 @@ p span a {
 /*home publication section*/
 .homePublicationContainer {
   /* border: 1px solid white; */
+  width: 80%;
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
   margin: 0 auto;
-  width: 80%;
 }
 .sharePublicationBox {
   border: 1px solid #aaaaaa;
@@ -131,12 +131,13 @@ p span a {
 
 /* Textare para compartir en publicacion*/
 .homePublicationContainer textarea {
-  margin: .7rem auto;
+  margin: 1rem auto;
+  margin-bottom: 0;
   border: 1px solid #aaaaaa;
   border-radius: .3rem;
   width: 85%;
-  height: 3.1rem;
-  padding: .2rem;
+  height: 5rem;
+  padding: 5%;
   /* max-width: 50%; */
 }
 
@@ -161,10 +162,9 @@ p span a {
 }
 /* Icon imagen */
 .footerHomePublication figure img {
-  border: 1px solid #aa2121;
-  width: 1rem;
-  height: 1rem;
-  margin: .5rem auto;
+  width: 2rem;
+  height: 1.3rem;
+  margin: .3rem auto;
 }
 /* Botones SELECT & COMPARTIR */
 .footerHomePublication .publicationBtn {
@@ -203,14 +203,24 @@ p span a {
 .publicOrPrivateSelector {
   width: 4rem;
   height: 2rem;
+  background-color:  #3376BC;
   color: white;
+  margin: .2rem auto;
 }
 /* TRASH BOTON */
 .figureContainerIcons {
-  border: 1px solid white;
-  width: 2rem;
-  height: 2rem;
+  border: 1px solid #E3E9EF;
+  background-color: #E3E9EF;
+  border-radius: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   margin: 0 .1rem;
+}
+/* TRASH IMG */
+.figureContainerIcons img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .4rem auto;
 }
 /* NAME OF THE PERSON WHO MADE THE PUBLICATION */
 .nameTitlePublication {
@@ -242,9 +252,12 @@ p span a {
 }
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
 .notes figure img {
-  margin: 0;
   width: 2rem;
-  height: 2rem; 
+  height: 1.5rem;
+  margin: .2rem auto;
+  /* margin: 0;
+  width: 2rem;
+  height: 2rem;  */
 }
 /* TODO LA SECTION DE COMENTARIOS */
 .comment {
@@ -275,6 +288,11 @@ h5 {
   padding: .2rem;
   height: 1rem;
 }
+.textComent {
+  padding: 5%;
+  font-size: 1rem;
+  font-family: fantasy;
+}
 /* COMENTARIO */
 .flexColumn p {
   text-align: left;
@@ -300,9 +318,12 @@ h5 {
   border-radius: 100%;
 }
 .icons figure img{
-  margin: 0;
   width: 2rem;
-  height: 2rem; 
+  height: 1.5rem;
+  margin: .1rem auto;
+  /* margin: 0;
+  width: 2rem;
+  height: 2rem;  */
 }
 /* LINEA PLOMA */
 .line {
@@ -317,7 +338,7 @@ h5 {
   height: 1.5rem;
   width: 85%;
   padding: 3%;
-  margin: 0 auto;
+  margin: .4rem auto;
 }
 /*contenedor creado dinamicamente que contiene NAV(menu y educachat)*/
 /* .divNav {
