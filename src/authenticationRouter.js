@@ -3,12 +3,13 @@ export const authentification = () => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      const user = firebase.auth().currentUser;
-      window.localStorage.setItem('email', user.email);
+      const myUser = firebase.auth().currentUser;
+      window.localStorage.setItem('email', myUser.email);
       window.location.hash = '#/home';
-      if (user != null) {
-        const emailId = user.email;
-        document.getElementById('fulanita').innerHTML = `Hola ${emailId}`;
+      if (myUser != null) {
+        const emailId = myUser.email;
+        // document.getElementById('fulanita').innerHTML = `Hola ${emailId}`;
+        console.log(emailId);
       }
     } else {
       // no user is signed in

@@ -11,15 +11,22 @@ const perfil = () => {
         <span class="close" id="close">&times;</span>
       </div>
       <div class="modal-body">
-        <input id="fulanita"></input>
-        <p>Tu nombre:</p>
-        <input placeholder="${firebase.auth().currentUser.displayName}"></input>
-        <p>Tu correo:</p>
-        <input placeholder="${firebase.auth().currentUser.email}"></input>
-        <img src="http://icons.iconarchive.com/icons/artcore-illustrations/artcore-4/128/github-icon.png">
+
+        <div>
+          <img src="img/avatar.svg" alt="Profile picture">
+        </div>
+        <div>
+          <span for="displayName">Display name</span> <br>
+          <input type="text" id="displayName" name="displayName"/> <br>
+        </div>
+        <div>
+          <span for="photo">Url of picture</span> <br>
+          <input type="url" id="photo"/> <br>
+        </div>
+
       </div>
       <div class="footer">
-        <h3>FOOTER &COPY;</h3>
+        <button id="edit">Confirm Modify Profile</button>
       </div>
     </div>
   </div>
@@ -43,6 +50,73 @@ const perfil = () => {
     if (e.target === flex) {
       modal.style.display = 'none';
     }
+  });
+
+  // const modifyAccount = document.getElementById('modifyAccount');
+  // const displayNameHolder = document.getElementById('displayNameHolder');
+  // const photoHolder = document.getElementById('photoHolder');
+  const auth = firebase.auth();
+  auth.onAuthStateChanged((user) => {
+    console.log(user);
+  });
+
+  const displayNameField = profile.querySelector('#displayName');
+  const photoField = profile.querySelector('#photo');
+  const editButton = profile.querySelector('#edit');
+
+
+  const changeNameAndPhoto = (user, newNameAndPhoto) => {
+    const { newDisplayName, newPhotoURL } = newNameAndPhoto;
+    // Changes displayName and photoURL properties
+    if (newDisplayName && newPhotoURL) {
+      user.updateProfile({
+        displayName: newDisplayName,
+        photoURL: newPhotoURL,
+      })
+        .then(() => {
+          console.log('Profile updated successfully !');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else if (newDisplayName) {
+      // Changes the displayName only
+      user.updateProfile({
+        displayName: newDisplayName,
+      })
+        .then(() => {
+          console.log('DisplayName updated successfully !');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else if (newPhotoURL) {
+      // Changes photoURL only
+      user.updateProfile({
+        photoURL: newPhotoURL,
+      })
+        .then(() => {
+          console.log('PhotoURL updated successfully !');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const editInformation = () => {
+    const newNameAndPhoto = {
+      newDisplayName: displayNameField.value,
+      newPhotoURL: photoField.value,
+    };
+    // Holds all the information about the current signed in user
+    const user = firebase.auth().currentUser;
+    changeNameAndPhoto(user, newNameAndPhoto);
+  };
+
+  editButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    editInformation();
   });
 
   return profile;
