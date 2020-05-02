@@ -116,29 +116,236 @@ p span a {
   
 }
 
+/* MAIN SECTION DE PUBLICACIONES */
+
 /*home publication section*/
 .homePublicationContainer {
-  border: 1px solid #292929;
+  /* border: 1px solid white; */
+  width: 80%;
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
-    margin:  auto;
+  margin: 0 auto;
+}
+.sharePublicationBox {
+  border: 1px solid #aaaaaa;
+  height: 99%;
+  border-radius: .5rem; 
 }
 
+/* Textare para compartir en publicacion*/
 .homePublicationContainer textarea {
-  width: 100%;
+  margin: 1rem auto;
+  margin-bottom: 0;
+  border: 1px solid #aaaaaa;
+  border-radius: .3rem;
+  width: 85%;
+  height: 5rem;
+  padding: 5%;
+  /* max-width: 50%; */
 }
-.homePublicationContainer select {
-  background-color: yellow;
-}  
+
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
-/* .footerHomePublication {
-  padding: 1rem;
-  background-color: #3376BC;
+
+.footerHomePublication {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #91BBE5;
+  border: .2rem solid #91BBE5;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  z-index: 3;
+}
+/* Boton subir Imagen */
+.footerHomePublication figure{
+  background-color: #F4A82C;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  margin: .3rem  auto;
+}
+/* Icon imagen */
+.footerHomePublication figure img {
+  width: 2rem;
+  height: 1.3rem;
+  margin: .3rem auto;
+}
+/* Botones SELECT & COMPARTIR */
+.footerHomePublication .publicationBtn {
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  color: white;
+  border-radius: 1rem;
+  width: 30%;
+  height: 10%;
+  text-align: center;
+  padding: .1rem;
+  margin: .6rem  auto;
+}
+
+
+/* .publicationMainSection {
+  background-color: yellowgreen;
+  border: 2px solid red;
 } */
 
+/* MAIN SECTION DE PUBLICACIONES ECHAS */
+.publicationSection { /* separacion entre publicaciones */
+  border: 1px solid #aaaaaa;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
+.publicationSection header {
+  background-color: #3376BC;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: flex-end;
+  border: 2px solid #3376BC; 
+}
+/* SELECT BOTON  */
+.publicOrPrivateSelector {
+  width: 4rem;
+  height: 2rem;
+  background-color:  #3376BC;
+  color: white;
+  margin: .2rem auto;
+}
+/* TRASH BOTON */
+.figureContainerIcons {
+  border: 1px solid #E3E9EF;
+  background-color: #E3E9EF;
+  border-radius: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0 .1rem;
+}
+/* TRASH IMG */
+.figureContainerIcons img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .4rem auto;
+}
+/* NAME OF THE PERSON WHO MADE THE PUBLICATION */
+.nameTitlePublication {
+  color: white;
+  width: 80%;
+  /* margin: 0 1rem; */
 
+}
+/* CONTAINER DEL TEXTO PUBLICADO */
+.notes {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+/* SECTION DE ICONOS DE LA PUBLICACION */
+.notesIcons {
+  background-color: #E3E9EF;
+  display: flex;
+  flex-direction: row;
+}
+/* CIRCULOS DE LOS ICONOS EN PUBLICACION */
+.notesIcons figure {
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem;
+  margin: .1rem .2rem;
+  border-radius: 100%;
+}
+/* IMAGENES DE LOS ICONS EN PUBLICACION */
+.notes figure img {
+  width: 2rem;
+  height: 1.5rem;
+  margin: .2rem auto;
+  /* margin: 0;
+  width: 2rem;
+  height: 2rem;  */
+}
+/* TODO LA SECTION DE COMENTARIOS */
+.comment {
+  margin: .4rem .4rem;
+  display: flex;
+  flex-direction: column;
+}
+/* SECTION DEL COMENTARIO PUBLICADO */
+.userComentDone {
+  display: flex;
+  background-color: #FFC86D;
+  border: 1px solid #FFC86D;
+  border-radius: 1.5rem;
+  margin: .3rem 0;
+  height: 4rem;
+}
+ 
+/* COMENTARIO Y NOMBRE EN COLUMNA FLEX PROPERTY */
+.flexColumn{
+  margin: .4rem .4rem;
+  width: 70%;
+  flex-direction: column;
+  align-content: space-around;
+}
+/* NOMRE DEL USURIO QUE COMENTO */
+h5 {
+  text-align: left;
+  padding: .2rem;
+  height: 1rem;
+}
+.textComent {
+  padding: 5%;
+  font-size: 1rem;
+  font-family: fantasy;
+}
+/* COMENTARIO */
+.flexColumn p {
+  text-align: left;
+  padding: .3rem;
+  width: 100%;
+  height: 60%
+}
+/* ICONOS DENTRO DEL COMENTARIO */
+.icons {
+  display: flex;
+  width:  40%;
+  height: 30%;
+  margin: 1.5rem .3rem;
+  justify-content: flex-end;
+}
+/* CIRCULOS DENTRO DEL COMENTARIO */
+.icons figure{
+  /* margin: auto; */
+  background-color: #C14D7C;
+  border: 1px solid #C14D7C;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+.icons figure img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .1rem auto;
+  /* margin: 0;
+  width: 2rem;
+  height: 2rem;  */
+}
+/* LINEA PLOMA */
+.line {
+  width: 100%;
+  border-top: 1px solid #aaaaaa;
+}
+/* COMENTARIO INPUT */
+.comment input {
+  background-color: #FFC86D;
+  border: 1px solid #FFC86D;
+  border-radius: .5rem;
+  height: 1.5rem;
+  width: 85%;
+  padding: 3%;
+  margin: .4rem auto;
+}
 /*contenedor creado dinamicamente que contiene NAV(menu y educachat)*/
 /* .divNav {
   display: flex;
@@ -337,10 +544,7 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   
 }
 
-/* MAIN PUBLICATION BOX */
-.compartirBtn{
- background-color: violet;
-}
+
 
 
 

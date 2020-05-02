@@ -16,15 +16,16 @@ export const signOut = () => firebase.auth().signOut();
 //     email = user.email;
 //     console.log(`active user ${email}`);
 //     // alert(`Active User ${email}`);
-//     return user.email;
 //   }
-//   return ('anonimo');
+//   return firebase.auth().currentUser;
 // };
 
-// export const signInWithGoogle = () => {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   return firebase.auth().signInWithPopup(provider);
-// };
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
+
+/*
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -48,6 +49,7 @@ export const signInWithGoogle = () => {
       const errorMessage = error.message;
       // The email of the user's account used.
       console.error(`errorMessage = ${errorMessage}`);
+
       const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       console.log(`email = ${email}`);
@@ -57,20 +59,14 @@ export const signInWithGoogle = () => {
     });
 };
 
-
 /*
-// Handle Errors here.
-const errorCode = error.code;
-// console.log(`errorCode = ${errorCode}`);
-const errorMessage = error.message;
-// The email of the user's account used.
-// console.error(`errorMessage = ${errorMessage}`);
+ *  CLOUD FIRESTORE FUNCTIONS
+ */
 
-const email = error.email;
-// The firebase.auth.AuthCredential type that was used.
-// console.log(`email = ${email}`);
+export const publishStatus = statusContent => firebase.firestore().collection('userStatus').add({
+  title: statusContent,
+  // state: false,
+});
 
-const credential = error.credential;
-// ...
-// console.log(`credential = ${credential}`);
-*/
+// export const deleteStatus = idStatus => 
+// firebase.firestore().collection('notes').doc(idStatus).delete();
