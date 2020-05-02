@@ -13,7 +13,7 @@ const perfil = () => {
       <div class="modal-body">
 
         <div>
-          <img src="img/avatar.svg" alt="Profile picture">
+          <img src="http://icons.iconarchive.com/icons/artcore-illustrations/artcore-4/128/github-icon.png">
         </div>
         <div>
           <span for="displayName">Display name</span> <br>
@@ -26,7 +26,8 @@ const perfil = () => {
 
       </div>
       <div class="footer">
-        <button id="edit">Confirm Modify Profile</button>
+        <button id="edit">Confirm Change</button>
+        <span>... Por favor cierra esta ventana para regresar al home y ver tu perfil actualizado</span>
       </div>
     </div>
   </div>
@@ -46,15 +47,12 @@ const perfil = () => {
   });
 
   window.addEventListener('click', (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     if (e.target === flex) {
       modal.style.display = 'none';
     }
   });
-
-  // const modifyAccount = document.getElementById('modifyAccount');
-  // const displayNameHolder = document.getElementById('displayNameHolder');
-  // const photoHolder = document.getElementById('photoHolder');
+  // Incio de funciones para editar nombre y foto del user
   const auth = firebase.auth();
   auth.onAuthStateChanged((user) => {
     console.log(user);
@@ -103,7 +101,7 @@ const perfil = () => {
         });
     }
   };
-
+  // funcion que edita el nombre y foto del user
   const editInformation = () => {
     const newNameAndPhoto = {
       newDisplayName: displayNameField.value,
@@ -113,10 +111,11 @@ const perfil = () => {
     const user = firebase.auth().currentUser;
     changeNameAndPhoto(user, newNameAndPhoto);
   };
-
+  // btn para editar nombre y foto del user
   editButton.addEventListener('click', (event) => {
     event.preventDefault();
     editInformation();
+    auth.onAuthStateChanged();
   });
 
   return profile;
@@ -165,8 +164,12 @@ const navMenu = () => {
 const avatarProfile = () => {
   const avatar = `    
       <p class="headerHomeAvatar"></p>       
-      <img class="imageAvatar" src="img/avatar.png">
-      <label id="myUserName">Nombre</label>        
+      <label id="myUserName">Nombre</label>
+      <div>  
+        <p id="displayNameHolder"></p>
+        <div><img id ="photoHolder" class="imageAvatar" src="img/avatar.png" alt="Profile picture">
+        </div>
+      </div>       
     `;
   const sectionProfile = document.createElement('section');
   sectionProfile.classList.add('homeAvatarContainer');
@@ -174,6 +177,28 @@ const avatarProfile = () => {
   // const userEmail = myCurrentUser();
   // console.log(userEmail);
   sectionProfile.querySelector('#myUserName').innerHTML = `Bienvenid@ usuari@:${window.localStorage.getItem('email')}`;
+
+  // show edit profile
+
+  firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
+    // display the displayName and photoURL of the user on the page
+    if (user.displayName || user.photoURL) {
+      console.log(user);
+      sectionProfile.querySelector('#displayNameHolder').innerHTML = user.displayName;
+      sectionProfile.querySelector('#photoHolder').src = user.photoURL;
+    } else {
+      console.log('Ocurrio un error cargando la foto y nombre cambiado');
+    }
+  });
+
+
+  // Go to modification page
+  // modifyAccount.addEventListener('click', (event) => {
+  //   event.preventDefault();
+  //   sectionProfile.appendChild(perfil());
+  // });
+
   return sectionProfile;
 };
 
