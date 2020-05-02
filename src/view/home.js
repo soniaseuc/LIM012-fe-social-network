@@ -1,4 +1,4 @@
-import { signOut } from '../firebase.js';
+import { signOut, publishStatus } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 
 const perfil = () => {
@@ -115,6 +115,7 @@ const avatarProfile = () => {
 const publicationCreated = (str) => {
   const publicationSection = document.createElement('section');
   publicationSection.classList.add('publicationSection');
+
   publicationSection.innerHTML = `
   <header>
     <select id="" class="publicOrPrivateSelector">
@@ -150,7 +151,6 @@ const publicationCreated = (str) => {
   return publicationSection;
 };
 
-
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
@@ -178,6 +178,8 @@ export const mainPublicationForm = () => {
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
     const text = userInput.value;
+    //  const promise = publishStatus(text);
+    // promise.then(content => )
     sectionPublication.appendChild(publicationCreated(text));
     console.log(text);
   });

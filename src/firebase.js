@@ -59,3 +59,15 @@ export const signInWithGoogle = () => {
     });
 };
 */
+
+/*
+ *  CLOUD FIRESTORE FUNCTIONS
+ */
+
+export const publishStatus = statusContent => firebase.firestore().collection('userStatus').add({
+  title: statusContent,
+  // state: false,
+});
+
+// export const deleteStatus = idStatus => 
+// firebase.firestore().collection('notes').doc(idStatus).delete();
