@@ -19,6 +19,7 @@ export const signOut = () => firebase.auth().signOut();
 //   }
 //   return firebase.auth().currentUser;
 // };
+
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
@@ -52,13 +53,11 @@ export const signInWithGoogle = () => {
       const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       console.log(`email = ${email}`);
-
       const credential = error.credential;
       // ...
       console.log(`credential = ${credential}`);
     });
 };
-*/
 
 /*
  *  CLOUD FIRESTORE FUNCTIONS
