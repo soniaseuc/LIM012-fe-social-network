@@ -112,10 +112,10 @@ const perfil = () => {
     changeNameAndPhoto(user, newNameAndPhoto);
   };
   // btn para editar nombre y foto del user
-  editButton.addEventListener('click', (event) => {
-    event.preventDefault();
+  editButton.addEventListener('click', () => {
+    // event.preventDefault();
     editInformation();
-    auth.onAuthStateChanged();
+    // window.location.reload();
   });
 
   return profile;
