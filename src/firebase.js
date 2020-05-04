@@ -97,18 +97,6 @@ export const getStatus = (list) => {
     });
 };
 
-// Add a second document with a generated ID.
-// db.collection("users").add({
-//   first: "Alan",
-//   middle: "Mathison",
-//   last: "Turing",
-//   born: 1912
-// })
-// .then(function(docRef) {
-//   console.log("Document written with ID: ", docRef.id);
-// })
-// .catch(function(error) {
-//   console.error("Error adding document: ", error);
-// });
+
 // export const deleteStatus = idStatus =>
 // firebase.firestore().collection('notes').doc(idStatus).delete();
