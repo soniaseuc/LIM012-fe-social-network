@@ -1,4 +1,4 @@
-import { signOut, publishStatus } from '../firebase.js';
+import { signOut, publishStatus, getStatus } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 
 const perfil = () => {
@@ -205,41 +205,47 @@ const avatarProfile = () => {
 const publicationCreated = (str) => {
   const publicationSection = document.createElement('section');
   publicationSection.classList.add('publicationSection');
-
+  // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
+  //   // allPosts.innerHTML = '';
+  //   querySnapshot.forEach((doc) => {
   publicationSection.innerHTML = `
-  <header>
-    <select id="" class="publicOrPrivateSelector">
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    <h1 class="nameTitlePublication">Nombre</h1>
-    <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
-  </header>
-  <section class="notes" id="content">
-    <p class="textComent">${str}</p>
-    <div class="notesIcons">
-    <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-    <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-    </div>
-  </section>
-  <section class="comment" id="comments">
-    <div class="userComentDone">
-    <div class="flexColumn">
-      <h5>NOMBRE</h5>
-      <p>Comentario......</p>
-    </div>
-      <div class="icons">
-          <figure><img src="img/icons/modificar.svg"></figure>
-          <figure><img src="img/icons/trash.svg"></figure>
-          <figure><img src="img/icons/heart-solid.svg"></figure>  
-      </div>
-    </div>
-    <div class="line"><div>
-      <input placeholder="Agrega tu Comentario"></input>
-  </section>
-  `;
+        <header>
+          <select id="" class="publicOrPrivateSelector">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <h1 class="nameTitlePublication">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : window.localStorage.getItem('email')}</h1>
+          <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
+        </header>
+        <section class="notes" id="content">
+          <p class="textComent">${str.status}</p>
+          <div class="notesIcons">
+          <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
+          <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
+          </div>
+        </section>
+        <section class="comment" id="comments">
+          <div class="userComentDone">
+          <div class="flexColumn">
+            <h5>NOMBRE</h5>
+            <p>Comentario......</p>
+          </div>
+            <div class="icons">
+                <figure><img src="img/icons/modificar.svg"></figure>
+                <figure><img src="img/icons/trash.svg"></figure>
+                <figure><img src="img/icons/heart-solid.svg"></figure>  
+            </div>
+          </div>
+          <div class="line"><div>
+            <input placeholder="Agrega tu Comentario"></input>
+        </section>
+        `;
+  // });
+  // });
+  // console.log(getStatus());
   return publicationSection;
 };
+
 
 export const mainPublicationForm = () => {
   const publication = `
@@ -250,8 +256,8 @@ export const mainPublicationForm = () => {
       <img src="img/icons/images.svg">
       </figure>
         <select id="optionsPublic" class="selectPublic publicationBtn">
-          <option value="public">Public</option>
-          <option value="private">Private</option>
+          <option value="publico">Publico</option>
+          <option value="privado">Privado</option>
         </select>
         <button id="share" class="compartirBtn publicationBtn">Compartir</button>
     </div>      
@@ -262,22 +268,17 @@ export const mainPublicationForm = () => {
   publicationMainSection.classList.add('publicationMainSection');
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
-  const userInput = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
   const shareButton = sectionPublication.querySelector('#share');
-  // const publicationMainSection = document.createElement('section');
+  const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const text = userInput.value;
-    //  const promise = publishStatus(text);
-    // promise.then(content => )
-    sectionPublication.appendChild(publicationCreated(text));
-    console.log(text);
+    const userName = firebase.auth().currentUser.displayName;
+    const status = textarea.value;
+    // console.log(publishStatus(userName, status));
+    publishStatus(userName, status);
+    // sectionPublication.appendChild(publicationCreated(status));
+    console.log(getStatus());
   });
-  // const ul = sectionPublication.querySelector('#notes-list');
-  // str.forEach((string) => {
-  //  ul.appendChild(publicationCreated());
-  // });
-  // shareButton.addEventListener('click', addPublicationOnShare);
   return sectionPublication;
 };
 
@@ -286,6 +287,7 @@ export const homeTemplate = () => {
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
+  // mainElem.appendChild(publicationCreated());
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
