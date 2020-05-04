@@ -15,18 +15,21 @@ import { changeTmp } from './view-controller/router.js';
 // firebase.initializeApp(firebaseConfig);
 
 
-// educaChat => educhatlim012@gmail.com
+// educaChat = project = socialNetwork => educhatlim012@gmail.com
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCixWVNWgowRSYjUWwSEj1BgChvMK-HWg4',
-  authDomain: 'educachat-a5ccb.firebaseapp.com',
-  databaseURL: 'https://educachat-a5ccb.firebaseio.com',
-  projectId: 'educachat-a5ccb',
-  storageBucket: 'educachat-a5ccb.appspot.com',
-  messagingSenderId: '588989108311',
-  appId: '1:588989108311:web:12e5b415b7643cd7335312',
+  apiKey: 'AIzaSyC8VlB-iWOQRvOwVFFlkIciTeygM1aEkVU',
+  authDomain: 'socialnetwork-59f0d.firebaseapp.com',
+  databaseURL: 'https://socialnetwork-59f0d.firebaseio.com',
+  projectId: 'socialnetwork-59f0d',
+  storageBucket: 'socialnetwork-59f0d.appspot.com',
+  messagingSenderId: '661343392066',
+  appId: '1:661343392066:web:558cb276d45c2d3916f8db',
+  measurementId: 'G-GL7ZK0PFNX',
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 
 const init = () => {
   changeTmp(window.location.hash);
