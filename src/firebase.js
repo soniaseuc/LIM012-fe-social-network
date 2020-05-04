@@ -68,5 +68,5 @@ export const publishStatus = statusContent => firebase.firestore().collection('u
   // state: false,
 });
 
-// export const deleteStatus = idStatus => 
+// export const deleteStatus = idStatus =>
 // firebase.firestore().collection('notes').doc(idStatus).delete();
