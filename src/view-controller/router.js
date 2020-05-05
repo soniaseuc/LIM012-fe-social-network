@@ -20,7 +20,6 @@ export const changeTmp = (hash) => {
     { sectionMain.appendChild(components.home());
       return getStatus();
     }
-    // && sectionMain.appendChild(components.post()); }
     default:
       return sectionMain.appendChild(components.different());
   }

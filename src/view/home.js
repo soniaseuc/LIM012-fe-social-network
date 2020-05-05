@@ -191,33 +191,8 @@ const avatarProfile = () => {
     }
   });
 
-
-  // Go to modification page
-  // modifyAccount.addEventListener('click', (event) => {
-  //   event.preventDefault();
-  //   sectionProfile.appendChild(perfil());
-  // });
-
   return sectionProfile;
 };
-
-// const publicationCreated = () => {
-//   const publicationSection = document.createElement('section');
-//   publicationSection.setAttribute('id', 'publicationSection');
-//   publicationSection.classList.add('publicationSection');
-//   // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
-//   //   // allPosts.innerHTML = '';
-//   //   querySnapshot.forEach((doc) => {
-//   publicationSection.innerHTML = `
-//         <section id="statusPost">
-
-//         </section>
-//         `;
-//   // });
-//   // });
-//   // console.log(getStatus());
-//   return publicationSection;
-// };
 
 
 export const mainPublicationForm = () => {
@@ -242,15 +217,13 @@ export const mainPublicationForm = () => {
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
   const shareButton = sectionPublication.querySelector('#share');
+  // COMPARTIR PUBLICACION
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    // console.log(publishStatus(userName, status));
     publishStatus(userName, status);
-    // sectionPublication.appendChild(publicationCreated());
-    // getStatus(status);
   });
   return sectionPublication;
 };
@@ -264,7 +237,6 @@ export const homeTemplate = () => {
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
   mainElem.appendChild(mainComentarios);
-  // mainComentarios.appendChild(getStatus());
 
   mainElem.classList.add('homeContainer');
   return mainElem;

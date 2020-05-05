@@ -41,7 +41,6 @@ export const publishStatus = (userName, statusPost) => {
 
 export const getStatus = () => {
   const statusPost = document.querySelector('#comentarios');
-  console.log(statusPost);
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
@@ -98,7 +97,7 @@ export const getStatus = () => {
             <div class="icons">
                 <figure><img src="img/icons/modificar.svg"></figure>
                 <figure><img src="img/icons/trash.svg"></figure>
-                <figure><img src="img/icons/heart-solid.svg"></figure>  
+                <figure><img src="img/icons/heart-solid.svg"></figure>
             </div>
           </div>
           <div class="line"><div>
