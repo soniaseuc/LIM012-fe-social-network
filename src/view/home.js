@@ -1,6 +1,6 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
-import { publishStatus, getStatus } from '../firestore.js';
+import { publishStatus } from '../firestore.js';
 
 const perfil = () => {
   const perfilModal = `
@@ -201,50 +201,24 @@ const avatarProfile = () => {
   return sectionProfile;
 };
 
-const publicationCreated = (str) => {
-  const publicationSection = document.createElement('section');
-  publicationSection.setAttribute('id', 'publicationSection');
-  publicationSection.classList.add('publicationSection');
-  // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
-  //   // allPosts.innerHTML = '';
-  //   querySnapshot.forEach((doc) => {
-  publicationSection.innerHTML = `
-        <header>
-          <select id="" class="publicOrPrivateSelector">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-          </select>
-          <h1 class="nameTitlePublication">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : window.localStorage.getItem('email')}</h1>
-          <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
-        </header>
-        <section class="notes" id="content">
-          <p class="textComent" id="statusPost">${str.status}</p>
-          <div class="notesIcons">
-          <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-          <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-          </div>
-        </section>
-        <section class="comment" id="comments">
-          <div class="userComentDone">
-          <div class="flexColumn">
-            <h5>NOMBRE</h5>
-            <p>Comentario......</p>
-          </div>
-            <div class="icons">
-                <figure><img src="img/icons/modificar.svg"></figure>
-                <figure><img src="img/icons/trash.svg"></figure>
-                <figure><img src="img/icons/heart-solid.svg"></figure>  
-            </div>
-          </div>
-          <div class="line"><div>
-            <input placeholder="Agrega tu Comentario"></input>
-        </section>
-        `;
-  // });
-  // });
-  // console.log(getStatus());
-  return publicationSection;
-};
+// const publicationCreated = () => {
+//   const publicationSection = document.createElement('section');
+//   publicationSection.setAttribute('id', 'publicationSection');
+//   publicationSection.classList.add('publicationSection');
+//   // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
+//   //   // allPosts.innerHTML = '';
+//   //   querySnapshot.forEach((doc) => {
+//   publicationSection.innerHTML = `
+//         <section id="statusPost">
+
+//         </section>
+//         `;
+//   // });
+//   // });
+//   // console.log(getStatus());
+//   return publicationSection;
+// };
+
 
 export const mainPublicationForm = () => {
   const publication = `
@@ -275,18 +249,22 @@ export const mainPublicationForm = () => {
     const status = textarea.value;
     // console.log(publishStatus(userName, status));
     publishStatus(userName, status);
-    sectionPublication.appendChild(publicationCreated(status));
-    getStatus(status);
+    // sectionPublication.appendChild(publicationCreated());
+    // getStatus(status);
   });
   return sectionPublication;
 };
 
 export const homeTemplate = () => {
   const mainElem = document.createElement('main');
+  const mainComentarios = document.createElement('section');
+  mainComentarios.setAttribute('id', 'comentarios');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-  // mainElem.appendChild(publicationCreated());
+  mainElem.appendChild(mainComentarios);
+  // mainComentarios.appendChild(getStatus());
+
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
