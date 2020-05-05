@@ -86,6 +86,7 @@ export const signInWithGoogle = () => {
 // READ DATABASE
 // */
 
+
 // export const getStatus = (list) => {
 //   firebase.firestore().collection('post').orderBy('date', 'desc')
 //     .onSnapshot((querySnapShot) => {
@@ -96,6 +97,7 @@ export const signInWithGoogle = () => {
 //       list(data);
 //     });
 // };
+
 
 
 // export const deleteStatus = idStatus =>

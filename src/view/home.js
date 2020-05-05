@@ -182,10 +182,8 @@ const avatarProfile = () => {
   // show edit profile
 
   firebase.auth().onAuthStateChanged((user) => {
-    console.log(user);
     // display the displayName and photoURL of the user on the page
     if (user.displayName || user.photoURL) {
-      console.log(user);
       sectionProfile.querySelector('#displayNameHolder').innerHTML = user.displayName;
       sectionProfile.querySelector('#photoHolder').src = user.photoURL;
     } else {
