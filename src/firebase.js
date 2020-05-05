@@ -99,6 +99,5 @@ export const signInWithGoogle = () => {
 // };
 
 
-
 // export const deleteStatus = idStatus =>
 // firebase.firestore().collection('notes').doc(idStatus).delete();

@@ -1,4 +1,5 @@
 import { components } from '../view/index.js';
+import { getStatus } from '../firestore.js';
 
 // controlar el cambio de la vista == view-controler
 export const changeTmp = (hash) => {
@@ -16,7 +17,9 @@ export const changeTmp = (hash) => {
     case '#/profile':
     { return sectionMain.appendChild(components[id]()); }
     case '#/home':
-    { return sectionMain.appendChild(components.home()); }
+    { sectionMain.appendChild(components.home());
+      return getStatus();
+    }
     // && sectionMain.appendChild(components.post()); }
     default:
       return sectionMain.appendChild(components.different());
