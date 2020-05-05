@@ -181,10 +181,8 @@ const avatarProfile = () => {
   // show edit profile
 
   firebase.auth().onAuthStateChanged((user) => {
-    console.log(user);
     // display the displayName and photoURL of the user on the page
     if (user.displayName || user.photoURL) {
-      console.log(user);
       sectionProfile.querySelector('#displayNameHolder').innerHTML = user.displayName;
       sectionProfile.querySelector('#photoHolder').src = user.photoURL;
     } else {
@@ -204,6 +202,7 @@ const avatarProfile = () => {
 
 const publicationCreated = (str) => {
   const publicationSection = document.createElement('section');
+  publicationSection.setAttribute('id', 'publicationSection');
   publicationSection.classList.add('publicationSection');
   // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
   //   // allPosts.innerHTML = '';
@@ -218,7 +217,7 @@ const publicationCreated = (str) => {
           <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
         </header>
         <section class="notes" id="content">
-          <p class="textComent">${str.status}</p>
+          <p class="textComent" id="statusPost">${str.status}</p>
           <div class="notesIcons">
           <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
           <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
@@ -276,8 +275,8 @@ export const mainPublicationForm = () => {
     const status = textarea.value;
     // console.log(publishStatus(userName, status));
     publishStatus(userName, status);
-    // sectionPublication.appendChild(publicationCreated(status));
-    console.log(getStatus());
+    sectionPublication.appendChild(publicationCreated(status));
+    getStatus(status);
   });
   return sectionPublication;
 };

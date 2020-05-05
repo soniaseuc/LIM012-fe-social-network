@@ -86,14 +86,18 @@ export const publishStatus = (userName, statusPost) => {
 READ DATABASE
 */
 
-export const getStatus = (list) => {
+export const getStatus = () => {
+  const statusPost = document.querySelector('#statusPost');
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
-      const data = [];
+      statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
+        statusPost.innerHTML += `
+        <div ${doc.id}>
+          <p>${doc.data().status}</p>
+        </div>
+        `;
       });
-      list(data);
     });
 };
 
