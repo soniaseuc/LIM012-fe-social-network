@@ -1,5 +1,6 @@
-import { signOut, publishStatus, getStatus } from '../firebase.js';
+import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
+import { publishStatus, getStatus } from '../firestore.js';
 
 const perfil = () => {
   const perfilModal = `
@@ -244,7 +245,6 @@ const publicationCreated = (str) => {
   // console.log(getStatus());
   return publicationSection;
 };
-
 
 export const mainPublicationForm = () => {
   const publication = `

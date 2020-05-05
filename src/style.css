@@ -80,6 +80,9 @@ p span a {
 }
 
 /*HOME*/
+#logIn {
+  width: 100%;
+}
 /*clase creada dinamicamente para albergar las 3 secciones del home*/
 .homeContainer {
   background-color: #FFFFFF;
@@ -543,7 +546,11 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   }
   
 }
-
+/* @media (min-width:850px) {
+  #logIn {
+    display: flex;
+  }
+} */
 
 
 
