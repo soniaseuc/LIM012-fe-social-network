@@ -47,36 +47,38 @@ export const getStatus = () => {
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
         statusPost.innerHTML += `
-        <header>
-        <select id="" class="publicOrPrivateSelector">
-          <option value="public">Public</option>
-          <option value="private">Private</option>
-        </select>
-        <h1 class="nameTitlePublication">${doc.data().name}</h1>
-        <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
-      </header>
-      <section class="notes" id="content">
-        <p class="textComent" id="statusPost">${doc.data().status}</p>
-        <div class="notesIcons">
-        <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-        <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-        </div>
-      </section>
-      <section class="comment" id="comments">
-        <div class="userComentDone">
-        <div class="flexColumn">
-          <h5>NOMBRE</h5>
-          <p>Comentario......</p>
-        </div>
-          <div class="icons">
-              <figure><img src="img/icons/modificar.svg"></figure>
-              <figure><img src="img/icons/trash.svg"></figure>
-              <figure><img src="img/icons/heart-solid.svg"></figure>  
-          </div>
-        </div>
-        <div class="line"><div>
-          <input placeholder="Agrega tu Comentario"></input>
-      </section>
+        <section class="publicationSection">
+            <header>
+                <select id="" class="publicOrPrivateSelector">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                </select>
+                <h1 class="nameTitlePublication">${doc.data().name}</h1>
+                <figure class="figureContainerIcons"><img src="img/icons/trash.svg"></figure>
+            </header>
+            <section class="notes" id="content">
+                <p class="textComent" id="statusPost">${doc.data().status}</p>
+                <div class="notesIcons">
+                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
+                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
+                </div>
+            </section>
+            <section class="comment" id="comments">
+                <div class="userComentDone">
+                <div class="flexColumn">
+                <h5>NOMBRE</h5>
+                <p>Comentario......</p>
+                </div>
+                <div class="icons">
+                    <figure><img src="img/icons/modificar.svg"></figure>
+                    <figure><img src="img/icons/trash.svg"></figure>
+                    <figure><img src="img/icons/heart-solid.svg"></figure>  
+                </div>
+                </div>
+                <div class="line"><div>
+                <input placeholder="Agrega tu Comentario"></input>
+            </section>
+        </section>
             `;
       });
     });
