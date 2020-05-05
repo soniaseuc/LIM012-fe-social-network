@@ -259,6 +259,7 @@ export const homeTemplate = () => {
   const mainElem = document.createElement('main');
   const mainComentarios = document.createElement('section');
   mainComentarios.setAttribute('id', 'comentarios');
+  mainComentarios.classList.add('postSection');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());

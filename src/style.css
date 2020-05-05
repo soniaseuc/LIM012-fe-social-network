@@ -120,7 +120,9 @@ p span a {
 }
 
 /* MAIN SECTION DE PUBLICACIONES */
-
+#comentarios {
+  margin: 0 auto;
+}
 /*home publication section*/
 .homePublicationContainer {
   /* border: 1px solid white; */
@@ -193,8 +195,12 @@ p span a {
   border: 2px solid red;
 } */
 
+.postSection {
+  width: 80%; 
+}
 /* MAIN SECTION DE PUBLICACIONES ECHAS */
-.publicationSection { /* separacion entre publicaciones */
+.publicationSection { /* centrar section de comentarios */
+  /* width: 80%; */
   border: 1px solid #aaaaaa;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -208,6 +214,7 @@ p span a {
   justify-content: flex-end;
   border: 2px solid #3376BC; 
 }
+
 /* SELECT BOTON  */
 .publicOrPrivateSelector {
   width: 4rem;
