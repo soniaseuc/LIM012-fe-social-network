@@ -17,10 +17,12 @@ export const changeTmp = (hash) => {
     { return sectionMain.appendChild(components[id]()); }
     case '#/home':
     { return sectionMain.appendChild(components.home()); }
+    // && sectionMain.appendChild(components.post()); }
     default:
       return sectionMain.appendChild(components.different());
   }
 };
+
 
 // Your web app's Firebase configuration
 
