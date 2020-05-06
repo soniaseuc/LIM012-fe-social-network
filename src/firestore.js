@@ -97,6 +97,7 @@ export const getStatus = () => {
             <section class="notes" id="content">
                 <p class="textComent" id="statusPost">${doc.data().status}</p>
                 <div class="notesIcons">
+                <button id="${doc.id}">Borrar</button>
                 <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
                 <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
                 </div>
@@ -121,7 +122,7 @@ export const getStatus = () => {
         // agregando evento de click al btn eliminar una nota
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
-        // console.log('borrado exitosamente');
+        console.log('borrado exitosamente');
         console.log(btnDeleted);
       });
     });
