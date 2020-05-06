@@ -1,3 +1,6 @@
+// import { getStatus } from './firestore.js';
+
+
 export const authentification = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -10,6 +13,7 @@ export const authentification = () => {
         const emailId = myUser.email;
         // document.getElementById('fulanita').innerHTML = `Hola ${emailId}`;
         console.log(emailId);
+        // getStatus();
       }
     } else {
       // no user is signed in
