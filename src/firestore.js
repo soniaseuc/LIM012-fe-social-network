@@ -77,7 +77,7 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  console.log(statusPost);
+  // console.log(statusPost);
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
