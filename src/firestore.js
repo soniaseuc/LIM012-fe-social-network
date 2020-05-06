@@ -82,36 +82,3 @@ export const getStatus = () => {
       });
     });
 };
-
-/**
- *  <div ${doc.id}>
-              <p>${doc.data().status}</p>
-            </div>
- *
-        <section class="comment" id="comments">
-          <div class="userComentDone">
-          <div class="flexColumn">
-            <h5>NOMBRE</h5>
-            <p>Comentario......</p>
-          </div>
-            <div class="icons">
-                <figure><img src="img/icons/modificar.svg"></figure>
-                <figure><img src="img/icons/trash.svg"></figure>
-                <figure><img src="img/icons/heart-solid.svg"></figure>
-            </div>
-          </div>
-          <div class="line"><div>
-            <input placeholder="Agrega tu Comentario"></input>
-        </section>
-
-// export const getStatus = () => {
-//   const statusPost = document.querySelector('#publicationMainSection');
-//   firebase.firestore().collection('post').orderBy('date', 'desc')
-//     .onSnapshot((querySnapShot) => {
-//       statusPost.innerHTML = '';
-//       querySnapShot.forEach((doc) => {
-//         statusPost.innerHTML += publicationCreated(doc.data().status, );
-//       });
-//     });
-// };
-*/
