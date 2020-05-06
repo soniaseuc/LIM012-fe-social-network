@@ -262,9 +262,6 @@ export const homeTemplate = () => {
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-  
-  // mainComentarios.appendChild(getStatus());
-
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
