@@ -1,6 +1,8 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 import { publishStatus } from '../firestore.js';
+// import { deleteNoteOnClick } from '../firestore-controller.js';
+
 
 const perfil = () => {
   const perfilModal = `
@@ -190,14 +192,6 @@ const avatarProfile = () => {
       console.log('Ocurrio un error cargando la foto y nombre cambiado');
     }
   });
-
-
-  // Go to modification page
-  // modifyAccount.addEventListener('click', (event) => {
-  //   event.preventDefault();
-  //   sectionProfile.appendChild(perfil());
-  // });
-
   return sectionProfile;
 };
 
@@ -223,6 +217,7 @@ const avatarProfile = () => {
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
+
       <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
       <figure>
@@ -241,29 +236,33 @@ export const mainPublicationForm = () => {
   publicationMainSection.classList.add('publicationMainSection');
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
+
+  // // agregando evento de click al btn eliminar una nota
+  // publicationMainSection.querySelector('#btn-deleted')
+  //   .addEventListener('click', () => deleteNoteOnClick());
+
   const shareButton = sectionPublication.querySelector('#share');
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
+  // boton de compartir publicacion
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
     // console.log(publishStatus(userName, status));
     publishStatus(userName, status);
-    // sectionPublication.appendChild(publicationCreated());
-    // getStatus(status);
   });
+
   return sectionPublication;
 };
 
+
 export const homeTemplate = () => {
   const mainElem = document.createElement('main');
-  const mainComentarios = document.createElement('section');
-  mainComentarios.setAttribute('id', 'comentarios');
-  mainComentarios.classList.add('postSection');
+  mainElem.setAttribute('id', 'mainElement');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-  mainElem.appendChild(mainComentarios);
+  
   // mainComentarios.appendChild(getStatus());
 
   mainElem.classList.add('homeContainer');
