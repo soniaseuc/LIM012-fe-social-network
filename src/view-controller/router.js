@@ -22,7 +22,6 @@ export const changeTmp = (hash) => {
       // console.log(document.getElementById('comentarios'));
       return getStatus();
     }
-    // && sectionMain.appendChild(components.post()); }
     default:
       return sectionMain.appendChild(components.different());
   }
