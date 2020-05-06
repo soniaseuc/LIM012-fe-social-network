@@ -90,8 +90,11 @@ export const getStatus = () => {
                 <option value="private">Private</option>
                 </select>
                 <h1 class="nameTitlePublication">${doc.data().name}</h1>
-                <figure class="figureContainerIcons"><img src="img/icons/trash.svg">
-                <button id="${doc.id}">Borrar</button>
+                <figure class="figureContainerIcons">
+                  <input id="${doc.id}" type="checkbox">
+                  <label for="${doc.id}">
+                      <img src="img/icons/trash.svg">
+                  </label>
                 </figure>
             </header>
             <section class="notes" id="content">

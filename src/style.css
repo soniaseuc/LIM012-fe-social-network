@@ -226,8 +226,12 @@ p span a {
   height: 2.4rem;
   margin: 0 .1rem;
 }
+
+.figureContainerIcons input {
+display: none;
+}
 /* TRASH IMG */
-.figureContainerIcons img{
+.figureContainerIcons label img{
   width: 2rem;
   height: 1.5rem;
   margin: .4rem auto;
@@ -368,7 +372,7 @@ h5 {
 }
 
 /* dimensiones del label que contiene la img icono-menu */
-header label {
+header .labelbtnmenu {
   display: none;
   width: 1rem;
   height: 1rem;
@@ -385,7 +389,7 @@ li a{
 }
 
 /* estilo al label:cambia de color al hacer hover */
-header label:hover {
+header .labelbtnmenu:hover {
   cursor: pointer;
   background: #F4A82C;
 }
@@ -519,7 +523,7 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   
   }
 
-  header label {
+  header .labelbtnmenu {
     display: block;
     margin-top: 0;
   }

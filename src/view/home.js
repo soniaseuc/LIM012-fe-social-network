@@ -127,7 +127,7 @@ const perfil = () => {
 const navMenu = () => {
   const menu = `
   <input type="checkbox" id="btn-menu">
-  <label for="btn-menu">
+  <label class="labelbtnmenu" for="btn-menu">
     <img src="../img/icono-menu.png" alt="">
   </label>
 
