@@ -232,6 +232,7 @@ export const mainPublicationForm = () => {
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
     publishStatus(userName, status);
+    textarea.value = '';
   });
 
   return sectionPublication;
