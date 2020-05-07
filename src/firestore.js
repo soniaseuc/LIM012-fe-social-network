@@ -133,5 +133,6 @@ export const getStatus = () => {
 // FIRESTORAGE
 
 export const uploadImg = (str) => {
+  // firebase.storage();
   console.log(str);
 };

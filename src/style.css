@@ -109,9 +109,6 @@ p span a {
   padding-top: 1rem;
 }
 
-#photoHolder {
-  
-}
 
 /*nombre del usuario*/
 #myUserName {
@@ -269,6 +266,9 @@ p span a {
   /* margin: 0;
   width: 2rem;
   height: 2rem;  */
+}
+.displayNone{
+  display: none;
 }
 /* TODO LA SECTION DE COMENTARIOS */
 .comment {

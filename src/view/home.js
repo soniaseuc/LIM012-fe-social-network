@@ -1,6 +1,6 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
-import { publishStatus, uploadImg } from '../firestore.js';
+import { publishStatus } from '../firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 
 
@@ -201,7 +201,12 @@ export const mainPublicationForm = () => {
     <div class="sharePublicationBox">
       <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
-      <button id="imgBtn" class="circle" ><img src="img/icons/images.svg"></button>
+      <div class="circle">
+          <label for="file-input">
+            <img src="img/icons/images.svg"/>
+          </label>
+          <input class="displayNone" id="file-input" type="file" />
+      </div>
         <select id="optionsPublic" class="selectPublic publicationBtn">
           <option value="public">Publico</option>
           <option value="private">Privado</option>
@@ -216,16 +221,16 @@ export const mainPublicationForm = () => {
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
   // BOTON IMG
-  const imgBtn = sectionPublication.querySelector('#imgBtn');
-  imgBtn.addEventListener('click', (e)=> {
-    e.preventDefault();
-    uploadImg('charging');
-  });
+  // const imgBtn = sectionPublication.querySelector('#imgBtn');
+  // imgBtn.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   uploadImg('charging');
+  // });
 
   // constantes de nodos
   const shareButton = sectionPublication.querySelector('#share');
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
-  // const visivilityOption = visivility.options[visivility.selectedIndex].value;
+
   // boton de compartir publicacion
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
