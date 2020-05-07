@@ -1,6 +1,6 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
-import { publishStatus } from '../firestore.js';
+import { publishStatus, uploadImg } from '../firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 
 
@@ -199,15 +199,12 @@ const avatarProfile = () => {
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
-
       <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
       <div class="footerHomePublication">
-      <figure>
-      <img src="img/icons/images.svg">
-      </figure>
+      <button id="imgBtn" class="circle" ><img src="img/icons/images.svg"></button>
         <select id="optionsPublic" class="selectPublic publicationBtn">
-          <option value="publico">Publico</option>
-          <option value="privado">Privado</option>
+          <option value="public">Publico</option>
+          <option value="private">Privado</option>
         </select>
         <button id="share" class="compartirBtn publicationBtn">Compartir</button>
     </div>      
@@ -218,20 +215,24 @@ export const mainPublicationForm = () => {
   publicationMainSection.classList.add('publicationMainSection');
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
+  // BOTON IMG
+  const imgBtn = sectionPublication.querySelector('#imgBtn');
+  imgBtn.addEventListener('click', (e)=> {
+    e.preventDefault();
+    uploadImg('charging');
+  });
 
-  // // agregando evento de click al btn eliminar una nota
-  // publicationMainSection.querySelector('#btn-deleted')
-  //   .addEventListener('click', () => deleteNoteOnClick());
-
+  // constantes de nodos
   const shareButton = sectionPublication.querySelector('#share');
-  // COMPARTIR PUBLICACION
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
+  // const visivilityOption = visivility.options[visivility.selectedIndex].value;
   // boton de compartir publicacion
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
+    const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    publishStatus(userName, status);
+    publishStatus(userName, status, visivility);
   });
 
   return sectionPublication;

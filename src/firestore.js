@@ -35,16 +35,18 @@ export const deleteNote = (e) => {
 /*
  *  CLOUD FIRESTORE FUNCTIONS
  */
-export const publishStatus = (userName, statusPost) => {
+export const publishStatus = (userName, statusPost, visibilityPost) => {
   // Create a new collection and a document
   firebase.firestore().collection('post').add({
     name: userName,
+    email: firebase.auth().currentUser.email,
     status: statusPost,
     date: firebase.firestore.Timestamp.fromDate(new Date()),
+    visibility: visibilityPost,
   })
     .then((docRef) => {
       console.log(`'Document written with ID: ${docRef.id}`);
-      console.log(docRef);
+      console.log(docRef.visibility);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -86,20 +88,19 @@ export const getStatus = () => {
         <section class="publicationSection">
             <header>
                 <select id="" class="publicOrPrivateSelector">
-                <option value="public">Public</option>
-                <option value="private">Private</option>
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
                 </select>
                 <h1 class="nameTitlePublication">${doc.data().name}</h1>
                 <figure class="figureContainerIcons"><img src="img/icons/trash.svg">
-                <button id="${doc.id}">Borrar</button>
+                    <button id="${doc.id}">Borrar</button>
                 </figure>
             </header>
             <section class="notes" id="content">
                 <p class="textComent" id="statusPost">${doc.data().status}</p>
                 <div class="notesIcons">
-                <button id="${doc.id}">Borrar</button>
-                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -109,9 +110,9 @@ export const getStatus = () => {
                 <p>Comentario......</p>
                 </div>
                 <div class="icons">
-                    <figure><img src="img/icons/modificar.svg"></figure>
-                    <figure><img src="img/icons/trash.svg"></figure>
-                    <figure><img src="img/icons/heart-solid.svg"></figure>  
+                <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 </div>
                 </div>
                 <div class="line"><div>
@@ -122,8 +123,15 @@ export const getStatus = () => {
         // agregando evento de click al btn eliminar una nota
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
-        console.log('borrado exitosamente');
+        // console.log('borrado exitosamente');
         console.log(btnDeleted);
       });
     });
+};
+
+
+// FIRESTORAGE
+
+export const uploadImg = (str) => {
+  console.log(str);
 };
