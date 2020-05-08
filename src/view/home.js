@@ -128,7 +128,7 @@ const perfil = () => {
 const navMenu = () => {
   const menu = `
   <input type="checkbox" id="btn-menu">
-  <label for="btn-menu">
+  <label class="labelbtnmenu" for="btn-menu">
     <img src="../img/icono-menu.png" alt="">
   </label>
 
@@ -195,6 +195,24 @@ const avatarProfile = () => {
   });
   return sectionProfile;
 };
+
+// const publicationCreated = () => {
+//   const publicationSection = document.createElement('section');
+//   publicationSection.setAttribute('id', 'publicationSection');
+//   publicationSection.classList.add('publicationSection');
+//   // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
+//   //   // allPosts.innerHTML = '';
+//   //   querySnapshot.forEach((doc) => {
+//   publicationSection.innerHTML = `
+//         <section id="statusPost">
+
+//         </section>
+//         `;
+//   // });
+//   // });
+//   // console.log(getStatus());
+//   return publicationSection;
+// };
 
 
 export const mainPublicationForm = () => {
@@ -264,6 +282,7 @@ export const mainPublicationForm = () => {
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
+
     const iPost = localStorage.getItem('image');
     console.log(`soy file obj de localstorage de home.js ${file}`);
     console.log(`soy file.name obj de localstorage de home.js ${file.name}`);
@@ -282,7 +301,6 @@ export const homeTemplate = () => {
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-  // mainComentarios.appendChild(getStatus());
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
