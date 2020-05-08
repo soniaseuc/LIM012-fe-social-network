@@ -8,10 +8,8 @@
 
 body {
   display: flex;    
-
   font-size: 16px;
   font-family: Roboto, serif ;
-
 }
 
 /* imagen de la laptop */
@@ -23,6 +21,7 @@ body figure img {
 
 /* input del email */
 #email {
+  border: none;
   border-radius: 2rem;
   padding: 1rem;
   margin: 1rem;
@@ -30,6 +29,7 @@ body figure img {
 
 /* input del password */
 #password {
+  border: none;
   border-radius: 2rem;
   padding: 1rem;
   margin: 1rem;
@@ -109,9 +109,6 @@ p span a {
   padding-top: 1rem;
 }
 
-/* #photoHolder {
-  
-} */
 
 /*nombre del usuario*/
 #myUserName {
@@ -126,7 +123,7 @@ p span a {
 /*home publication section*/
 .homePublicationContainer {
   /* border: 1px solid white; */
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
@@ -163,7 +160,8 @@ p span a {
   z-index: 3;
 }
 /* Boton subir Imagen */
-.footerHomePublication figure{
+.circle{
+  border: none;
   background-color: #F4A82C;
   border-radius: 100%;
   width: 2rem;
@@ -171,7 +169,7 @@ p span a {
   margin: .3rem  auto;
 }
 /* Icon imagen */
-.footerHomePublication figure img {
+.circle img {
   width: 2rem;
   height: 1.3rem;
   margin: .3rem auto;
@@ -256,7 +254,7 @@ display: none;
   flex-direction: row;
 }
 /* CIRCULOS DE LOS ICONOS EN PUBLICACION */
-.notesIcons figure {
+.circlePink{
   background-color: #C14D7C;
   border: 1px solid #C14D7C;
   width: 2rem;
@@ -265,7 +263,7 @@ display: none;
   border-radius: 100%;
 }
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
-.notes figure img {
+.circlePink img {
   width: 2rem;
   height: 1.5rem;
   margin: .2rem auto;
@@ -273,6 +271,9 @@ display: none;
   width: 2rem;
   height: 2rem;  */
 }
+/* .displayNone{
+  display: none;
+} */
 /* TODO LA SECTION DE COMENTARIOS */
 .comment {
   margin: .4rem .4rem;

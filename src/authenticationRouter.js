@@ -11,6 +11,8 @@ export const authentification = () => {
       window.location.hash = '#/home';
       if (myUser != null) {
         const emailId = myUser.email;
+        // console.log(firebase.auth().currentUser.uid);
+        console.log(`myUser.uid => ${myUser.uid}`);
         // document.getElementById('fulanita').innerHTML = `Hola ${emailId}`;
         console.log(emailId);
         // getStatus();
