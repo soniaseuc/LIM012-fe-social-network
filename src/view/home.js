@@ -248,7 +248,7 @@ export const mainPublicationForm = () => {
     event.preventDefault();
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    // console.log(publishStatus(userName, status));
+    console.log('status');
     publishStatus(userName, status);
     // textarea.value = '';
   });
