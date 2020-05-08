@@ -1,3 +1,5 @@
+
+
 // eslint-disable-next-line max-len
 // export const signIn = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
@@ -35,7 +37,7 @@ export const deleteNote = (e) => {
 /*
  *  CLOUD FIRESTORE FUNCTIONS
  */
-export const publishStatus = (userName, statusPost, visibilityPost) => {
+export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => {
   // Create a new collection and a document
   firebase.firestore().collection('post').add({
     name: userName,
@@ -43,6 +45,7 @@ export const publishStatus = (userName, statusPost, visibilityPost) => {
     status: statusPost,
     date: firebase.firestore.Timestamp.fromDate(new Date()),
     visibility: visibilityPost,
+    img: imgPost,
   })
     .then((docRef) => {
       console.log(`'Document written with ID: ${docRef.id}`);
@@ -98,6 +101,7 @@ export const getStatus = () => {
             </header>
             <section class="notes" id="content">
                 <p class="textComent" id="statusPost">${doc.data().status}</p>
+                <img src=${doc.data().img}>
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
@@ -132,7 +136,10 @@ export const getStatus = () => {
 
 // FIRESTORAGE
 
-export const uploadImg = (str) => {
-  // firebase.storage();
-  console.log(str);
+// const storage = firebase.storage();
+
+export const uploadImagePost = (file, uid) => {
+  const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+  refStorage.put(file);
+  console.log(`soy file de firestore.js ${file}`);
 };

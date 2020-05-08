@@ -1,6 +1,7 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
-import { publishStatus } from '../firestore.js';
+import { publishStatus, uploadImagePost } from '../firestore.js';
+
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 
 
@@ -199,13 +200,16 @@ const avatarProfile = () => {
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
-      <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
+      <div>
+        <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
+        <img id="showPicture" width="420" height="120">
+      </div>
       <div class="footerHomePublication">
       <div class="circle">
-          <label for="file-input">
+          <label for="file-input">          
+          <input type="file" id="selectImage" class="displayNone"/>
             <img src="img/icons/images.svg"/>
           </label>
-          <input class="displayNone" id="file-input" type="file" />
       </div>
         <select id="optionsPublic" class="selectPublic publicationBtn">
           <option value="public">Publico</option>
@@ -220,24 +224,52 @@ export const mainPublicationForm = () => {
   publicationMainSection.classList.add('publicationMainSection');
   sectionPublication.innerHTML = publication;
   sectionPublication.classList.add('homePublicationContainer');
+  // BOTON IMG CONST
+  const selectImage = sectionPublication.querySelector('#selectImage');
+  const showPicture = sectionPublication.querySelector('#showPicture');
+  console.log(selectImage);
+  console.log(showPicture);
+
+
   // BOTON IMG
-  // const imgBtn = sectionPublication.querySelector('#imgBtn');
-  // imgBtn.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   uploadImg('charging');
-  // });
+  selectImage.addEventListener('change', (e) => {
+    e.preventDefault();
+    // Vista previa de imagen cargada
+    const input = e.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      showPicture.src = dataURL;
+      localStorage.setItem('image', dataURL);
+    };
+    reader.readAsDataURL(input.files[0]);
+
+    const currentUser = firebase.auth().currentUser.uid;
+    const file = e.target.files[0];
+    localStorage.setItem('name', file);
+    console.log(`soy file event de home.js ${file}`);
+
+    uploadImagePost(file, currentUser);
+  });
 
   // constantes de nodos
   const shareButton = sectionPublication.querySelector('#share');
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
+  const file = localStorage.getItem('name');
 
   // boton de compartir publicacion
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
+    // const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    publishStatus(userName, status, visivility);
+    const iPost = localStorage.getItem('image');
+    console.log(`soy file obj de localstorage de home.js ${file}`);
+    console.log(`soy file.name obj de localstorage de home.js ${file.name}`);
+
+    // uploadImagePost(file, currentUserUid);
+    publishStatus(userName, status, visivility, iPost);
   });
 
   return sectionPublication;
