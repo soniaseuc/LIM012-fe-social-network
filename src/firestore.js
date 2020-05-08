@@ -25,7 +25,7 @@
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deleteNote = () => firebase.firestore().collection('post').doc().delete();
 const deleteNote = (e) => {
-  console.log(e.target.id);
+  // console.log(e.target.id);
   firebase.firestore().collection('post').doc(e.target.id).delete()
     .then(() => {
       console.log('Document successfully deleted!');
@@ -37,7 +37,7 @@ const deleteNote = (e) => {
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 const editNote = (idDoc, statusEdited) => {
-  console.log('evento click de editar');
+  // console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
   const boton = document.getElementById('boton');
   boton.onclick = () => {
@@ -168,7 +168,7 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  console.log(statusPost);
+  // console.log(statusPost);
 
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
@@ -206,17 +206,18 @@ export const getStatus = () => {
             </section>
             <section class="comment" id="comments">
                 <div class="userComentDone">
-                <div class="flexColumn">
-                <h5>NOMBRE</h5>
-                <p>Comentario......</p>
+                  <div class="flexColumn">
+                    <h5>NOMBRE</h5>
+                    <p>Comentario......</p>
+                  </div>
+                  <div class="icons">
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                  </div>
                 </div>
-                <div class="icons">
-                <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <div class="line">
                 </div>
-                </div>
-                <div class="line"><div>
                 <input placeholder="Agrega tu Comentario"></input>
             </section>
         </section>
@@ -225,12 +226,12 @@ export const getStatus = () => {
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
         // console.log('borrado exitosamente');
-        console.log(btnDeleted);
+        // console.log(btnDeleted);
 
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
         btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);
-        console.log(btnEdit);
+        // console.log(btnEdit);
         // onclick="EditNote(${doc.id}, ${doc.data().status})"
       });
     });

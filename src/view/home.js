@@ -220,13 +220,13 @@ export const mainPublicationForm = () => {
     <div class="sharePublicationBox">
       <div>
         <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
-        <img id="showPicture" width="420" height="120">
+        <img id="showPicture" width="50vw" height="auto">
       </div>
       <div class="footerHomePublication">
         <div class="circle">
             <label for="file-input">          
-            <input type="file" id="selectImage" class="displayNone"/>
-              <img src="img/icons/images.svg"/>
+            <input type="file" multiple id="selectImage" class="displayNone">
+              <img src="img/icons/images.svg">
             </label>
         </div>
           <select id="optionsPublic" class="selectPublic publicationBtn">

@@ -18,7 +18,7 @@ export const changeTmp = (hash) => {
     { return sectionMain.appendChild(components[id]()); }
     case '#/home':
     { sectionMain.appendChild(components.home());
-      console.log(document.getElementById('mainElement'));
+      // console.log(document.getElementById('mainElement'));
       // console.log(document.getElementById('comentarios'));
       return getStatus();
     }

@@ -13,7 +13,7 @@ body {
 }
 
 /* imagen de la laptop */
-body figure img {
+.laptopPic {
   width: 10rem;
   margin-top: 3rem;
   margin-bottom: 4rem;
@@ -252,7 +252,15 @@ display: none;
   background-color: #E3E9EF;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
+
+.notesIcons figure img {
+  width: 2rem;
+  height: 1.5rem;
+  margin: .2rem auto;  
+}
+
 /* CIRCULOS DE LOS ICONOS EN PUBLICACION */
 .circlePink{
   background-color: #C14D7C;
@@ -324,7 +332,7 @@ h5 {
   justify-content: flex-end;
 }
 /* CIRCULOS DENTRO DEL COMENTARIO */
-.icons figure{
+.icons button {
   /* margin: auto; */
   background-color: #C14D7C;
   border: 1px solid #C14D7C;
@@ -332,7 +340,7 @@ h5 {
   height: 2rem;
   border-radius: 100%;
 }
-.icons figure img{
+.icons button img{
   width: 2rem;
   height: 1.5rem;
   margin: .1rem auto;
