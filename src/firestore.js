@@ -51,8 +51,14 @@ export const deleteImagePost = (file, uid) => {
 
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
-const editNote = (idDoc, statusEdited, uid) => {
-  // console.log('evento click de editar');
+
+const editNote = (idDoc, statusEdited) => {
+  const addTextarea = document.getElementById('textToEd');
+  const elemntP = document.getElementById('input-edit-note');
+  console.log(addTextarea);
+  // addTextarea.classList.remove('displayNone');
+  elemntP.classList.add('displayNone');
+  console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
   const btnSaveEdit = document.querySelector('#btnSaveEdit');
   btnSaveEdit.onclick = () => {
@@ -133,8 +139,8 @@ const editNote = (idDoc, statusEdited, uid) => {
 //     console.log('Document successfully updated!');
 //   });
 
-
 /*
+
  *  CLOUD FIRESTORE FUNCTIONS
  */
 export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
@@ -177,6 +183,20 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 //       list(data);
 //     });
 // };
+const validatePost = (img, post) => {
+  let postTemplate = '';
+  if (img) {
+    postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
+    <textarea id="textToEd" class="displayNone"></textarea>
+    <img  class="postedImg" src="${img}">
+    `;
+  } else {
+    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>
+    <textarea class="displayNone"></textarea>
+    `;
+  }
+  return postTemplate;
+};
 
 
 export const getStatus = () => {
@@ -185,8 +205,6 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  // console.log(statusPost);
-
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
@@ -216,12 +234,13 @@ export const getStatus = () => {
             <section class="notes" id="content">
                 <p>ID unico de publicacion doc.id : ${doc.id}</p>
                 <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
-                <p class="textComent" id="input-edit-note" >${doc.data().status}</p>
-                <img alt=" " src="${doc.data().img}">
+
+                ${validatePost(doc.data().img, doc.data().status)}
+                
                 <div class="notesIcons">
-                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-                <button id="btnSaveEdit" ">Guardar Cambio</button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                <button id="boton" class="cambioBtn">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -255,6 +274,7 @@ export const getStatus = () => {
         btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`, currentUser);
         // console.log(btnEdit);
         // onclick="EditNote(${doc.id}, ${doc.data().status})"
+
       });
     });
 };
@@ -269,3 +289,18 @@ export const uploadImagePost = (file, uid) => {
   refStorage.put(file);
   console.log(`soy file de firestore.js ${file}`);
 };
+
+
+/**
+    <section class="notes" id="content">
+    <p class="textComent" id="input-edit-note">${doc.data().status}</p>
+        <img src="${doc.data().img}">
+            <div class="notesIcons">
+                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
+                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
+            <button id="boton" ">Guardar Cambio</button>
+            </div>
+    </section>
+///---------- si no img-------///
+     <p class="textComent" id="input-edit-note">${doc.data().status}</p>
+ */

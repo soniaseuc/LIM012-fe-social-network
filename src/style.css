@@ -123,7 +123,7 @@ p span a {
 /*home publication section*/
 .homePublicationContainer {
   /* border: 1px solid white; */
-  width: 60%;
+  width: 85%;
   display: flex;
   flex-direction: column;
   overflow-block: 1rem;
@@ -134,7 +134,9 @@ p span a {
   height: 99%;
   border-radius: .5rem; 
 }
-
+.who{
+  background-color: aquamarine;
+}
 /* Textare para compartir en publicacion*/
 .homePublicationContainer textarea {
   margin: 1rem auto;
@@ -145,6 +147,20 @@ p span a {
   height: 5rem;
   padding: 5%;
   /* max-width: 50%; */
+}
+/* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
+.homePublicationContainer img {
+  border: none;
+  width: 80%;
+  height: 40%;
+}
+.showCircle {
+  border: none;
+  background-color: #aaaaaa;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  margin: .3rem  auto;
 }
 
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
@@ -252,14 +268,12 @@ display: none;
   background-color: #E3E9EF;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  /* height: 30%; */
 }
+  .cambioBtn{
+    height: 20%;
+  }
 
-.notesIcons figure img {
-  width: 2rem;
-  height: 1.5rem;
-  margin: .2rem auto;  
-}
 
 /* CIRCULOS DE LOS ICONOS EN PUBLICACION */
 .circlePink{
@@ -271,7 +285,7 @@ display: none;
   border-radius: 100%;
 }
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
-.circlePink img {
+.iconImg{
   width: 2rem;
   height: 1.5rem;
   margin: .2rem auto;
@@ -279,9 +293,9 @@ display: none;
   width: 2rem;
   height: 2rem;  */
 }
-/* .displayNone{
+.displayNone{
   display: none;
-} */
+}
 /* TODO LA SECTION DE COMENTARIOS */
 .comment {
   margin: .4rem .4rem;
@@ -314,7 +328,7 @@ h5 {
 .textComent {
   padding: 5%;
   font-size: 1rem;
-  /*font-family: fantasy;*/
+
 }
 /* COMENTARIO */
 .flexColumn p {
@@ -332,7 +346,8 @@ h5 {
   justify-content: flex-end;
 }
 /* CIRCULOS DENTRO DEL COMENTARIO */
-.icons button {
+
+.circlePink{
   /* margin: auto; */
   background-color: #C14D7C;
   border: 1px solid #C14D7C;
@@ -340,13 +355,18 @@ h5 {
   height: 2rem;
   border-radius: 100%;
 }
-.icons button img{
+
+.circlePink img{
   width: 2rem;
   height: 1.5rem;
   margin: .1rem auto;
   /* margin: 0;
   width: 2rem;
   height: 2rem;  */
+}
+.postedImg {
+  padding: 1rem;
+  height: 26rem;
 }
 /* LINEA PLOMA */
 .line {
