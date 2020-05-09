@@ -240,7 +240,7 @@ export const getStatus = () => {
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                <button id="boton" class="cambioBtn">Guardar Cambio</button>
+                <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
