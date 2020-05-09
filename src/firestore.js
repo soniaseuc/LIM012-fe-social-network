@@ -22,7 +22,6 @@
 // };
 
 
-
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deleteNote = () => firebase.firestore().collection('post').doc().delete();
 const deleteNote = (e) => {
@@ -118,13 +117,12 @@ const editNote = (idDoc, statusEdited) => {
 //     console.log('Document successfully updated!');
 //   });
 
-
 /*
- *  CLOUD FIRESTORE FUNCTIONS
- */
-export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => {
+*  CLOUD FIRESTORE FUNCTIONS
+*/
 
-  // Create a new collection and a document
+export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => {
+  // Create a new collection and a document imgPost
   firebase.firestore().collection('post').add({
     name: userName,
     email: firebase.auth().currentUser.email,
@@ -138,7 +136,6 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => 
       console.log(docRef.visibility);
       console.log(docRef);
       document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
-
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -163,6 +160,16 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => 
 //       list(data);
 //     });
 // };
+const validatePost = (img, post) => {
+  let postTemplate = '';
+  if (img) {
+    postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
+    <img  class="postedImg" src="${img}">`;
+  } else {
+    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>`;
+  }
+  return postTemplate;
+};
 
 
 export const getStatus = () => {
@@ -171,8 +178,6 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  console.log(statusPost);
-
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
@@ -199,11 +204,11 @@ export const getStatus = () => {
                 </figure>
             </header>
             <section class="notes" id="content">
-                <p class="textComent" id="input-edit-note">${doc.data().status}</p>
+                ${validatePost(doc.data().img, doc.data().status)}
                 <div class="notesIcons">
-                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
-                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-                <button id="boton" ">Guardar Cambio</button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                <button id="boton" class="cambioBtn">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -226,14 +231,13 @@ export const getStatus = () => {
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
-        // console.log('borrado exitosamente');
-        console.log(btnDeleted);
+        // console.log(btnDeleted);
+        // <img src="${doc.data().img}">
 
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
         btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);
-        console.log(btnEdit);
-        // onclick="EditNote(${doc.id}, ${doc.data().status})"
+        // console.log(btnEdit);
       });
     });
 };
@@ -248,3 +252,18 @@ export const uploadImagePost = (file, uid) => {
   refStorage.put(file);
   console.log(`soy file de firestore.js ${file}`);
 };
+
+
+/**
+    <section class="notes" id="content">
+    <p class="textComent" id="input-edit-note">${doc.data().status}</p>
+        <img src="${doc.data().img}">
+            <div class="notesIcons">
+                <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
+                <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
+            <button id="boton" ">Guardar Cambio</button>
+            </div>
+    </section>
+///---------- si no img-------///
+     <p class="textComent" id="input-edit-note">${doc.data().status}</p>
+ */

@@ -2,6 +2,7 @@ import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 import { publishStatus, uploadImagePost } from '../firestore.js';
 
+
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 
 
@@ -218,22 +219,24 @@ const avatarProfile = () => {
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
-      <div>
+      <div class="">
         <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
-        <img id="showPicture" width="420" height="120">
+        <button id="cancelUpload" class="displayNone">X</button>
+        <img id="showPicture">
       </div>
-      <div class="footerHomePublication">
-      <div class="circle">
-          <label for="file-input">          
-          <input type="file" id="selectImage" class="displayNone"/>
-            <img src="img/icons/images.svg"/>
-          </label>
-      </div>
+     <div class="footerHomePublication">
+        <div class="circle">
+            <label for="selectImage">          
+              <input type="file" id="selectImage" class="displayNone"/>
+              <img src="img/icons/images.svg"/>
+            </label>
+        </div>
         <select id="optionsPublic" class="selectPublic publicationBtn">
           <option value="public">Publico</option>
           <option value="private">Privado</option>
         </select>
         <button id="share" class="compartirBtn publicationBtn">Compartir</button>
+      </div>  
     </div>      
   `;
   const publicationMainSection = document.createElement('section');
@@ -245,10 +248,9 @@ export const mainPublicationForm = () => {
   // BOTON IMG CONST
   const selectImage = sectionPublication.querySelector('#selectImage');
   const showPicture = sectionPublication.querySelector('#showPicture');
-  console.log(selectImage);
-  console.log(showPicture);
+  const cancelUpload = sectionPublication.querySelector('#cancelUpload');
 
-
+  let file = '';
   // BOTON IMG
   selectImage.addEventListener('change', (e) => {
     e.preventDefault();
@@ -261,34 +263,44 @@ export const mainPublicationForm = () => {
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
+    // CANCEL UPLOAD IMG
+    cancelUpload.classList.remove('displayNone');
+    cancelUpload.classList.add('showCircle');
+    cancelUpload.addEventListener('click', () => {
+      localStorage.removeItem('image');
+      showPicture.classList.add('displayNone');
+      cancelUpload.classList.add('displayNone');
+    });
 
-    const currentUser = firebase.auth().currentUser.uid;
-    const file = e.target.files[0];
-    localStorage.setItem('name', file);
-    console.log(`soy file event de home.js ${file}`);
-
-    uploadImagePost(file, currentUser);
+    file = e.target.files[0];
   });
 
   // constantes de nodos
   const shareButton = sectionPublication.querySelector('#share');
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
-  const file = localStorage.getItem('name');
 
   // boton de compartir publicacion
-  shareButton.addEventListener('click', (event) => {
-    event.preventDefault();
+  shareButton.addEventListener('click', () => {
+    // event.preventDefault();
     // const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
+    const currentUser = firebase.auth().currentUser.uid;
+    // console.log(`hola soy currentUser.uid ${currentUser}`);
 
-    const iPost = localStorage.getItem('image');
-    console.log(`soy file obj de localstorage de home.js ${file}`);
-    console.log(`soy file.name obj de localstorage de home.js ${file.name}`);
-
-    // uploadImagePost(file, currentUserUid);
-    publishStatus(userName, status, visivility, iPost);
+    let iPost = '';
+    if (file) {
+      iPost = localStorage.getItem('image');
+      uploadImagePost(file, currentUser);
+      publishStatus(userName, status, visivility, iPost);
+      textarea.value = '';
+      showPicture.src = '';
+      window.localStorage.removeItem('image');
+    } else {
+      publishStatus(userName, status, visivility, iPost);
+      textarea.value = '';
+    }
   });
 
   return sectionPublication;
