@@ -219,13 +219,13 @@ export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
       <div>
-        <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
+        <textarea class="textComent" placeholder="¿Que quieres compartir?"></textarea>
         <img id="showPicture" width="50vw" height="auto">
       </div>
       <div class="footerHomePublication">
         <div class="circle">
             <label for="file-input">          
-            <input type="file" multiple id="selectImage" class="displayNone">
+            <input type="file" id="selectImage" class="displayNone">
               <img src="img/icons/images.svg">
             </label>
         </div>
@@ -256,7 +256,9 @@ export const mainPublicationForm = () => {
     // Vista previa de imagen cargada
     const input = e.target;
     const reader = new FileReader();
+
     reader.onload = () => {
+      // the file's img will be printed here
       const dataURL = reader.result;
       showPicture.src = dataURL;
       localStorage.setItem('image', dataURL);
@@ -279,7 +281,7 @@ export const mainPublicationForm = () => {
   // boton de compartir publicacion
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
-    // const currentUserUid = firebase.auth().currentUser.uid;
+    const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
@@ -289,7 +291,7 @@ export const mainPublicationForm = () => {
     // console.log(`soy file.name obj de localstorage de home.js ${file.name}`);
 
     // uploadImagePost(file, currentUserUid);
-    publishStatus(userName, status, visivility, iPost);
+    publishStatus(userName, status, visivility, iPost, currentUserUid);
   });
 
   return sectionPublication;

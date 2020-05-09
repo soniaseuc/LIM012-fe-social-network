@@ -36,11 +36,11 @@ const deleteNote = (e) => {
 };
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
-const editNote = (idDoc, statusEdited) => {
+const editNote = (idDoc, statusEdited, uid) => {
   // console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
-  const boton = document.getElementById('boton');
-  boton.onclick = () => {
+  const btnSaveEdit = document.querySelector('#btnSaveEdit');
+  btnSaveEdit.onclick = () => {
     // console.log(idDoc.target.id);
     // console.log(idDoc.target.status);
     const washingtonRef = firebase.firestore().collection('post').doc(idDoc);
@@ -121,9 +121,10 @@ const editNote = (idDoc, statusEdited) => {
 /*
  *  CLOUD FIRESTORE FUNCTIONS
  */
-export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => {
+export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
   // Create a new collection and a document
   firebase.firestore().collection('post').add({
+    id: uid,
     name: userName,
     email: firebase.auth().currentUser.email,
     status: statusPost,
@@ -132,6 +133,7 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => 
     img: imgPost,
   })
     .then((docRef) => {
+      console.log(uid);
       console.log(`'Document written with ID: ${docRef.id}`);
       console.log(docRef.visibility);
       console.log(docRef);
@@ -196,12 +198,13 @@ export const getStatus = () => {
                 </figure>
             </header>
             <section class="notes" id="content">
-                <p class="textComent" id="input-edit-note">${doc.data().status}</p>
-                <img src="${doc.data().img}">
+                <p>${doc.data().id}</p>
+                <p class="textComent" id="input-edit-note" >${doc.data().status}</p>
+                <img alt=" " src="${doc.data().img}">
                 <div class="notesIcons">
                 <figure id="likeHeart"><img src="img/icons/heart-solid.svg"></figure>
                 <figure id="comentIcon"><img src="img/icons/comments.svg"></figure>
-                <button id="boton" ">Guardar Cambio</button>
+                <button id="btnSaveEdit" ">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -222,6 +225,8 @@ export const getStatus = () => {
             </section>
         </section>
             `;
+        const currentUser = firebase.auth().currentUser.uid;
+
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
@@ -230,7 +235,7 @@ export const getStatus = () => {
 
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
-        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);
+        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`, currentUser);
         // console.log(btnEdit);
         // onclick="EditNote(${doc.id}, ${doc.data().status})"
       });
