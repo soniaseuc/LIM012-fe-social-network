@@ -148,6 +148,7 @@ p span a {
   padding: 5%;
   /* max-width: 50%; */
 }
+/* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
 .homePublicationContainer img {
   border: none;
   width: 80%;
