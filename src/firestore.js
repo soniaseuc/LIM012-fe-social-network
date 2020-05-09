@@ -53,14 +53,15 @@ export const deleteImagePost = (file, uid) => {
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 
 const editNote = (idDoc, statusEdited) => {
-  const addTextarea = document.getElementById('textToEd');
-  const elemntP = document.getElementById('input-edit-note');
-  console.log(addTextarea);
-  // addTextarea.classList.remove('displayNone');
-  elemntP.classList.add('displayNone');
+//   const addTextarea = document.getElementById('textToEd');
+//   const elemntP = document.getElementById('input-edit-note');
+//   console.log(addTextarea);
+//   // addTextarea.classList.remove('displayNone');
+//   elemntP.classList.add('displayNone');
   console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
   const btnSaveEdit = document.querySelector('#btnSaveEdit');
+  console.log(btnSaveEdit);
   btnSaveEdit.onclick = () => {
     // console.log(idDoc.target.id);
     // console.log(idDoc.target.status);
@@ -240,7 +241,7 @@ export const getStatus = () => {
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                <button id="boton" class="cambioBtn">Guardar Cambio</button>
+                <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -261,7 +262,7 @@ export const getStatus = () => {
             </section>
         </section>
             `;
-        const currentUser = firebase.auth().currentUser.uid;
+        // const currentUser = firebase.auth().currentUser.uid;
 
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
@@ -271,10 +272,9 @@ export const getStatus = () => {
 
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
-        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`, currentUser);
-        // console.log(btnEdit);
+        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);
+        // console.log(btnEdit); , currentUser
         // onclick="EditNote(${doc.id}, ${doc.data().status})"
-
       });
     });
 };

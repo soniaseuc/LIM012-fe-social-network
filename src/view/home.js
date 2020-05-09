@@ -304,7 +304,6 @@ export const mainPublicationForm = () => {
       publishStatus(userName, status, visivility, iPost, currentUserUid);
       textarea.value = '';
     }
-
   });
 
   return sectionPublication;
