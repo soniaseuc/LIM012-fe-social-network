@@ -35,6 +35,21 @@ const deleteNote = (e) => {
     });
 };
 
+// firestore storage delete
+export const deleteImagePost = (file, uid) => {
+  // Create a reference to the file to delete
+  const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+
+  // Delete the file
+  desertRef.delete().then(() => {
+    // File deleted successfully
+  }).catch((error) => {
+    // Uh-oh, an error occurred!
+    console.log(error.message);
+  });
+};
+
+
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 const editNote = (idDoc, statusEdited, uid) => {
   // console.log('evento click de editar');
@@ -48,6 +63,7 @@ const editNote = (idDoc, statusEdited, uid) => {
     const textEdited = document.querySelector('[placeholder="¿Que quieres compartir?"]').value;
     return washingtonRef.update({
       status: textEdited,
+      deleteImagePost,
     })
       .then(() => {
         console.log('Document successfully updated!');
@@ -135,8 +151,8 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
     .then((docRef) => {
       console.log(uid);
       console.log(`'Document written with ID: ${docRef.id}`);
-      console.log(docRef.visibility);
-      console.log(docRef);
+      // console.log(docRef.visibility);
+      console.log(docRef.id);
       document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
@@ -151,7 +167,6 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 /*
   * READ DATABASE
   */
-
 // export const getStatus = (list) => {
 //   firebase.firestore().collection('post').orderBy('date', 'desc')
 //     .onSnapshot((querySnapShot) => {
@@ -176,6 +191,7 @@ export const getStatus = () => {
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().status}`);
         statusPost.innerHTML += `
         <section class="publicationSection">
             <header>
@@ -183,7 +199,7 @@ export const getStatus = () => {
                     <option value="public">Public</option>
                     <option value="private">Private</option>
                 </select>
-                <h1 class="nameTitlePublication">${doc.data().name}</h1>
+                <h1 class="nameTitlePublication">${doc.data().name} </h1>
                 <figure class="figureContainerIcons">
                   <input id="${doc.id}" type="checkbox">
                   <label for="${doc.id}">
@@ -198,7 +214,8 @@ export const getStatus = () => {
                 </figure>
             </header>
             <section class="notes" id="content">
-                <p>${doc.data().id}</p>
+                <p>ID unico de publicacion doc.id : ${doc.id}</p>
+                <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
                 <p class="textComent" id="input-edit-note" >${doc.data().status}</p>
                 <img alt=" " src="${doc.data().img}">
                 <div class="notesIcons">
