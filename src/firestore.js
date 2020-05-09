@@ -37,6 +37,11 @@ const deleteNote = (e) => {
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 const editNote = (idDoc, statusEdited) => {
+  const addTextarea = document.getElementById('textToEd');
+  const elemntP = document.getElementById('input-edit-note');
+  console.log(addTextarea);
+  // addTextarea.classList.remove('displayNone');
+  elemntP.classList.add('displayNone');
   console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
   const boton = document.getElementById('boton');
@@ -164,9 +169,13 @@ const validatePost = (img, post) => {
   let postTemplate = '';
   if (img) {
     postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
-    <img  class="postedImg" src="${img}">`;
+    <textarea id="textToEd" class="displayNone"></textarea>
+    <img  class="postedImg" src="${img}">
+    `;
   } else {
-    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>`;
+    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>
+    <textarea class="displayNone"></textarea>
+    `;
   }
   return postTemplate;
 };
@@ -231,9 +240,6 @@ export const getStatus = () => {
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
-        // console.log(btnDeleted);
-        // <img src="${doc.data().img}">
-
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
         btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);

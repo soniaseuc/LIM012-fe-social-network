@@ -222,7 +222,7 @@ export const mainPublicationForm = () => {
       <div class="">
         <textarea  class="textComent" placeholder="¿Que quieres compartir?"></textarea>
         <button id="cancelUpload" class="displayNone">X</button>
-        <img id="showPicture">
+        <img id="showPicture" alt=" ">
       </div>
      <div class="footerHomePublication">
         <div class="circle">
