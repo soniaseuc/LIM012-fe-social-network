@@ -25,7 +25,7 @@
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deleteNote = () => firebase.firestore().collection('post').doc().delete();
 const deleteNote = (e) => {
-  console.log(e.target.id);
+  // console.log(e.target.id);
   firebase.firestore().collection('post').doc(e.target.id).delete()
     .then(() => {
       console.log('Document successfully deleted!');
@@ -35,7 +35,23 @@ const deleteNote = (e) => {
     });
 };
 
+// firestore storage delete
+export const deleteImagePost = (file, uid) => {
+  // Create a reference to the file to delete
+  const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+
+  // Delete the file
+  desertRef.delete().then(() => {
+    // File deleted successfully
+  }).catch((error) => {
+    // Uh-oh, an error occurred!
+    console.log(error.message);
+  });
+};
+
+
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
+
 const editNote = (idDoc, statusEdited) => {
   const addTextarea = document.getElementById('textToEd');
   const elemntP = document.getElementById('input-edit-note');
@@ -44,8 +60,8 @@ const editNote = (idDoc, statusEdited) => {
   elemntP.classList.add('displayNone');
   console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
-  const boton = document.getElementById('boton');
-  boton.onclick = () => {
+  const btnSaveEdit = document.querySelector('#btnSaveEdit');
+  btnSaveEdit.onclick = () => {
     // console.log(idDoc.target.id);
     // console.log(idDoc.target.status);
     const washingtonRef = firebase.firestore().collection('post').doc(idDoc);
@@ -53,6 +69,7 @@ const editNote = (idDoc, statusEdited) => {
     const textEdited = document.querySelector('[placeholder="¿Que quieres compartir?"]').value;
     return washingtonRef.update({
       status: textEdited,
+      deleteImagePost,
     })
       .then(() => {
         console.log('Document successfully updated!');
@@ -123,12 +140,13 @@ const editNote = (idDoc, statusEdited) => {
 //   });
 
 /*
-*  CLOUD FIRESTORE FUNCTIONS
-*/
 
-export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => {
-  // Create a new collection and a document imgPost
+ *  CLOUD FIRESTORE FUNCTIONS
+ */
+export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
+  // Create a new collection and a document
   firebase.firestore().collection('post').add({
+    id: uid,
     name: userName,
     email: firebase.auth().currentUser.email,
     status: statusPost,
@@ -137,9 +155,10 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => 
     img: imgPost,
   })
     .then((docRef) => {
+      console.log(uid);
       console.log(`'Document written with ID: ${docRef.id}`);
-      console.log(docRef.visibility);
-      console.log(docRef);
+      // console.log(docRef.visibility);
+      console.log(docRef.id);
       document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
@@ -154,7 +173,6 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost) => 
 /*
   * READ DATABASE
   */
-
 // export const getStatus = (list) => {
 //   firebase.firestore().collection('post').orderBy('date', 'desc')
 //     .onSnapshot((querySnapShot) => {
@@ -191,6 +209,7 @@ export const getStatus = () => {
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().status}`);
         statusPost.innerHTML += `
         <section class="publicationSection">
             <header>
@@ -198,7 +217,7 @@ export const getStatus = () => {
                     <option value="public">Public</option>
                     <option value="private">Private</option>
                 </select>
-                <h1 class="nameTitlePublication">${doc.data().name}</h1>
+                <h1 class="nameTitlePublication">${doc.data().name} </h1>
                 <figure class="figureContainerIcons">
                   <input id="${doc.id}" type="checkbox">
                   <label for="${doc.id}">
@@ -213,7 +232,11 @@ export const getStatus = () => {
                 </figure>
             </header>
             <section class="notes" id="content">
+                <p>ID unico de publicacion doc.id : ${doc.id}</p>
+                <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
+
                 ${validatePost(doc.data().img, doc.data().status)}
+                
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
@@ -222,28 +245,36 @@ export const getStatus = () => {
             </section>
             <section class="comment" id="comments">
                 <div class="userComentDone">
-                <div class="flexColumn">
-                <h5>NOMBRE</h5>
-                <p>Comentario......</p>
+                  <div class="flexColumn">
+                    <h5>NOMBRE</h5>
+                    <p>Comentario......</p>
+                  </div>
+                  <div class="icons">
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                  </div>
                 </div>
-                <div class="icons">
-                <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <div class="line">
                 </div>
-                </div>
-                <div class="line"><div>
                 <input placeholder="Agrega tu Comentario"></input>
             </section>
         </section>
             `;
+        const currentUser = firebase.auth().currentUser.uid;
+
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
+        // console.log('borrado exitosamente');
+        // console.log(btnDeleted);
+
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
-        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`);
+        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`, currentUser);
         // console.log(btnEdit);
+        // onclick="EditNote(${doc.id}, ${doc.data().status})"
+
       });
     });
 };

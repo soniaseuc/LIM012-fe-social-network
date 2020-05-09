@@ -9,11 +9,11 @@
 body {
   display: flex;    
   font-size: 16px;
-  font-family: Roboto, serif ;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
 
 /* imagen de la laptop */
-body figure img {
+.laptopPic {
   width: 10rem;
   margin-top: 3rem;
   margin-bottom: 4rem;
@@ -148,6 +148,7 @@ p span a {
   padding: 5%;
   /* max-width: 50%; */
 }
+/* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
 .homePublicationContainer img {
   border: none;
   width: 80%;
@@ -270,8 +271,10 @@ display: none;
   /* height: 30%; */
 }
   .cambioBtn{
-    height: 10%;
+    height: 20%;
   }
+
+
 /* CIRCULOS DE LOS ICONOS EN PUBLICACION */
 .circlePink{
   background-color: #C14D7C;
@@ -325,6 +328,7 @@ h5 {
 .textComent {
   padding: 5%;
   font-size: 1rem;
+
 }
 /* COMENTARIO */
 .flexColumn p {
@@ -342,6 +346,7 @@ h5 {
   justify-content: flex-end;
 }
 /* CIRCULOS DENTRO DEL COMENTARIO */
+
 .circlePink{
   /* margin: auto; */
   background-color: #C14D7C;
@@ -350,6 +355,7 @@ h5 {
   height: 2rem;
   border-radius: 100%;
 }
+
 .circlePink img{
   width: 2rem;
   height: 1.5rem;
