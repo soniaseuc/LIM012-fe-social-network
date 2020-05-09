@@ -257,7 +257,9 @@ export const mainPublicationForm = () => {
     // Vista previa de imagen cargada
     const input = e.target;
     const reader = new FileReader();
+
     reader.onload = () => {
+      // the file's img will be printed here
       const dataURL = reader.result;
       showPicture.src = dataURL;
       localStorage.setItem('image', dataURL);
@@ -280,27 +282,29 @@ export const mainPublicationForm = () => {
   const textarea = sectionPublication.querySelector('[placeholder="¿Que quieres compartir?"]');
 
   // boton de compartir publicacion
+
   shareButton.addEventListener('click', () => {
     // event.preventDefault();
-    // const currentUserUid = firebase.auth().currentUser.uid;
+    const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    const currentUser = firebase.auth().currentUser.uid;
+    // const currentUser = firebase.auth().currentUser.uid;
     // console.log(`hola soy currentUser.uid ${currentUser}`);
 
     let iPost = '';
     if (file) {
       iPost = localStorage.getItem('image');
-      uploadImagePost(file, currentUser);
-      publishStatus(userName, status, visivility, iPost);
+      uploadImagePost(file, currentUserUid);
+      publishStatus(userName, status, visivility, iPost, currentUserUid);
       textarea.value = '';
       showPicture.src = '';
       window.localStorage.removeItem('image');
     } else {
-      publishStatus(userName, status, visivility, iPost);
+      publishStatus(userName, status, visivility, iPost, currentUserUid);
       textarea.value = '';
     }
+
   });
 
   return sectionPublication;

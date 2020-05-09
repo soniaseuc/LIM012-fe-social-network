@@ -5,9 +5,8 @@ import { authentification } from '../authenticationRouter.js';
 export default () => {
   const signUpform = `
   <main>
-  <figure>
-  <img src="./img/laptop.png" alt="">
-    </figure>
+  <img class="laptopPic" src="./img/laptop.png" alt="laptopPic">
+
     <h1>EducaChat</h1>
     
     <h2>La red de educación para jóvenes!</h2>
