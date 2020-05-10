@@ -1,32 +1,7 @@
-
-
-// eslint-disable-next-line max-len
-// export const signIn = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
-
-// eslint-disable-next-line max-len
-// export const logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
-
-// export const saveUsers = () => {
-//   const user = firebase.auth().currentUser;
-//   firebase.firestore().collection('users').doc(user.uid).set({
-//     user: user.displayName,
-//     avatar: user.photoURL,
-//     uid: user.uid,
-//     email: user.email,
-//   });
-// };
-
-// export const googleLogin = () => {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   return firebase.auth().signInWithPopup(provider);
-// };
-
-
 // FUNCION QUE BORRA PUBLICACIONES
-// export const deleteNote = () => firebase.firestore().collection('post').doc().delete();
-const deleteNote = (e) => {
+export const deletePublication = (e) => {
   // console.log(e.target.id);
-  firebase.firestore().collection('post').doc(e.target.id).delete()
+  firebase.firestore().collection('post').doc(e).delete()
     .then(() => {
       console.log('Document successfully deleted!');
     })
@@ -36,111 +11,37 @@ const deleteNote = (e) => {
 };
 
 // firestore storage delete
-export const deleteImagePost = (file, uid) => {
-  // Create a reference to the file to delete
-  const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+// export const deleteImagePost = (file, uid) => {
+//   // Create a reference to the file to delete
+//   const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
 
-  // Delete the file
-  desertRef.delete().then(() => {
-    // File deleted successfully
-  }).catch((error) => {
-    // Uh-oh, an error occurred!
-    console.log(error.message);
-  });
-};
-
-
-// FUNCIÓN PARA ACTUALIZAR LOS POSTS
-
-const editNote = (idDoc, statusEdited) => {
-  const addTextarea = document.getElementById('textToEd');
-  const elemntP = document.getElementById('input-edit-note');
-  console.log(addTextarea);
-  // addTextarea.classList.remove('displayNone');
-  elemntP.classList.add('displayNone');
-  console.log('evento click de editar');
-  document.querySelector('#input-edit-note').value = statusEdited;
-  const btnSaveEdit = document.querySelector('#btnSaveEdit');
-  btnSaveEdit.onclick = () => {
-    // console.log(idDoc.target.id);
-    // console.log(idDoc.target.status);
-    const washingtonRef = firebase.firestore().collection('post').doc(idDoc);
-
-    const textEdited = document.querySelector('[placeholder="¿Que quieres compartir?"]').value;
-    return washingtonRef.update({
-      status: textEdited,
-      deleteImagePost,
-    })
-      .then(() => {
-        console.log('Document successfully updated!');
-      })
-      .catch((error) => {
-        // The document probably doesn't exist.
-        console.error('Error updating document: ', error);
-      });
-  };
-};
-
-// eslint-disable-next-line max-len
-// const editNote = (textEditNote, objNote) => firebase.firestore().collection('post').doc(objNote.id).update({
-//   title: textEditNote,
-// });
-
-// const editNoteOnSubmit = (objNote) => {
-//   const input = document.getElementById('input-edit-note');
-//   editNote(input.value, objNote)
-//     .then(() => {
-//       console.log('Document successfully updated');
-//       //  data.message = 'Nota agregada';
-//     }).catch((error) => {
-//       console.error('Error updating document: ', error);
-//       //  data.message = 'Lo sentimos, no se pudo agregar la nota';
-//     });
+//   // Delete the file
+//   desertRef.delete().then(() => {
+//     // File deleted successfully
+//   }).catch((error) => {
+//     // Uh-oh, an error occurred!
+//     console.log(error.message);
+//   });
 // };
 
-// // agregando evento click al btn pen para editar
-// divElement.querySelector(`#btn-pen-${objNote.id}`)
-//   .addEventListener('click', () => {
-//     const post = document.querySelector(`#texto-post-${objNote.id}`);
-//     post.innerHTML = `
-//       <div class="">
-//         <textarea id="input-edit-note"></textarea>
-//         <button id="btn-edit-${objNote.id}">Guardar cambios</button>
-//         <button id="cancel">Cancelar</button>
-//       </div>
-//       `;
-//     console.log(post.querySelector(`#btn-edit-${objNote.id}`));
-
-//     post.querySelector('#input-edit-note').value = objNote.title;
-//     // agregando evento click al btn editar nota
-//     post.querySelector(`#btn-edit-${objNote.id}`)
-//       .addEventListener('click', () => editNoteOnSubmit(objNote));
-//     return post;
-//   });
-
-// eslint-disable-next-line max-len
-// const updatePosts = (idpost, textPost) => firebase.firestore().collection('posts').doc(idpost).update({ post: textPost });
-
-
-// Create an initial document to update.
-// const frankDocRef = db.collection('users').doc('frank');
-// frankDocRef.set({
-//   name: 'Frank',
-//   favorites: { food: 'Pizza', color: 'Blue', subject: 'recess' },
-//   age: 12,
-// });
-
-// To update age and favorite color:
-// db.collection('users').doc('frank').update({
-//   age: 13,
-//   'favorites.color': 'Red',
-// })
-//   .then(() => {
-//     console.log('Document successfully updated!');
-//   });
+// FUNCIÓN PARA ACTUALIZAR LOS POSTS
+const editNote = (idDoc, pElementToEdit) => {
+  document.querySelector('#input-edit-note').value = pElementToEdit;
+  const textareaEdited = document.querySelector('#inputPost').value;
+  firebase.firestore().collection('post').doc(idDoc).update({
+    status: textareaEdited,
+    // img: file,
+  })
+    .then(() => {
+      console.log('Document successfully updated!');
+    })
+    .catch((error) => {
+      // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
+    });
+};
 
 /*
-
  *  CLOUD FIRESTORE FUNCTIONS
  */
 export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
@@ -155,10 +56,10 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
     img: imgPost,
   })
     .then((docRef) => {
-      console.log(uid);
+      console.log(`'currentUser.uid written with ID: ${uid}`);
       console.log(`'Document written with ID: ${docRef.id}`);
       // console.log(docRef.visibility);
-      console.log(docRef.id);
+      // console.log(docRef.id);
       document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
@@ -186,13 +87,15 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 const validatePost = (img, post) => {
   let postTemplate = '';
   if (img) {
-    postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
-    <textarea id="textToEd" class="displayNone"></textarea>
+    postTemplate = `
+    <p class="textComent" id="input-edit-note">${post}</p>
+    <textarea id="inputPost" class="displayNone">${post}</textarea>
     <img  class="postedImg" src="${img}">
     `;
   } else {
-    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>
-    <textarea class="displayNone"></textarea>
+    postTemplate = `
+    <p class="textComent" id="input-edit-note">${post}</p>
+    <textarea id="inputPost" class="displayNone">${post}</textarea>
     `;
   }
   return postTemplate;
@@ -205,6 +108,7 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
+
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
@@ -217,10 +121,10 @@ export const getStatus = () => {
                     <option value="public">Public</option>
                     <option value="private">Private</option>
                 </select>
-                <h1 class="nameTitlePublication">${doc.data().name} </h1>
+                <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
                 <figure class="figureContainerIcons">
-                  <input id="${doc.id}" type="checkbox">
-                  <label for="${doc.id}">
+                  <input id="delete-${doc.id}" type="checkbox">
+                  <label for="delete-${doc.id}">
                       <img src="img/icons/trash.svg">
                   </label>
                 </figure>
@@ -232,15 +136,11 @@ export const getStatus = () => {
                 </figure>
             </header>
             <section class="notes" id="content">
-                <p>ID unico de publicacion doc.id : ${doc.id}</p>
-                <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
-
-                ${validatePost(doc.data().img, doc.data().status)}
-                
+                ${validatePost(doc.data().img, doc.data().status)}                
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
+                <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
@@ -261,20 +161,28 @@ export const getStatus = () => {
             </section>
         </section>
             `;
-        const currentUser = firebase.auth().currentUser.uid;
-
         // agregando evento de click al btn eliminar un post
-        const btnDeleted = document.getElementById(doc.id);
-        btnDeleted.onclick = deleteNote;
-        // console.log('borrado exitosamente');
-        // console.log(btnDeleted);
+        const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
+        btnDeleted.addEventListener('click', () => {
+          deletePublication(doc.id);
+        });
 
-        // agregando evento de click al btn editar un post
-        const btnEdit = document.getElementById(`edit-${doc.id}`);
-        btnEdit.onclick = editNote(`${doc.id}`, `${doc.data().status}`, currentUser);
-        // console.log(btnEdit);
-        // onclick="EditNote(${doc.id}, ${doc.data().status})"
+        // FUNCIONES PARA EDITAR PUBLICACION
+        const modificar = statusPost.querySelector(`#edit-${doc.id}`);
+        const post = statusPost.querySelector('#input-edit-note');
+        const btnEdit = document.getElementById('btnSaveEdit');
+        const inputPost = statusPost.querySelector('#inputPost');
 
+        // al hacer click en el boton del lapiz para editar publicacion
+        modificar.addEventListener('click', () => {
+          inputPost.classList.remove('displayNone');
+          inputPost.focus();
+        });
+
+        // agregando evento de click al btn guardar cambio en la publicacion
+        btnEdit.addEventListener('click', () => {
+          editNote(doc.id, post.value);
+        });
       });
     });
 };
