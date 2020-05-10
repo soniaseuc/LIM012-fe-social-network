@@ -299,6 +299,8 @@ export const mainPublicationForm = () => {
       publishStatus(userName, status, visivility, iPost, currentUserUid);
       textarea.value = '';
       showPicture.src = '';
+      showPicture.classList.add('displayNone');
+      cancelUpload.classList.add('displayNone');
       window.localStorage.removeItem('image');
     } else {
       publishStatus(userName, status, visivility, iPost, currentUserUid);

@@ -53,15 +53,15 @@ export const deleteImagePost = (file, uid) => {
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 
 const editNote = (idDoc, statusEdited) => {
-//   const addTextarea = document.getElementById('textToEd');
-//   const elemntP = document.getElementById('input-edit-note');
-//   console.log(addTextarea);
-//   // addTextarea.classList.remove('displayNone');
-//   elemntP.classList.add('displayNone');
-  console.log('evento click de editar');
+  // const addTextarea = document.getElementById('textToEd');
+  // const elemntP = document.getElementById('input-edit-note');
+  // console.log(addTextarea);
+  // addTextarea.classList.remove('displayNone');
+  //   elemntP.classList.add('displayNone');
+//   console.log('evento click de editar');
   document.querySelector('#input-edit-note').value = statusEdited;
   const btnSaveEdit = document.querySelector('#btnSaveEdit');
-  console.log(btnSaveEdit);
+  //   console.log(btnSaveEdit);
   btnSaveEdit.onclick = () => {
     // console.log(idDoc.target.id);
     // console.log(idDoc.target.status);
@@ -208,10 +208,12 @@ export const getStatus = () => {
   mainElem.appendChild(statusPost);
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
+      const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().status}`);
-        statusPost.innerHTML += `
+        console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id}`);
+        if (doc.data().visibility === 'public') {
+          statusPost.innerHTML += `
         <section class="publicationSection">
             <header>
                 <select id="" class="publicOrPrivateSelector">
@@ -235,9 +237,11 @@ export const getStatus = () => {
             <section class="notes" id="content">
                 <p>ID unico de publicacion doc.id : ${doc.id}</p>
                 <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
+                <p>visibility: ${doc.data().visibility}</p>
+
 
                 ${validatePost(doc.data().img, doc.data().status)}
-                
+                <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
@@ -262,13 +266,65 @@ export const getStatus = () => {
             </section>
         </section>
             `;
-        // const currentUser = firebase.auth().currentUser.uid;
-
+        } if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
+          console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
+          statusPost.innerHTML += `
+            <section class="publicationSection">
+                <header>
+                    <select id="" class="publicOrPrivateSelector">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <h1 class="nameTitlePublication">${doc.data().name} </h1>
+                    <figure class="figureContainerIcons">
+                      <input id="${doc.id}" type="checkbox">
+                      <label for="${doc.id}">
+                          <img src="img/icons/trash.svg">
+                      </label>
+                    </figure>
+                    <figure class="figureContainerIcons">
+                      <input id="edit-${doc.id}" type="checkbox">
+                      <label for="edit-${doc.id}">
+                          <img src="img/icons/modificar.svg">
+                      </label>
+                    </figure>
+                </header>
+                <section class="notes" id="content">
+                    <p>ID unico de publicacion doc.id : ${doc.id}</p>
+                    <p>ID CurrentUser doc.data().id : ${doc.data().id}</p>
+    
+                    ${validatePost(doc.data().img, doc.data().status)}
+                    <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
+                    <div class="notesIcons">
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                    <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
+                    </div>
+                </section>
+                <section class="comment" id="comments">
+                    <div class="userComentDone">
+                      <div class="flexColumn">
+                        <h5>NOMBRE</h5>
+                        <p>Comentario......</p>
+                      </div>
+                      <div class="icons">
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <input placeholder="Agrega tu Comentario"></input>
+                </section>
+            </section>
+                `;
+        }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = document.getElementById(doc.id);
         btnDeleted.onclick = deleteNote;
         // console.log('borrado exitosamente');
-        // console.log(btnDeleted);
+        // console.log(deleteNote);
 
         // agregando evento de click al btn editar un post
         const btnEdit = document.getElementById(`edit-${doc.id}`);
@@ -287,7 +343,7 @@ export const getStatus = () => {
 export const uploadImagePost = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
   refStorage.put(file);
-  console.log(`soy file de firestore.js ${file}`);
+  console.log(`soy file de firestore.js ${refStorage}`);
 };
 
 
