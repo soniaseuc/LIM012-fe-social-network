@@ -1,27 +1,3 @@
-
-
-// eslint-disable-next-line max-len
-// export const signIn = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
-
-// eslint-disable-next-line max-len
-// export const logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
-
-// export const saveUsers = () => {
-//   const user = firebase.auth().currentUser;
-//   firebase.firestore().collection('users').doc(user.uid).set({
-//     user: user.displayName,
-//     avatar: user.photoURL,
-//     uid: user.uid,
-//     email: user.email,
-//   });
-// };
-
-// export const googleLogin = () => {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   return firebase.auth().signInWithPopup(provider);
-// };
-
-
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deleteNote = () => firebase.firestore().collection('post').doc().delete();
 const deleteNote = (e) => {
@@ -39,7 +15,6 @@ const deleteNote = (e) => {
 export const deleteImagePost = (file, uid) => {
   // Create a reference to the file to delete
   const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-
   // Delete the file
   desertRef.delete().then(() => {
     // File deleted successfully
@@ -172,19 +147,11 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 };
 
 /*
-  * READ DATABASE
-  */
-// export const getStatus = (list) => {
-//   firebase.firestore().collection('post').orderBy('date', 'desc')
-//     .onSnapshot((querySnapShot) => {
-//       const data = [];
-//       querySnapShot.forEach((doc) => {
-//         data.push({ id: doc.id, ...doc.data() });
-//       });
-//       list(data);
-//     });
-// };
+* READ DATABASE
+*/
+
 const validatePost = (img, post) => {
+// B/C THERE WAS AN BROKEN IMG ON EACH PUBLISHED POST
   let postTemplate = '';
   if (img) {
     postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
@@ -213,6 +180,7 @@ export const getStatus = () => {
       querySnapShot.forEach((doc) => {
         console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id}`);
         if (doc.data().visibility === 'public') {
+        // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
           statusPost.innerHTML += `
         <section class="publicationSection">
             <header>
@@ -267,6 +235,7 @@ export const getStatus = () => {
         </section>
             `;
         } if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
+        // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
           console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
           statusPost.innerHTML += `
             <section class="publicationSection">

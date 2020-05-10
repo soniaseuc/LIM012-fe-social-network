@@ -249,15 +249,14 @@ export const mainPublicationForm = () => {
   const selectImage = sectionPublication.querySelector('#selectImage');
   const showPicture = sectionPublication.querySelector('#showPicture');
   const cancelUpload = sectionPublication.querySelector('#cancelUpload');
-
+  // B/C FILE NEEDS TO BE CALL IN UPLOAD AS PARAMETER IN SHAREBUTTON
   let file = '';
-  // BOTON IMG
+  // B/C WE WANT TO SEE A IMG PREVIEW
   selectImage.addEventListener('change', (e) => {
     e.preventDefault();
-    // Vista previa de imagen cargada
     const input = e.target;
     const reader = new FileReader();
-
+    // B/C WILL DISPLAY THE SELECTED IMG
     reader.onload = () => {
       // the file's img will be printed here
       const dataURL = reader.result;
@@ -265,7 +264,7 @@ export const mainPublicationForm = () => {
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
-    // CANCEL UPLOAD IMG
+    // B/C USER WANTS TO CANCEL IMG UPLOAD
     cancelUpload.classList.remove('displayNone');
     cancelUpload.classList.add('showCircle');
     cancelUpload.addEventListener('click', () => {
@@ -283,15 +282,13 @@ export const mainPublicationForm = () => {
 
   // boton de compartir publicacion
 
-  shareButton.addEventListener('click', () => {
-    // event.preventDefault();
+  shareButton.addEventListener('click', (event) => {
+    event.preventDefault();
     const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
-    // const currentUser = firebase.auth().currentUser.uid;
-    // console.log(`hola soy currentUser.uid ${currentUser}`);
-
+    // B/C USER WNATS TO PUBLISH A TEXT RATHER THAN AN IMG || CASE BOTH
     let iPost = '';
     if (file) {
       iPost = localStorage.getItem('image');
