@@ -93,19 +93,50 @@ const validatePost = (img, post) => {
 };
 
 
+const ifPublicButMine = (doc, userId) => {
+  console.log('dentro de ifPublivButMine');
+  const postDeleteEdit = document.getElementById('ifPublicButMine');
+  const currentUserUid = firebase.auth().currentUser;
+  // const postDeleteEdit = document.createElement('section');
+  // postDeleteEdit.innerHTML = '';
+  console.log(`${userId} =?= ${currentUserUid.uid}`);
+  if (userId === currentUserUid.uid) {
+    console.log(`dentro de ${userId} == ${currentUserUid.uid}`);
+    const post = document.createElement('div');
+    post.innerHTML = '';
+    post.innerHTML += `
+    <figure class="figureContainerIcons">
+    <input id="delete-${doc.id}" type="checkbox">
+    <label for="delete-${doc.id}">
+        <img src="img/icons/trash.svg">
+    </label>
+  </figure>
+  <figure class="figureContainerIcons">
+    <input id="edit-${doc.id}" type="checkbox">
+    <label for="edit-${doc.id}">
+        <img src="img/icons/modificar.svg">
+    </label>
+  </figure>
+  `;
+    postDeleteEdit.appendChild(post);
+  } else {
+    console.log('dentro del else ifPublicButMine');
+  }
+  return postDeleteEdit;
+};
+
 export const getStatus = () => {
   const mainElem = document.getElementById('mainElement');
   const statusPost = document.createElement('section');
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-
+  const currentUserUid = firebase.auth().currentUser;
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
-      const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-       console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id}`);
+        // console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id}`);
         if (doc.data().visibility === 'public') {
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
           const post = document.createElement('section');
@@ -119,19 +150,10 @@ export const getStatus = () => {
                     <option value="private">Private</option>
                 </select>
                 <h1 class="nameTitlePublication">${doc.data().name} </h1>
-                <figure class="figureContainerIcons">
-                  <input id="delete-${doc.id}" type="checkbox">
-                  <label for="delete-${doc.id}">
-                      <img src="img/icons/trash.svg">
-                  </label>
-                </figure>
-                <figure class="figureContainerIcons">
-                <input id="edit-${doc.id}" type="checkbox">
-                <label for="edit-${doc.id}">
-                    <img src="img/icons/modificar.svg">
-                </label>
-                </figure>
+                <div id="ifPublicButMine">${ifPublicButMine(doc.id, doc.data().id)}</div>
+                
             </header>
+
             <section class="notes" id="content">
                 ${validatePost(doc.data().img, doc.data().status)}
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
@@ -140,11 +162,23 @@ export const getStatus = () => {
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
                 <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
                 </div>
-
-                </div>
-                <div class="line"></div>
-                <input placeholder="Agrega tu Comentario"></input>
             </section>
+            <section class="comment" id="comments">
+                    <div class="userComentDone">
+                      <div class="flexColumn">
+                        <h5>NOMBRE</h5>
+                        <p>Comentario......</p>
+                      </div>
+                      <div class="icons">
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <input placeholder="Agrega tu Comentario"></input>
+                </section>
                 `;
           statusPost.appendChild(post);
         } if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
@@ -204,8 +238,9 @@ export const getStatus = () => {
         }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
-        console.log(btnDeleted);
+
         if (btnDeleted) {
+          console.log(btnDeleted);
           btnDeleted.addEventListener('click', () => {
             deletePublication(doc.id);
           });
@@ -218,6 +253,7 @@ export const getStatus = () => {
         const inputPost = statusPost.querySelector('#inputPost');
 
         if (modificar) {
+          console.log(modificar);
           // al hacer click en el boton del lapiz para editar publicacion
           modificar.addEventListener('click', () => {
             inputPost.classList.remove('displayNone');
@@ -230,7 +266,6 @@ export const getStatus = () => {
             editNote(doc.id, post.value);
           });
         }
-
       });
     });
 };
