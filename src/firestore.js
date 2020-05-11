@@ -1,5 +1,5 @@
 // FUNCION QUE BORRA PUBLICACIONES
-export const deletePublication = (e) => {
+const deletePublication = (e) => {
   // console.log(e.target.id);
   firebase.firestore().collection('post').doc(e).delete()
     .then(() => {
@@ -113,7 +113,7 @@ export const getStatus = () => {
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().status}`);
+        // console.log(`${doc.id} => ${doc.data().status}`);
         statusPost.innerHTML += `
         <section class="publicationSection">
             <header>
