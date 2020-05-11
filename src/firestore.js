@@ -111,56 +111,110 @@ export const getStatus = () => {
 
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
+      const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data().status}`);
-        statusPost.innerHTML += `
-        <section class="publicationSection">
-            <header>
-                <select id="" class="publicOrPrivateSelector">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select>
-                <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
-                <figure class="figureContainerIcons">
-                  <input id="delete-${doc.id}" type="checkbox">
-                  <label for="delete-${doc.id}">
-                      <img src="img/icons/trash.svg">
-                  </label>
-                </figure>
-                <figure class="figureContainerIcons">
-                  <input id="edit-${doc.id}" type="checkbox">
-                  <label for="edit-${doc.id}">
-                      <img src="img/icons/modificar.svg">
-                  </label>
-                </figure>
-            </header>
-            <section class="notes" id="content">
-                ${validatePost(doc.data().img, doc.data().status)}                
-                <div class="notesIcons">
-                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
-                </div>
-            </section>
-            <section class="comment" id="comments">
-                <div class="userComentDone">
-                  <div class="flexColumn">
-                    <h5>NOMBRE</h5>
-                    <p>Comentario......</p>
-                  </div>
-                  <div class="icons">
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+        console.log(`${doc.id} => ${doc.data().status}`);
+        if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
+          console.log('entre al privado de getStatus');
+          statusPost.innerHTML += `
+            <section class="publicationSection">
+                <header>
+                    <select id="" class="publicOrPrivateSelector">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
+                    <figure class="figureContainerIcons">
+                      <input id="delete-${doc.id}" type="checkbox">
+                      <label for="delete-${doc.id}">
+                          <img src="img/icons/trash.svg">
+                      </label>
+                    </figure>
+                    <figure class="figureContainerIcons">
+                      <input id="edit-${doc.id}" type="checkbox">
+                      <label for="edit-${doc.id}">
+                          <img src="img/icons/modificar.svg">
+                      </label>
+                    </figure>
+                </header>
+                <section class="notes" id="content">
+                    ${validatePost(doc.data().img, doc.data().status)}                
+                    <div class="notesIcons">
                     <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                  </div>
-                </div>
-                <div class="line">
-                </div>
-                <input placeholder="Agrega tu Comentario"></input>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                    <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
+                    </div>
+                </section>
+                <section class="comment" id="comments">
+                    <div class="userComentDone">
+                      <div class="flexColumn">
+                        <h5>NOMBRE</h5>
+                        <p>Comentario......</p>
+                      </div>
+                      <div class="icons">
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <input placeholder="Agrega tu Comentario"></input>
+                </section>
             </section>
-        </section>
-            `;
+                `;
+        } else {
+          console.log(`dentro del else la visibility => ${doc.data().visibility}`);
+
+          statusPost.innerHTML += `
+          <section class="publicationSection">
+              <header>
+                  <select id="" class="publicOrPrivateSelector">
+                      <option value="public">Public</option>
+                      <option value="private">Private</option>
+                  </select>
+                  <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
+                  <figure class="figureContainerIcons">
+                    <input id="delete-${doc.id}" type="checkbox">
+                    <label for="delete-${doc.id}">
+                        <img src="img/icons/trash.svg">
+                    </label>
+                  </figure>
+                  <figure class="figureContainerIcons">
+                    <input id="edit-${doc.id}" type="checkbox">
+                    <label for="edit-${doc.id}">
+                        <img src="img/icons/modificar.svg">
+                    </label>
+                  </figure>
+              </header>
+              <section class="notes" id="content">
+                  ${validatePost(doc.data().img, doc.data().status)}                
+                  <div class="notesIcons">
+                  <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                  <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                  <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
+                  </div>
+              </section>
+              <section class="comment" id="comments">
+                  <div class="userComentDone">
+                    <div class="flexColumn">
+                      <h5>NOMBRE</h5>
+                      <p>Comentario......</p>
+                    </div>
+                    <div class="icons">
+                      <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                      <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                      <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                    </div>
+                  </div>
+                  <div class="line">
+                  </div>
+                  <input placeholder="Agrega tu Comentario"></input>
+              </section>
+          </section>
+              `;
+        }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
         btnDeleted.addEventListener('click', () => {
