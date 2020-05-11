@@ -162,7 +162,9 @@ p span a {
   height: 2rem;
   margin: .3rem  auto;
 }
-
+.softFont{
+  color: #7f8c8d;
+}
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 
 .footerHomePublication {
@@ -580,11 +582,17 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   }
   
 }
-/* @media (min-width:850px) {
-  #logIn {
+@media (min-width: 850px) {
+  body {
     display: flex;
+
+    /* width: 50%; */
+    /* background-color: rgb(154, 135, 222); */
   }
-} */
+  /* .homeContainer {
+    background-color: rosybrown;
+  } */
+}
 
 
 

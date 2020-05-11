@@ -14,7 +14,6 @@ const deletePublication = (e) => {
 // export const deleteImagePost = (file, uid) => {
 //   // Create a reference to the file to delete
 //   const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-
 //   // Delete the file
 //   desertRef.delete().then(() => {
 //     // File deleted successfully
@@ -72,19 +71,11 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 };
 
 /*
-  * READ DATABASE
-  */
-// export const getStatus = (list) => {
-//   firebase.firestore().collection('post').orderBy('date', 'desc')
-//     .onSnapshot((querySnapShot) => {
-//       const data = [];
-//       querySnapShot.forEach((doc) => {
-//         data.push({ id: doc.id, ...doc.data() });
-//       });
-//       list(data);
-//     });
-// };
+* READ DATABASE
+*/
+
 const validatePost = (img, post) => {
+// B/C THERE WAS AN BROKEN IMG ON EACH PUBLISHED POST
   let postTemplate = '';
   if (img) {
     postTemplate = `
@@ -114,17 +105,62 @@ export const getStatus = () => {
       const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().status}`);
-        if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
-          console.log('entre al privado de getStatus');
-          statusPost.innerHTML += `
-            <section class="publicationSection">
+       console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id}`);
+        if (doc.data().visibility === 'public') {
+        // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
+          const post = document.createElement('section');
+          post.className = 'publicationSection';
+
+          post.innerHTML += `
+
+            <header>
+                <select id="" class="publicOrPrivateSelector">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <h1 class="nameTitlePublication">${doc.data().name} </h1>
+                <figure class="figureContainerIcons">
+                  <input id="delete-${doc.id}" type="checkbox">
+                  <label for="delete-${doc.id}">
+                      <img src="img/icons/trash.svg">
+                  </label>
+                </figure>
+                <figure class="figureContainerIcons">
+                <input id="edit-${doc.id}" type="checkbox">
+                <label for="edit-${doc.id}">
+                    <img src="img/icons/modificar.svg">
+                </label>
+                </figure>
+            </header>
+            <section class="notes" id="content">
+                ${validatePost(doc.data().img, doc.data().status)}
+                <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
+                <div class="notesIcons">
+                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
+                </div>
+
+                </div>
+                <div class="line"></div>
+                <input placeholder="Agrega tu Comentario"></input>
+            </section>
+                `;
+          statusPost.appendChild(post);
+        } if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
+        // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
+          console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
+          const post = document.createElement('section');
+          post.className = 'publicationSection';
+
+          post.innerHTML += `
+
                 <header>
                     <select id="" class="publicOrPrivateSelector">
                         <option value="public">Public</option>
                         <option value="private">Private</option>
                     </select>
-                    <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
+                    <h1 class="nameTitlePublication">${doc.data().name} </h1>
                     <figure class="figureContainerIcons">
                       <input id="delete-${doc.id}" type="checkbox">
                       <label for="delete-${doc.id}">
@@ -139,11 +175,12 @@ export const getStatus = () => {
                     </figure>
                 </header>
                 <section class="notes" id="content">
-                    ${validatePost(doc.data().img, doc.data().status)}                
+                    ${validatePost(doc.data().img, doc.data().status)}
+                    <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                     <div class="notesIcons">
                     <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                     <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                    <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
+                    <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
                     </div>
                 </section>
                 <section class="comment" id="comments">
@@ -162,64 +199,17 @@ export const getStatus = () => {
                     </div>
                     <input placeholder="Agrega tu Comentario"></input>
                 </section>
-            </section>
                 `;
-        } else {
-          console.log(`dentro del else la visibility => ${doc.data().visibility}`);
-
-          statusPost.innerHTML += `
-          <section class="publicationSection">
-              <header>
-                  <select id="" class="publicOrPrivateSelector">
-                      <option value="public">Public</option>
-                      <option value="private">Private</option>
-                  </select>
-                  <h1 class="nameTitlePublication">${doc.data().name} ${doc.data().id}</h1>
-                  <figure class="figureContainerIcons">
-                    <input id="delete-${doc.id}" type="checkbox">
-                    <label for="delete-${doc.id}">
-                        <img src="img/icons/trash.svg">
-                    </label>
-                  </figure>
-                  <figure class="figureContainerIcons">
-                    <input id="edit-${doc.id}" type="checkbox">
-                    <label for="edit-${doc.id}">
-                        <img src="img/icons/modificar.svg">
-                    </label>
-                  </figure>
-              </header>
-              <section class="notes" id="content">
-                  ${validatePost(doc.data().img, doc.data().status)}                
-                  <div class="notesIcons">
-                  <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                  <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                  <button id="btnSaveEdit" class="cambioBtn" >Guardar Cambio</button>
-                  </div>
-              </section>
-              <section class="comment" id="comments">
-                  <div class="userComentDone">
-                    <div class="flexColumn">
-                      <h5>NOMBRE</h5>
-                      <p>Comentario......</p>
-                    </div>
-                    <div class="icons">
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                    </div>
-                  </div>
-                  <div class="line">
-                  </div>
-                  <input placeholder="Agrega tu Comentario"></input>
-              </section>
-          </section>
-              `;
+          statusPost.appendChild(post);
         }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
-        btnDeleted.addEventListener('click', () => {
-          deletePublication(doc.id);
-        });
+        console.log(btnDeleted);
+        if (btnDeleted) {
+          btnDeleted.addEventListener('click', () => {
+            deletePublication(doc.id);
+          });
+        }
 
         // FUNCIONES PARA EDITAR PUBLICACION
         const modificar = statusPost.querySelector(`#edit-${doc.id}`);
@@ -227,16 +217,20 @@ export const getStatus = () => {
         const btnEdit = document.getElementById('btnSaveEdit');
         const inputPost = statusPost.querySelector('#inputPost');
 
-        // al hacer click en el boton del lapiz para editar publicacion
-        modificar.addEventListener('click', () => {
-          inputPost.classList.remove('displayNone');
-          inputPost.focus();
-        });
+        if (modificar) {
+          // al hacer click en el boton del lapiz para editar publicacion
+          modificar.addEventListener('click', () => {
+            inputPost.classList.remove('displayNone');
+            inputPost.focus();
+          });
+        }
+        if (btnEdit) {
+          // agregando evento de click al btn guardar cambio en la publicacion
+          btnEdit.addEventListener('click', () => {
+            editNote(doc.id, post.value);
+          });
+        }
 
-        // agregando evento de click al btn guardar cambio en la publicacion
-        btnEdit.addEventListener('click', () => {
-          editNote(doc.id, post.value);
-        });
       });
     });
 };
@@ -249,7 +243,7 @@ export const getStatus = () => {
 export const uploadImagePost = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
   refStorage.put(file);
-  console.log(`soy file de firestore.js ${file}`);
+  console.log(`soy file de firestore.js ${refStorage}`);
 };
 
 
