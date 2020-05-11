@@ -10,11 +10,11 @@ export const authentification = () => {
       window.localStorage.setItem('email', myUser.email);
       window.location.hash = '#/home';
       if (myUser != null) {
-        const emailId = myUser.email;
+        // const emailId = myUser.email;
         // console.log(firebase.auth().currentUser.uid);
-        console.log(`myUser.uid => ${myUser.uid}`);
+        // console.log(`myUser.uid => ${myUser.uid}`);
         // document.getElementById('fulanita').innerHTML = `Hola ${emailId}`;
-        console.log(emailId);
+        // console.log(emailId);
         // getStatus();
       }
     } else {
