@@ -318,3 +318,10 @@ export const homeTemplate = () => {
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
+/**
+ *  Paula peerfeadback
+    // leer callbacks una funcion de ejecuta dentro de una funcion
+    // Asincronia y promesas, then, catch, q pasa mientras que esperamos
+    // testeo asincronio
+    // ramas github
+ */
