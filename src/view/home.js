@@ -1,10 +1,7 @@
 import { signOut } from '../firebase.js';
 import { authentification } from '../authenticationRouter.js';
 import { publishStatus, uploadImagePost } from '../firestore.js';
-
-
 // import { deleteNoteOnClick } from '../firestore-controller.js';
-
 
 const perfil = () => {
   const perfilModal = `
@@ -25,14 +22,14 @@ const perfil = () => {
           <input type="text" id="displayName" name="displayName"/> <br>
         </div>
         <div>
-          <span for="photo">Url of picture</span> <br>
-          <input type="url" id="photo"/> <br>
+          <span for="newPhotoProfile">Url of picture</span> <br>
+          <input type="url" id="newPhotoProfile"/> <br>
         </div>
 
       </div>
       <div class="footer">
-        <button id="edit">Confirm Change</button>
-        <span>... Por favor cierra esta ventana para regresar al home y ver tu perfil actualizado</span>
+        <button id="btnEditProfile">Confirm Change</button>
+        <span>... Sus datos de perfil actualizados solo se visualizaran una vez recargada la pagina</span>
       </div>
     </div>
   </div>
@@ -52,20 +49,20 @@ const perfil = () => {
   });
 
   window.addEventListener('click', (e) => {
-    // console.log(e.target);
+    console.log(e.target);
     if (e.target === flex) {
       modal.style.display = 'none';
     }
   });
-  // Incio de funciones para editar nombre y foto del user
+  // Inicio de funciones para editar nombre y foto del user
   const auth = firebase.auth();
   auth.onAuthStateChanged((user) => {
     console.log(user);
   });
 
   const displayNameField = profile.querySelector('#displayName');
-  const photoField = profile.querySelector('#photo');
-  const editButton = profile.querySelector('#edit');
+  const photoField = profile.querySelector('#newPhotoProfile');
+  const editButton = profile.querySelector('#btnEditProfile');
 
 
   const changeNameAndPhoto = (user, newNameAndPhoto) => {
@@ -121,8 +118,23 @@ const perfil = () => {
     // event.preventDefault();
     editInformation();
     // window.location.reload();
+    const user = firebase.auth().currentUser;
+    if (displayNameField.value && photoField.value) {
+      // console.log('name & foto');
+      document.querySelector('#displayNameHolder').innerHTML = displayNameField.value;
+      document.querySelector('#photoHolder').src = photoField.value;
+    } else if (displayNameField.value) {
+      // console.log('solo name');
+      document.querySelector('#displayNameHolder').innerHTML = displayNameField.value;
+      document.querySelector('#photoHolder').src = user.photoURL;
+    } else if (photoField.value) {
+      // console.log('solo foto');
+      document.querySelector('#displayNameHolder').innerHTML = user.displayName;
+      document.querySelector('#photoHolder').src = photoField.value;
+    } else {
+      // console.log('Ocurrio un error cargando la foto y/o nombre cambiado');
+    }
   });
-
   return profile;
 };
 

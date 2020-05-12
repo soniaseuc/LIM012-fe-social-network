@@ -39,6 +39,7 @@ body {
 #logIn {
   background: linear-gradient(#FFFFFF, #F4A82C);
   height: 100vh;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -67,10 +68,48 @@ body {
   display: none;
 }
 
+/* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
+.homePublicationContainer img {
+  border: none;
+  width: 80%;
+  height: 40%;
+}
+
+/* Icon imagen */
+.circle img {
+  width: 2rem;
+  height: 1.3rem;
+  margin: .3rem auto;
+}
+
+.circlePink img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .1rem auto;
+  /* margin: 0;
+  width: 2rem;
+  height: 2rem;  */
+}
+
+/* TRASH IMG */
+.figureContainerIcons label img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .4rem auto;
+}
+
 #googleIcon img {
   width: 30px;
   height: 30px;
   cursor: pointer;
+}
+
+li a{
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #292929;
+  font-size: 1rem;
 }
 
 /* anchor Registrate o logueate del SignIn/SignUp*/
@@ -79,10 +118,6 @@ p span a {
   font-weight: bold;
 }
 
-/*HOME*/
-#logIn {
-  width: 100%;
-}
 /*clase creada dinamicamente para albergar las 3 secciones del home*/
 .homeContainer {
   background-color: #FFFFFF;
@@ -148,12 +183,7 @@ p span a {
   padding: 5%;
   /* max-width: 50%; */
 }
-/* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
-.homePublicationContainer img {
-  border: none;
-  width: 80%;
-  height: 40%;
-}
+
 .showCircle {
   border: none;
   background-color: #aaaaaa;
@@ -186,12 +216,7 @@ p span a {
   height: 2rem;
   margin: .3rem  auto;
 }
-/* Icon imagen */
-.circle img {
-  width: 2rem;
-  height: 1.3rem;
-  margin: .3rem auto;
-}
+
 /* Botones SELECT & COMPARTIR */
 .footerHomePublication .publicationBtn {
   background-color: #C14D7C;
@@ -246,12 +271,7 @@ p span a {
 .figureContainerIcons input {
 display: none;
 }
-/* TRASH IMG */
-.figureContainerIcons label img{
-  width: 2rem;
-  height: 1.5rem;
-  margin: .4rem auto;
-}
+
 /* NAME OF THE PERSON WHO MADE THE PUBLICATION */
 .nameTitlePublication {
   color: white;
@@ -272,20 +292,10 @@ display: none;
   flex-direction: row;
   /* height: 30%; */
 }
-  .cambioBtn{
-    height: 20%;
-  }
-
-
-/* CIRCULOS DE LOS ICONOS EN PUBLICACION */
-.circlePink{
-  background-color: #C14D7C;
-  border: 1px solid #C14D7C;
-  width: 2rem;
-  height: 2rem;
-  margin: .1rem .2rem;
-  border-radius: 100%;
+.cambioBtn{
+  height: 20%;
 }
+
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
 .iconImg{
   width: 2rem;
@@ -348,24 +358,16 @@ h5 {
   justify-content: flex-end;
 }
 /* CIRCULOS DENTRO DEL COMENTARIO */
-
+/* CIRCULOS DE LOS ICONOS EN PUBLICACION */
 .circlePink{
-  /* margin: auto; */
   background-color: #C14D7C;
   border: 1px solid #C14D7C;
   width: 2rem;
   height: 2rem;
   border-radius: 100%;
+  margin: .1rem .2rem;
 }
 
-.circlePink img{
-  width: 2rem;
-  height: 1.5rem;
-  margin: .1rem auto;
-  /* margin: 0;
-  width: 2rem;
-  height: 2rem;  */
-}
 .postedImg {
   padding: 1rem;
   height: 26rem;
@@ -409,14 +411,6 @@ header .labelbtnmenu {
   height: 1rem;
   border: 1px solid #292929;
 
-}
-
-li a{
-  display: block;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #292929;
-  font-size: 1rem;
 }
 
 /* estilo al label:cambia de color al hacer hover */

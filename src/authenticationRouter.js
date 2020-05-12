@@ -23,31 +23,3 @@ export const authentification = () => {
     }
   });
 };
-
-
-// const user = firebase.auth().currentUser;
-
-// user.updateProfile({
-//   displayName: 'Jane Q. User',
-//   photoURL: 'https://example.com/jane-q-user/profile.jpg',
-// }).then(() => {
-//   // Update successful.
-// }).catch((error) => {
-//   // An error happened.
-// });
-
-
-// export const user = () => firebase.auth().currentUser;
-
-// export const myUser = () => {
-//   const user = firebase.auth().currentUser;
-//   if (user != null) {
-//     user.providerData.forEach((profile) => {
-//       console.log(`Sign-in provider: ${profile.providerId}`);
-//       console.log(`  Provider-specific UID: ${profile.uid}`);
-//       console.log(`  Name: ${profile.displayName}`);
-//       console.log(`  Email: ${profile.email}`);
-//       console.log(`  Photo URL: ${profile.photoURL}`);
-//     });
-//   } return user;
-// };
