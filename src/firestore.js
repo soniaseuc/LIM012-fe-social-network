@@ -135,6 +135,7 @@ export const getStatus = () => {
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
   const currentUserUid = firebase.auth().currentUser;
+  console.log(currentUserUid);
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       statusPost.innerHTML = '';
