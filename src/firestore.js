@@ -27,8 +27,9 @@ const deletePublication = (e) => {
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 const editNote = (idDoc, pElementToEdit) => {
+  console.log('dentro de la funcion editNote');
   document.querySelector('#input-edit-note').value = pElementToEdit;
-  const textareaEdited = document.querySelector('#inputPost').value;
+  const textareaEdited = document.querySelector(`#inputPost-${idDoc}`).value;
   firebase.firestore().collection('post').doc(idDoc).update({
     status: textareaEdited,
     // img: file,
@@ -142,22 +143,58 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 * READ DATABASE
 */
 
-const validatePost = (img, post) => {
+const validatePost = (img, post, idDoc) => {
 // B/C THERE WAS AN BROKEN IMG ON EACH PUBLISHED POST
   let postTemplate = '';
   if (img) {
-    postTemplate = ` <p class="textComent" id="input-edit-note">${post}</p>
-    <textarea id="inputPost" class="displayNone">${post}</textarea>
+    postTemplate = `
+    <p class="textComent" id="input-edit-note">${post}</p>
+    <textarea id="inputPost-${idDoc}" class="displayNone">${post}</textarea>
     <img  class="postedImg" src="${img}">
     `;
   } else {
-    postTemplate = `<p class="textComent" id="input-edit-note">${post}</p>
-    <textarea id="inputPost" class="displayNone">${post}</textarea>
+    postTemplate = `
+    <p class="textComent" id="input-edit-note">${post}</p>
+    <textarea id="inputPost-${idDoc}" class="displayNone">${post}</textarea>
     `;
   }
   return postTemplate;
 };
 
+// FUNCION PARA MOSTRAR EL BOTON EDITAR Y ELIMINAR CUANDO ES PUBLICO
+// ${ifPublicButMine(doc.id, doc.data().id)}
+// PORQUE ANTES SOLO MOSTRABA ESOS BOTONES CUANDO ERA PRIVADO
+// const ifPublicButMine = (doc, userId) => {
+//   console.log('dentro de ifPublivButMine');
+//   const postDeleteEdit = document.getElementById('ifPublicButMine');
+//   const currentUserUid = firebase.auth().currentUser;
+//   // const postDeleteEdit = document.createElement('section');
+//   // postDeleteEdit.innerHTML = '';
+//   console.log(`${userId} =?= ${currentUserUid.uid}`);
+//   if (userId === currentUserUid.uid) {
+//     console.log(`dentro de ${userId} == ${currentUserUid.uid}`);
+//     const post = document.createElement('section');
+//     post.innerHTML += `
+//     <figure class="figureContainerIcons">
+//     <input id="delete-${doc.id}" type="checkbox">
+//     <label for="delete-${doc.id}">
+//         <img src="img/icons/trash.svg">
+//     </label>
+//   </figure>
+//   <figure class="figureContainerIcons">
+//     <input id="edit-${doc.id}" type="checkbox">
+//     <label for="edit-${doc.id}">
+//         <img src="img/icons/modificar.svg">
+//     </label>
+//   </figure>
+//   `;
+//     postDeleteEdit.innerHTML = post;
+//   } else {
+//     console.log('dentro del else ifPublicButMine');
+//     // postDeleteEdit.innerHTML = '';
+//   }
+//   return postDeleteEdit;
+// };
 
 export const getStatus = () => {
   const mainElem = document.getElementById('mainElement');
@@ -165,15 +202,14 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
+  const currentUserUid = firebase.auth().currentUser;
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
-      const currentUserUid = firebase.auth().currentUser;
-      // console.log(`Soy auth().uid ${firebase.auth().uid}`);
+    // const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
-      querySnapShot.forEach((doc) => {
-        // eslint-disable-next-line max-len
-        // console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id} === ${doc.data().name}`);
-        if (doc.data().visibility === 'public') {
+      querySnapShot.forEach((doc) => {        
+        console.log(`postId = ${doc.id} | usuerId = ${doc.data().id} | status: ${doc.data().status}`);
+        if (doc.data().visibility === 'public' && doc.data().id !== currentUserUid.uid) {
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
           const post = document.createElement('section');
           post.className = 'publicationSection';
@@ -186,107 +222,146 @@ export const getStatus = () => {
                     <option value="private">Private</option>
                 </select>
                 <h1 class="nameTitlePublication">${doc.data().name} </h1>
-                <figure class="figureContainerIcons">
-                  <input id="delete-${doc.id}" type="checkbox">
-                  <label for="delete-${doc.id}">
-                      <img src="img/icons/trash.svg">
-                  </label>
-                </figure>
-                <figure class="figureContainerIcons">
-                <input id="edit-${doc.id}" type="checkbox">
-                <label for="edit-${doc.id}">
-                    <img src="img/icons/modificar.svg">
-                </label>
-                </figure>
+                <div id="ifPublicButMine"></div>
             </header>
+
             <section class="notes" id="content">
-                ${validatePost(doc.data().img, doc.data().status)}
+                ${validatePost(doc.data().img, doc.data().status, doc.id)}
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
                 </div>
             </section>
             <section class="comment" id="comments">
-                <div class="userComentDone">
-                  <div class="flexColumn">
-                    <h5>NOMBRE</h5>
-                    <p>Comentario......</p>
-                  </div>
-                  <div class="icons">
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                  </div>
-                </div>
-                <div class="line">
-                </div>
-                <input placeholder="Agrega tu Comentario"></input>
-            </section>
-  
-            `;
+                    <div class="userComentDone">
+                      <div class="flexColumn">
+                        <h5>NOMBRE</h5>
+                        <p>Comentario......</p>
+                      </div>
+                      <div class="icons">
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <input placeholder="Agrega tu Comentario"></input>
+                </section>
+                `;
           statusPost.appendChild(post);
         } if (doc.data().visibility === 'private' && doc.data().id === currentUserUid.uid) {
-          // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
+        // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
           // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
-          // DIFERENCIA BTW agregar un hijo NODO y modificar html
           const post = document.createElement('section');
           post.className = 'publicationSection';
           post.innerHTML += `
+                <header>
+                    <select id="" class="publicOrPrivateSelector">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <h1 class="nameTitlePublication">${doc.data().name} </h1>
+                    <figure class="figureContainerIcons">
+                      <input id="delete-${doc.id}" type="checkbox">
+                      <label for="delete-${doc.id}">
+                          <img src="img/icons/trash.svg">
+                      </label>
+                    </figure>
+                    <figure class="figureContainerIcons">
+                      <input id="edit-${doc.id}" type="checkbox">
+                      <label for="edit-${doc.id}">
+                          <img src="img/icons/modificar.svg">
+                      </label>
+                    </figure>
+                </header>
+                <section class="notes" id="content">
+                    ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                    <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
+                    <div class="notesIcons">
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                    <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
+                    </div>
+                </section>
+                <section class="comment" id="comments">
+                    <div class="userComentDone">
+                      <div class="flexColumn">
+                        <h5>NOMBRE</h5>
+                        <p>Comentario......</p>
+                      </div>
+                      <div class="icons">
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <input placeholder="Agrega tu Comentario"></input>
+                </section>
+                `;
+          statusPost.appendChild(post);
+        } if (doc.data().visibility === 'public' && doc.data().id === currentUserUid.uid) {
+          // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
+          // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
+          const post = document.createElement('section');
+          post.className = 'publicationSection';
 
-          <header>
-              <select id="" class="publicOrPrivateSelector">
-                  <option value="public">Public</option>
-                  <option value="private">Private</option>
-              </select>
-              <h1 class="nameTitlePublication">${doc.data().name} </h1>
-              <figure class="figureContainerIcons">
-                <input id="delete-${doc.id}" type="checkbox">
-                <label for="delete-${doc.id}">
-                    <img src="img/icons/trash.svg">
-                </label>
-              </figure>
-              <figure class="figureContainerIcons">
-                <input id="edit-${doc.id}" type="checkbox">
-                <label for="edit-${doc.id}">
-                    <img src="img/icons/modificar.svg">
-                </label>
-              </figure>
-          </header>
-          <section class="notes" id="content">
-              ${validatePost(doc.data().img, doc.data().status)}
-              <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
-              <div class="notesIcons">
-              <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-              <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-              <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
-              </div>
-          </section>
-          <section class="comment" id="comments">
-              <div class="userComentDone">
-                <div class="flexColumn">
-                  <h5>NOMBRE</h5>
-                  <p>Comentario......</p>
-                </div>
-                <div class="icons">
-                  <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                  <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                  <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                </div>
-              </div>
-              <div class="line">
-              </div>
-              <input placeholder="Agrega tu Comentario"></input>
-          </section>
-          `;
+          post.innerHTML += `
 
+                  <header>
+                      <select id="" class="publicOrPrivateSelector">
+                          <option value="public">Public</option>
+                          <option value="private">Private</option>
+                      </select>
+                      <h1 class="nameTitlePublication">${doc.data().name} </h1>
+                      <figure class="figureContainerIcons">
+                        <input id="delete-${doc.id}" type="checkbox">
+                        <label for="delete-${doc.id}">
+                            <img src="img/icons/trash.svg">
+                        </label>
+                      </figure>
+                      <figure class="figureContainerIcons">
+                        <input id="edit-${doc.id}" type="checkbox">
+                        <label for="edit-${doc.id}">
+                            <img src="img/icons/modificar.svg">
+                        </label>
+                      </figure>
+                  </header>
+                  <section class="notes" id="content">
+                      ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                      <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
+                      <div class="notesIcons">
+                      <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                      <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                      <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
+                      </div>
+                  </section>
+                  <section class="comment" id="comments">
+                      <div class="userComentDone">
+                        <div class="flexColumn">
+                          <h5>NOMBRE</h5>
+                          <p>Comentario......</p>
+                        </div>
+                        <div class="icons">
+                          <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                          <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                          <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                        </div>
+                      </div>
+                      <div class="line">
+                      </div>
+                      <input placeholder="Agrega tu Comentario"></input>
+                  </section>
+                  `;
           statusPost.appendChild(post);
         }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
-        // console.log(btnDeleted);
-        if (btnDeleted) {
+       if (btnDeleted) {
+          // console.log(btnDeleted);
           btnDeleted.addEventListener('click', () => {
             deletePublication(doc.id);
           });
@@ -294,8 +369,8 @@ export const getStatus = () => {
         // FUNCIONES PARA EDITAR PUBLICACION
         const modificar = statusPost.querySelector(`#edit-${doc.id}`);
         const post = statusPost.querySelector('#input-edit-note');
-        const btnEdit = document.getElementById('btnSaveEdit');
-        const inputPost = statusPost.querySelector('#inputPost');
+        const btnEdit = document.getElementById(`btnSaveEdit-${doc.id}`);
+        const inputPost = statusPost.getElementById(`inputPost-${idDoc}`);
         const publicOrPrivateSelector = statusPost.querySelector('.publicOrPrivateSelector');
         // console.log(publicOrPrivateSelector);
         if (publicOrPrivateSelector != null && doc.data().id === currentUserUid.uid) {
@@ -309,6 +384,7 @@ export const getStatus = () => {
         }
 
         if (modificar) {
+          console.log(modificar);
           // al hacer click en el boton del lapiz para editar publicacion
           modificar.addEventListener('click', () => {
             inputPost.classList.remove('displayNone');
@@ -316,9 +392,10 @@ export const getStatus = () => {
           });
         }
         if (btnEdit) {
+          console.log(btnEdit);
           // agregando evento de click al btn guardar cambio en la publicacion
           btnEdit.addEventListener('click', () => {
-            editNote(doc.id, post.value, publicOrPrivateSelector);
+            editNote(`${doc.id}`, post.value);
           });
         }
       });

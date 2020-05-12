@@ -20,7 +20,6 @@ global.firebase = new MockFirebase(firestoreTest, { isNaiveSnapshotListenerEnabl
 import { publishStatus, getStatus } from '../src/firestore.js';
 
 describe('lista de notas', () => {
-
   it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'me llamo test sunday. Puedes verlo?')
     .then(() => getStatus(
       (data) => {
@@ -39,4 +38,3 @@ describe('lista de notas', () => {
 //         done();
 //       },
 //     )));
-
