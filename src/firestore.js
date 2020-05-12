@@ -202,12 +202,12 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  const currentUserUid = firebase.auth().currentUser;
+  // const currentUserUid = firebase.auth().currentUser;
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
-    // const currentUserUid = firebase.auth().currentUser;
+      const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
-      querySnapShot.forEach((doc) => {        
+      querySnapShot.forEach((doc) => {
         console.log(`postId = ${doc.id} | usuerId = ${doc.data().id} | status: ${doc.data().status}`);
         if (doc.data().visibility === 'public' && doc.data().id !== currentUserUid.uid) {
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
@@ -360,7 +360,7 @@ export const getStatus = () => {
         }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
-       if (btnDeleted) {
+        if (btnDeleted) {
           // console.log(btnDeleted);
           btnDeleted.addEventListener('click', () => {
             deletePublication(doc.id);
