@@ -8,18 +8,6 @@ export const signIn = (email, password) => firebase.auth().signInWithEmailAndPas
 export const signOut = () => firebase.auth().signOut();
 
 
-// export const myCurrentUser = () => {
-//   const user = firebase.auth().currentUser;
-//   let email;
-//   if (user != null) {
-//   // User is signed in.
-//     email = user.email;
-//     console.log(`active user ${email}`);
-//     // alert(`Active User ${email}`);
-//   }
-//   return firebase.auth().currentUser;
-// };
-
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
@@ -97,7 +85,3 @@ export const signInWithGoogle = () => {
 //       list(data);
 //     });
 // };
-
-
-// export const deleteStatus = idStatus =>
-// firebase.firestore().collection('notes').doc(idStatus).delete();
