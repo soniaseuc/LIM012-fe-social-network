@@ -236,7 +236,7 @@ export const mainPublicationForm = () => {
         <button id="cancelUpload" class="displayNone">X</button>
         <img id="showPicture" >
       </div>
-     <div class="footerHomePublication">
+      <div class="footerHomePublication">
         <div class="circle">
             <label for="selectImage">          
               <input type="file" id="selectImage" class="displayNone"/>
@@ -244,7 +244,7 @@ export const mainPublicationForm = () => {
             </label>
         </div>
         <select id="optionsPublic" class="selectPublic publicationBtn">
-          <option value="public">Publico</option>
+          <option  selected value="public">Publico</option>
           <option value="private">Privado</option>
         </select>
         <button id="share" class="compartirBtn publicationBtn">Compartir</button>
@@ -296,6 +296,7 @@ export const mainPublicationForm = () => {
 
   shareButton.addEventListener('click', (event) => {
     event.preventDefault();
+    const optionsPublic = document.getElementById('optionsPublic');
     const currentUserUid = firebase.auth().currentUser.uid;
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
@@ -311,9 +312,11 @@ export const mainPublicationForm = () => {
       showPicture.classList.add('displayNone');
       cancelUpload.classList.add('displayNone');
       window.localStorage.removeItem('image');
+      optionsPublic.value = 'public';
     } else {
       publishStatus(userName, status, visivility, iPost, currentUserUid);
       textarea.value = '';
+      optionsPublic.value = 'public';
     }
   });
 
