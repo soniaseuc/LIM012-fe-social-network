@@ -109,9 +109,8 @@ const changeVisibility = (postId, value) => {
 //   });
 
 /*
-
- *  CLOUD FIRESTORE FUNCTIONS
- */
+*  CLOUD FIRESTORE FUNCTIONS
+*/
 export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
   // Create a new collection and a document
   firebase.firestore().collection('post').add({
@@ -172,6 +171,7 @@ export const getStatus = () => {
       // console.log(`Soy auth().uid ${firebase.auth().uid}`);
       statusPost.innerHTML = '';
       querySnapShot.forEach((doc) => {
+        // eslint-disable-next-line max-len
         // console.log(`post Id => ${doc.id} | usuario Id = ${doc.data().id} === ${doc.data().name}`);
         if (doc.data().visibility === 'public') {
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
@@ -235,51 +235,52 @@ export const getStatus = () => {
           post.className = 'publicationSection';
           post.innerHTML += `
 
-                <header>
-                    <select id="" class="publicOrPrivateSelector">
-                        <option value="public">Public</option>
-                        <option value="private">Private</option>
-                    </select>
-                    <h1 class="nameTitlePublication">${doc.data().name} </h1>
-                    <figure class="figureContainerIcons">
-                      <input id="delete-${doc.id}" type="checkbox">
-                      <label for="delete-${doc.id}">
-                          <img src="img/icons/trash.svg">
-                      </label>
-                    </figure>
-                    <figure class="figureContainerIcons">
-                      <input id="edit-${doc.id}" type="checkbox">
-                      <label for="edit-${doc.id}">
-                          <img src="img/icons/modificar.svg">
-                      </label>
-                    </figure>
-                </header>
-                <section class="notes" id="content">
-                    ${validatePost(doc.data().img, doc.data().status)}
-                    <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
-                    <div class="notesIcons">
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
-                    <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
-                    </div>
-                </section>
-                <section class="comment" id="comments">
-                    <div class="userComentDone">
-                      <div class="flexColumn">
-                        <h5>NOMBRE</h5>
-                        <p>Comentario......</p>
-                      </div>
-                      <div class="icons">
-                        <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
-                        <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
-                        <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                      </div>
-                    </div>
-                    <div class="line">
-                    </div>
-                    <input placeholder="Agrega tu Comentario"></input>
-                </section>
-                `;
+          <header>
+              <select id="" class="publicOrPrivateSelector">
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+              </select>
+              <h1 class="nameTitlePublication">${doc.data().name} </h1>
+              <figure class="figureContainerIcons">
+                <input id="delete-${doc.id}" type="checkbox">
+                <label for="delete-${doc.id}">
+                    <img src="img/icons/trash.svg">
+                </label>
+              </figure>
+              <figure class="figureContainerIcons">
+                <input id="edit-${doc.id}" type="checkbox">
+                <label for="edit-${doc.id}">
+                    <img src="img/icons/modificar.svg">
+                </label>
+              </figure>
+          </header>
+          <section class="notes" id="content">
+              ${validatePost(doc.data().img, doc.data().status)}
+              <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
+              <div class="notesIcons">
+              <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+              <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+              <button id="btnSaveEdit" class="cambioBtn">Guardar Cambio</button>
+              </div>
+          </section>
+          <section class="comment" id="comments">
+              <div class="userComentDone">
+                <div class="flexColumn">
+                  <h5>NOMBRE</h5>
+                  <p>Comentario......</p>
+                </div>
+                <div class="icons">
+                  <button id="likeHeart" class="circlePink"><img src="img/icons/modificar.svg"></button>
+                  <button id="likeHeart" class="circlePink"><img src="img/icons/trash.svg"></button>
+                  <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
+                </div>
+              </div>
+              <div class="line">
+              </div>
+              <input placeholder="Agrega tu Comentario"></input>
+          </section>
+          `;
+
           statusPost.appendChild(post);
         }
         // agregando evento de click al btn eliminar un post
@@ -306,9 +307,6 @@ export const getStatus = () => {
               });
           });
         }
-        // else {
-        //   publicOrPrivateSelector.value = publicOrPrivateSelector.value;
-        // }
 
         if (modificar) {
           // al hacer click en el boton del lapiz para editar publicacion
@@ -338,6 +336,11 @@ export const uploadImagePost = (file, uid) => {
   console.log(`soy file de firestore.js ${refStorage}`);
 };
 
+// const createTemp = () => {
+//   const publicationSection = document.getElementsByClassName('publicationSection');
+//   const header = document.createElement('header');
+
+// };
 
 /**
     <section class="notes" id="content">
