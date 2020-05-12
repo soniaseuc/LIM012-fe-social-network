@@ -25,24 +25,6 @@ const deletePublication = (e) => {
 // };
 
 
-// FUNCIÓN PARA ACTUALIZAR LOS POSTS
-const editNote = (idDoc, pElementToEdit) => {
-  console.log('dentro de la funcion editNote');
-  document.querySelector('#input-edit-note').value = pElementToEdit;
-  const textareaEdited = document.querySelector(`#inputPost-${idDoc}`).value;
-  firebase.firestore().collection('post').doc(idDoc).update({
-    status: textareaEdited,
-    // img: file,
-  })
-    .then(() => {
-      console.log('Document successfully updated!');
-    })
-    .catch((error) => {
-      // The document probably doesn't exist.
-      console.error('Error updating document: ', error);
-    });
-};
-
 const changeVisibility = (postId, value) => {
   console.log(` changeVisibility postId = ${postId}`);
   console.log(`changeVisibility value = ${value}`);
@@ -124,10 +106,10 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
     img: imgPost,
   })
     .then((docRef) => {
-      console.log(uid);
+      // console.log(uid);
       console.log(`'Document written with ID: ${docRef.id}`);
       // console.log(docRef.visibility);
-      console.log(docRef.id);
+      // console.log(docRef.id);
       document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
@@ -143,24 +125,42 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 * READ DATABASE
 */
 
-const validatePost = (img, post, idDoc) => {
+const validatePost = (img, status, doc) => {
 // B/C THERE WAS AN BROKEN IMG ON EACH PUBLISHED POST
   let postTemplate = '';
   if (img) {
     postTemplate = `
-    <p class="textComent" id="input-edit-note">${post}</p>
-    <textarea id="inputPost-${idDoc}" class="displayNone">${post}</textarea>
+    <p class="textComent" id="pEdit-${doc}">${status}</p>    
     <img  class="postedImg" src="${img}">
     `;
   } else {
     postTemplate = `
-    <p class="textComent" id="input-edit-note">${post}</p>
-    <textarea id="inputPost-${idDoc}" class="displayNone">${post}</textarea>
+    <p class="textComent" id="pEdit-${doc}">${status}</p>    
     `;
   }
+  // console.log(doc);
   return postTemplate;
 };
 
+// FUNCIÓN PARA ACTUALIZAR LOS POSTS
+const editNote = (idDoc, textarea) => {
+  // console.log('dentro de la funcion editNote');
+  // console.log(idDoc);
+  // console.log(pElToEdit);
+  // const textareaEdited = document.getElementById(`textareaEdit-${doc.id}`).value;
+  // console.log(textareaEdited);
+  firebase.firestore().collection('post').doc(idDoc).update({
+    status: textarea,
+    // img: file,
+  })
+    .then(() => {
+      console.log('Document successfully updated!');
+    })
+    .catch((error) => {
+      // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
+    });
+};
 // FUNCION PARA MOSTRAR EL BOTON EDITAR Y ELIMINAR CUANDO ES PUBLICO
 // ${ifPublicButMine(doc.id, doc.data().id)}
 // PORQUE ANTES SOLO MOSTRABA ESOS BOTONES CUANDO ERA PRIVADO
@@ -202,14 +202,14 @@ export const getStatus = () => {
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
-  const currentUserUid = firebase.auth().currentUser;
-  console.log(currentUserUid);
+  // const currentUserUid = firebase.auth().currentUser;
+  // console.log(currentUserUid);
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
-    // const currentUserUid = firebase.auth().currentUser;
+      const currentUserUid = firebase.auth().currentUser;
       statusPost.innerHTML = '';
-      querySnapShot.forEach((doc) => {        
-        console.log(`postId = ${doc.id} | usuerId = ${doc.data().id} | status: ${doc.data().status}`);
+      querySnapShot.forEach((doc) => {
+        // console.log(`postId = ${doc.id}|usuerId = ${doc.data().id}|status:${doc.data().status}`);
         if (doc.data().visibility === 'public' && doc.data().id !== currentUserUid.uid) {
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
           const post = document.createElement('section');
@@ -228,6 +228,7 @@ export const getStatus = () => {
 
             <section class="notes" id="content">
                 ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                 <div class="notesIcons">
                 <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
@@ -279,6 +280,7 @@ export const getStatus = () => {
                 </header>
                 <section class="notes" id="content">
                     ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                    <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                     <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                     <div class="notesIcons">
                     <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
@@ -332,7 +334,8 @@ export const getStatus = () => {
                       </figure>
                   </header>
                   <section class="notes" id="content">
-                      ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                  ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                      <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                       <div class="notesIcons">
                       <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
@@ -361,17 +364,13 @@ export const getStatus = () => {
         }
         // agregando evento de click al btn eliminar un post
         const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
-       if (btnDeleted) {
+        if (btnDeleted) {
           // console.log(btnDeleted);
           btnDeleted.addEventListener('click', () => {
             deletePublication(doc.id);
           });
         }
         // FUNCIONES PARA EDITAR PUBLICACION
-        const modificar = statusPost.querySelector(`#edit-${doc.id}`);
-        const post = statusPost.querySelector('#input-edit-note');
-        const btnEdit = document.getElementById(`btnSaveEdit-${doc.id}`);
-        const inputPost = statusPost.getElementById(`inputPost-${idDoc}`);
         const publicOrPrivateSelector = statusPost.querySelector('.publicOrPrivateSelector');
         // console.log(publicOrPrivateSelector);
         if (publicOrPrivateSelector != null && doc.data().id === currentUserUid.uid) {
@@ -383,20 +382,29 @@ export const getStatus = () => {
               });
           });
         }
-
+        const modificar = document.getElementById(`edit-${doc.id}`);
+        const textareaEdit = document.getElementById(`textareaEdit-${doc.id}`);
+        // console.log(textareaEdit);
         if (modificar) {
-          console.log(modificar);
+          // console.log(modificar);
           // al hacer click en el boton del lapiz para editar publicacion
-          modificar.addEventListener('click', () => {
-            inputPost.classList.remove('displayNone');
-            inputPost.focus();
+          modificar.addEventListener('click', (e) => {
+            e.preventDefault();
+            textareaEdit.classList.remove('displayNone');
+            textareaEdit.focus();
           });
         }
+        // const post = document.getElementById(`pEdit-${doc.id}`);
+        // console.log(post);
+        const btnEdit = document.getElementById(`btnSaveEdit-${doc.id}`);
         if (btnEdit) {
-          console.log(btnEdit);
+          // console.log(btnEdit);
           // agregando evento de click al btn guardar cambio en la publicacion
-          btnEdit.addEventListener('click', () => {
-            editNote(`${doc.id}`, post.value);
+          btnEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log(btnEdit);
+            // console.log(doc.id);
+            editNote(doc.id, textareaEdit.value);
           });
         }
       });
@@ -411,7 +419,7 @@ export const getStatus = () => {
 export const uploadImagePost = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
   refStorage.put(file);
-  console.log(`soy file de firestore.js ${refStorage}`);
+  // console.log(`soy file de firestore.js ${refStorage}`);
 };
 
 // const createTemp = () => {
