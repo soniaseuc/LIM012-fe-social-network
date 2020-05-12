@@ -75,13 +75,6 @@ body {
   height: 40%;
 }
 
-/* Icon imagen */
-.circle img {
-  width: 2rem;
-  height: 1.3rem;
-  margin: .3rem auto;
-}
-
 .circlePink img{
   width: 2rem;
   height: 1.5rem;
@@ -214,7 +207,13 @@ p span a {
   border-radius: 100%;
   width: 2rem;
   height: 2rem;
-  margin: .3rem  auto;
+  margin: .4rem ;
+}
+/* Icon imagen */
+.circle img {
+  width: 2rem;
+  height: 1.3rem;
+  margin: .3rem auto;
 }
 
 /* Botones SELECT & COMPARTIR */
@@ -275,7 +274,7 @@ display: none;
 /* NAME OF THE PERSON WHO MADE THE PUBLICATION */
 .nameTitlePublication {
   color: white;
-  width: 80%;
+  width: 100%;
   /* margin: 0 1rem; */
 
 }
@@ -294,6 +293,12 @@ display: none;
 }
 .cambioBtn{
   height: 20%;
+  border: none;
+  background-color: #C14D7C;
+  border-radius: .5rem;;
+  color: #f2f2f2;
+  padding: .3rem;
+  margin: .5rem;
 }
 
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
@@ -360,12 +365,13 @@ h5 {
 /* CIRCULOS DENTRO DEL COMENTARIO */
 /* CIRCULOS DE LOS ICONOS EN PUBLICACION */
 .circlePink{
+  /* display: none; */
   background-color: #C14D7C;
   border: 1px solid #C14D7C;
   width: 2rem;
   height: 2rem;
   border-radius: 100%;
-  margin: .1rem .2rem;
+  margin:  0.5rem 0.3rem;
 }
 
 .postedImg {
@@ -577,15 +583,40 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   
 }
 @media (min-width: 850px) {
-  body {
-    display: flex;
-
-    /* width: 50%; */
-    /* background-color: rgb(154, 135, 222); */
+  .homeContainer {
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* flex-direction: row; */
   }
-  /* .homeContainer {
-    background-color: rosybrown;
-  } */
+  .divNav{
+    width: 100%;
+  }
+  .homeAvatarContainer{
+    width: 30%;
+    /* margin: 2rem 35rem; */
+  }
+  .homePublicationContainer{
+    /* align-items: flex-end; */
+    width: 30%;
+    /* margin: 0 auto; */ 
+    /* flex-direction: row; */
+  }
+  ul{
+    background-color: #F4A82C;
+    margin-bottom: 2rem;
+  }
+  .EducaChat{
+    color: #C14D7C;
+    padding: 2rem;
+    font-size: 4rem;
+  }
+  #comentarios {
+    margin-top: 1rem;
+    width: 50%;
+    /* margin: 0 auto; */
+  }
 }
 
 

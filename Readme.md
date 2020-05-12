@@ -1,3 +1,85 @@
+# PROYECTO RED SOCIAL 
+# EducaChat
+La red de educación para jóvenes!
+
+## Índice
+ * [1. Definición del producto](#1-definición)
+ * [2. Historias de usuario](#2-historias-de-usuario)
+ * [3. Diseño de la Interfaz de Usuario](#3-Diseño-de-la-Interfaz-de-Usuario)
+
+
+***
+
+## 1. Definición del producto
+
+EducaChat es una red social destinada a estudiantes de todas edades. Esta plataforma iteractiva  permitirá a nuestro target usuario registarse con su correo electrónico o por su cuenta de gmail. La cual, luego les permitira iniciar sesión despues de ser registrado. Los suarios de EducaChat podrán compartir conocimientos átravez de publicaciones, las cuales podrán ser publicas o privadas. EducaChat, tambien les permitirá compartir imagenes. 
+Los usuarios de la aplicación web, podrán editar, borrar y configurar la privacidad de su publicación
+
+### Imagenes del proyecto
+
+
+## 2. Historias de usuario
+
+### Historia de Usuario N°4: Dar like y escribir, guardar, editar, eliminar comentario
+
+**Descripción:**
+
+Yo como usuario loggeado, puedo dar like y llevar un conteo de likes en mi publicación así como poder escribir, guardar, editar o eliminar un comentario en mi publicación.
+Criterios de Aceptación
+
+**Criterios de Aceptación:**
+- [ ] El usuario podra dar like a una publicacion
+- [ ] El usuario puede observar el total de likes que tiene su publicacion
+- [ ] El usuario puede agregar un comentario, asi mismo editarlo o eliminarlo en su publicacion
+- [ ] El usuario puede modificar su comentario sin recargar la pagina (SPA)
+
+**Definición de terminado:**
+- [ ] Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- [ ] Debe estar desplegado en Github
+- [ ] Debe ser responsive
+- [ ] El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- [ ] El diseño visual corresponde al prototipo de alta fidelidad
+
+### Historia de Usuario N°5: Ver todos los Post ordenados
+
+**Descripción:**
+
+Como usuario loggeado debo poder ver todos los posts públicos y privados que he creado hasta ese momento, desde el más reciente hasta el más antiguo, así como la opción de poder cambiar la configuración de privacidad de mis post.
+
+**Criterios de Aceptación:**
+- [ ] El usuario podra ver en la pagina principal todos sus post publicados ordenados por fecha
+- [ ] Para cada publicacion se vera su estado (publico o privado) y tendra la opcion de modificarse
+
+**Definición de terminado:**
+
+- [ ] Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- [ ] Debe estar desplegado en Github
+- [ ] Debe ser responsive
+- [ ] El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- [ ] El diseño visual corresponde al prototipo de alta fidelidad
+
+### Historia de Usuario N°6: visualizar datos de perfil y editarlos
+
+**Descripción:**
+
+Debo poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
+
+**Criterios de Aceptación:**
+
+- [ ] El usuario debe poder visualizar sus datos de perfil y editarlos
+- [ ] El usuario podrá ver sus datos de perfil y modificarlos sin recargar la página (SPA)
+
+**Definición de terminado:**
+
+- [ ] Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- [ ] Debe estar desplegado en Github
+- [ ] Debe ser responsive
+- [ ] El código ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- [ ] El diseño visual corresponde al prototipo de alta fidelidad
+
+
+***
+
 # Creando una Red Social
 
 Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
