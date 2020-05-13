@@ -167,8 +167,8 @@ export const getStatus = () => {
                 <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                 <div class="notesIcons">
-                <button id="likeHeart" class="circle"><img src="img/icons/heart-solid.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                 </div>
             </section>
                 `;
@@ -203,8 +203,8 @@ export const getStatus = () => {
                     <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                     <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                     <div class="notesIcons">
-                    <button id="likeHeart" class="circle"><img src="img/icons/heart-solid.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                    <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                    <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                     <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                     </div>
                 </section>
@@ -242,8 +242,8 @@ export const getStatus = () => {
                       <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                       <div class="notesIcons">
-                      <button id="likeHeart" class="circle"><img src="img/icons/heart-solid.svg"></button>
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                      <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                      <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                       <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                       </div>
                   </section>

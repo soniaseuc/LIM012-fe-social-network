@@ -40,6 +40,9 @@ Criterios de Aceptación
 - [ ] El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
 - [ ] El diseño visual corresponde al prototipo de alta fidelidad
 
+#### Prototipo de Alta Fidelidad
+#### Prototipo de Baja Fidelidad
+
 ### Historia de Usuario N°5: Ver todos los Post ordenados
 
 **Descripción:**

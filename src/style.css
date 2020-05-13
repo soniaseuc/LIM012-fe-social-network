@@ -373,7 +373,9 @@ h5 {
   border-radius: 100%;
   margin:  0.5rem 0.3rem;
 }
-
+.publicationSection header select{
+  width: 40%;
+}
 .postedImg {
   padding: 1rem;
   height: 26rem;
@@ -583,25 +585,34 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   
 }
 @media (min-width: 850px) {
-  .homeContainer {
-    display: flex; 
-    justify-content: flex-start;
+  #logIn {
+    background-color:#fefefe;
+    display: flex;
+  }
+
+  .homeContainer  {
+    width: 100%;
     align-items: center;
     flex-wrap: nowrap;
-    /* flex-direction: row; */
   }
+  .homeContainer section {
+    justify-content: flex-start;
+  }
+
   .divNav{
     width: 100%;
   }
   .homeAvatarContainer{
     width: 30%;
+    margin-right: 60%;
+    margin-bottom: -20%;
     /* margin: 2rem 35rem; */
   }
   .homePublicationContainer{
-    /* align-items: flex-end; */
-    width: 30%;
-    /* margin: 0 auto; */ 
-    /* flex-direction: row; */
+    /* width: 30%; */
+    margin-left: 50%;
+    width: 40%;
+}
   }
   ul{
     background-color: #F4A82C;
@@ -615,7 +626,10 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   #comentarios {
     margin-top: 1rem;
     width: 50%;
-    /* margin: 0 auto; */
+  }
+  .publicationSection{
+    margin-left: 60%;
+    width: 70%;
   }
 }
 
