@@ -157,7 +157,7 @@ export const getStatus = () => {
           post.className = 'publicationSection';
           post.setAttribute('id', `publicationSection-${doc.id}`);
           post.innerHTML += `
-            <header>
+            <header class="headerUserName">
                 <h1 class="nameTitlePublication">${doc.data().name} </h1>
                 <div id="ifPublicButMine"></div>
             </header>
@@ -167,8 +167,8 @@ export const getStatus = () => {
                 <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                 <div class="notesIcons">
-                <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                 </div>
             </section>
                 `;
@@ -199,12 +199,12 @@ export const getStatus = () => {
                     </figure>
                 </header>
                 <section class="notes" id="content">
-\                    ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                    ${validatePost(doc.data().img, doc.data().status, doc.id)}
                     <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                     <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                     <div class="notesIcons">
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                    <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                    <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                    <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                     <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                     </div>
                 </section>
@@ -242,8 +242,8 @@ export const getStatus = () => {
                       <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                       <div class="notesIcons">
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/heart-solid.svg"></button>
-                      <button id="likeHeart" class="circlePink"><img src="img/icons/comments.svg"></button>
+                      <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+                      <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                       <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                       </div>
                   </section>
@@ -265,9 +265,6 @@ export const getStatus = () => {
         // console.log(publicOrPrivateSelector);
         if (publicOrPrivateSelector != null && doc.data().id === currentUserUid.uid) {
           publicOrPrivateSelector.addEventListener('change', (e) => {
-            // console.log(e.target);
-            // console.log(`publicationSection ${publicationSection}`);
-            console.log(publicOrPrivateSelector.value);
             e.preventDefault();
             changeVisibility(doc.id, publicOrPrivateSelector.value);
           });

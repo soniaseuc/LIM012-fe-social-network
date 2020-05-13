@@ -1,6 +1,6 @@
-# PROYECTO : Red Social
+# PROYECTO RED SOCIAL
 
-# TEMA: Red de Educación para Jóvenes (EducaChat)
+# TEMA: La red de educación para jóvenes! (EducaChat)
 
 ## Índice
 
@@ -19,24 +19,28 @@ El objetivo de este proyecto es construir una Red Social, Single-Page Applicatio
 AQUI IMAGEN DE VISTA ESCRITORIO Y VISTA MOVIL
 
 ## 2. Definición del producto
-Nuestro proceso de diseño hacia el producto final comenzo por entender los hallazgos de la investigacion UX.
-Primero debimos conocer y entender que era importante para nuestro usuario y de que manera les seria util nuestra pagina web.
+
+EducaChat es una red social destinada a estudiantes de todas edades. Esta plataforma iteractiva  permitirá a nuestro target
+usuario registarse con su correo electrónico o por su cuenta de gmail. La cual, luego les permitira iniciar sesión despues 
+de ser registrado. Los suarios de EducaChat podrán compartir conocimientos átravez de publicaciones, las cuales podrán ser 
+publicas o privadas. EducaChat, tambien les permitirá compartir imagenes. 
+Los usuarios de la aplicación web, podrán editar, borrar y configurar la privacidad de su publicación
 
 ### INVESTIGACIÓN UX:
-- ¿Quiénes son los principales usuarios del producto?
+Nuestro proceso de diseño hacia el producto final comenzo por entender los hallazgos de la investigacion UX.
+Primero debimos conocer y entender que era importante para nuestro usuario y de que manera les seria util nuestra pagina web:
 
+**¿Quiénes son los principales usuarios del producto?**
+Esta dirigida a estudiantes de todas las edades.
 
+**¿Cuáles son los objetivos de estos usuarios en relación con el producto?**
+Que los estudiantes puedan compartir sus conocimientos.
 
-- ¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+**¿Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué?**
+Quieren ver las publicaciones mas recientes para estar actualizados.
 
-
-
-- ¿Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué?
-
-
-- ¿Cuándo utilizan o utilizarían el producto?
-
-
+**¿Cuándo utilizan o utilizarían el producto?**
+La usarian en cualquier momento que quieran compartir conocimiento o cuando quieren adquirir nuevas formas de aprendizaje.
 
 ## 3. Historias de usuario
 En el Trello confeccionamos columnas que simulaban la metodologia agil(product backlog, sprint backlog, haciendo, bloqueado y concluido) y diseñamos las Historias de Usuarios (#6 H.U en total).
@@ -47,7 +51,9 @@ Los prototipos de baja fidelidad (escala de grises) fueron diseñados de anteman
 
 ### 1° HISTORIA DE USUARIO
 
-YO COMO: usuario nuevo QUIERO: poder crear una cuenta con email y password válidos PARA: poder iniciar sesión e ingresar a la red social.
+YO COMO: usuario nuevo 
+QUIERO: poder crear una cuenta con email y password válidos 
+PARA: poder iniciar sesión e ingresar a la red social.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario puede registrarse solamente usando una cuenta de correo válida y una contraseña
@@ -63,6 +69,7 @@ YO COMO: usuario nuevo QUIERO: poder crear una cuenta con email y password váli
 - El diseño visual corresponde al prototipo de alta fidelidad
 
 #### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+
 ![prototipobajaHU1](https://user-images.githubusercontent.com/60791273/81743229-f834b400-9466-11ea-8950-140c156f1a38.png)
 
 #### ✔ PROTOTIPO DE ALTA FIDELIDAD:
@@ -71,7 +78,10 @@ YO COMO: usuario nuevo QUIERO: poder crear una cuenta con email y password váli
 
 
 ### 2° HISTORIA DE USUARIO
-YO COMO: usuario nuevo QUIERO: poder tener la opción de iniciar sesión con mi cuenta de Google o Facebook PARA: ingresar a la red social sin necesidad de crear una cuenta de email válido.
+
+YO COMO: usuario nuevo 
+QUIERO: poder tener la opción de iniciar sesión con mi cuenta de Google o Facebook 
+PARA: ingresar a la red social sin necesidad de crear una cuenta de email válido.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario puede registrarse usando la cuenta de google o la de facebook
@@ -87,6 +97,7 @@ YO COMO: usuario nuevo QUIERO: poder tener la opción de iniciar sesión con mi 
 YO COMO: jugador de LOL, QUIERO: ver a todos los campeones (imagen y nombre)ordenados alfabéticamente, PARA: que la búsqueda se me haga mas fácil.
 
 #### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+
 Se utilizó la plantilla de la HU1 como prototipo de baja fidelidad de la HU2
 ![prototipobajaHU1](https://user-images.githubusercontent.com/60791273/81743229-f834b400-9466-11ea-8950-140c156f1a38.png)
 
@@ -94,10 +105,10 @@ Se utilizó la plantilla de la HU1 como prototipo de baja fidelidad de la HU2
 
 ![prototipoaltaHU2](https://user-images.githubusercontent.com/60791273/81744882-6d08ed80-9469-11ea-9b15-b7bd880aae1b.png)
 
-
 ### 3° HISTORIA DE USUARIO
 
-YO COMO: usuario loggeado QUIERO: poder crear, guardar, modificar en el mismo lugar (in place) y eliminar una publicación (post) privada o pública, que puede ser una frase o una imagen.
+YO COMO: usuario loggeado 
+QUIERO: poder crear, guardar, modificar en el mismo lugar (in place) y eliminar una publicación (post) privada o pública, que puede ser una frase o una imagen.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario podra crear una publicación o insertar una imagen en la página principal de la red social
@@ -123,7 +134,8 @@ YO COMO: usuario loggeado QUIERO: poder crear, guardar, modificar en el mismo lu
 
 ### 4° HISTORIA DE USUARIO
 
-YO COMO: usuario loggeado, QUIERO: dar like y llevar un conteo de likes en mi publicación así como poder escribir, guardar, editar o eliminar un comentario en mi publicación.
+YO COMO: usuario loggeado, 
+QUIERO: dar like y llevar un conteo de likes en mi publicación así como poder escribir, guardar, editar o eliminar un comentario en mi publicación.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario podra dar like a una publicacion
@@ -143,12 +155,13 @@ YO COMO: usuario loggeado, QUIERO: dar like y llevar un conteo de likes en mi pu
 ![prototipobajaHOME](https://user-images.githubusercontent.com/60791273/81754594-31c3ea00-947c-11ea-8f12-e8171a73cdb6.png)
 
 #### ✔ PROTOTIPO DE ALTA FIDELIDAD:
-![prototipoaltaHU4](https://user-images.githubusercontent.com/60791273/81755077-65534400-947d-11ea-81bc-aac7c8e9fbba.png)
 
+![prototipoaltaHU4](https://user-images.githubusercontent.com/60791273/81755077-65534400-947d-11ea-81bc-aac7c8e9fbba.png)
 
 ### 5° HISTORIA DE USUARIO
 
-YO COMO: usuario loggeado QUIERO: poder ver todos los posts públicos y privados que he creado hasta ese momento, desde el más reciente hasta el más antiguo, así como la opción de poder cambiar la configuración de privacidad de mis post.
+YO COMO: usuario loggeado 
+QUIERO: poder ver todos los posts públicos y privados que he creado hasta ese momento, desde el más reciente hasta el más antiguo, así como la opción de poder cambiar la configuración de privacidad de mis post.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario podra ver en la pagina principal todos sus post publicados ordenados por fecha
@@ -167,7 +180,8 @@ YO COMO: usuario loggeado QUIERO: poder ver todos los posts públicos y privados
 
 ### 6° HISTORIA DE USUARIO
 
-YO COMO: usuario logueado QUIERO: poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
+YO COMO: usuario logueado 
+QUIERO: poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
 
 #### ✔ CRITERIOS DE ACEPTACION:
 - El usuario debe poder visualizar sus datos de perfil y editarlos
@@ -186,10 +200,10 @@ YO COMO: usuario logueado QUIERO: poder ingresar a la red social y poder visuali
 ![prototipoaltaprofile](https://user-images.githubusercontent.com/60791273/81755716-1efee480-947f-11ea-859d-86d107522e4c.png)
 
 
-
 ***
 
- Creando una Red Social
+# Creando una Red Social
+
 
 Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
 
