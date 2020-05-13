@@ -1,4 +1,195 @@
-# Creando una Red Social
+# PROYECTO : Red Social
+
+# TEMA: Red de Educación para Jóvenes (EducaChat)
+
+## Índice
+
+* [1. Resumen del proyecto](#1-resumen-del-proyecto)
+* [2. Definición del producto](#2-definición-del-producto)
+* [3. Historias de usuario](#3-Historias-de-usuario)
+
+***
+
+## 1. Resumen del proyecto
+
+El objetivo de este proyecto es construir una Red Social, Single-Page Application (SPA), responsiva en la que podamos escribir, leer, actualizar y eliminar datos.
+
+# IMAGEN FINAL DEL PROYECTO.
+
+AQUI IMAGEN DE VISTA ESCRITORIO Y VISTA MOVIL
+
+## 2. Definición del producto
+Nuestro proceso de diseño hacia el producto final comenzo por entender los hallazgos de la investigacion UX.
+Primero debimos conocer y entender que era importante para nuestro usuario y de que manera les seria util nuestra pagina web.
+
+### INVESTIGACIÓN UX:
+- ¿Quiénes son los principales usuarios del producto?
+
+
+
+- ¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+
+
+
+- ¿Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué?
+
+
+- ¿Cuándo utilizan o utilizarían el producto?
+
+
+
+## 3. Historias de usuario
+En el Trello confeccionamos columnas que simulaban la metodologia agil(product backlog, sprint backlog, haciendo, bloqueado y concluido) y diseñamos las Historias de Usuarios (#6 H.U en total).
+
+Aquí el link : (https://trello.com/b/moygbFGh/socialnetwork)
+
+Los prototipos de baja fidelidad (escala de grises) fueron diseñados de antemano por un grupo de investigación de UX los cuales fueron probados con posibles usuarios mediante el testeo de usabilidad, recibiendo feedback que nos ayudo a definir nuestras HU iniciales y es por ellos que a medida que se fue avanzando con la parte de la funcionalidad, el proyecto fue cambiando visualmente con respecto a como fue concebido inicialmente en los prototipos de baja fidelidad. En las ferias de proyecto obtuvimos feedback tecnico que contribuia a la mejora de la pagina web y ademas se continuo testeando con usuarios potenciales para conocer que tan intuitiva era la pagina web. Adicional al diseño de Interfaz de usuario nuestras historias contienen la implementación requerida(*SPA*/*mobile first*/*HTML5*/*CCS3*/*Vanilla JavaScript(ES6+)*/*Firebase* o *LocalStogarge*). Nuestro proyecto puede: escribir, leer, actualizar y eliminar datos.
+
+### 1° HISTORIA DE USUARIO
+
+YO COMO: usuario nuevo QUIERO: poder crear una cuenta con email y password válidos PARA: poder iniciar sesión e ingresar a la red social.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario puede registrarse solamente usando una cuenta de correo válida y una contraseña
+- Si el usuario no introduce el correo y contraseña no se creara la nueva cuenta en la red social y no podrá acceder a la página web.
+- El registro debe poder hacerse facilmente desde cualquier dispositivo
+- No debe necesitar recargar la página para crear una cuenta (SPA)
+
+#### ✔ DEFINICION DE TERMINADO:
+- Todas las funciones deben estar testeadas y pasar el 90% de covertura.
+- Debe estar desplegado en Github
+- Debe ser responsive
+- El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- El diseño visual corresponde al prototipo de alta fidelidad
+
+#### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+![prototipobajaHU1](https://user-images.githubusercontent.com/60791273/81743229-f834b400-9466-11ea-8950-140c156f1a38.png)
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+
+![prototipoaltaHU1](https://user-images.githubusercontent.com/60791273/81744247-9412ef80-9468-11ea-99af-e70fe69713ff.png)
+
+
+### 2° HISTORIA DE USUARIO
+YO COMO: usuario nuevo QUIERO: poder tener la opción de iniciar sesión con mi cuenta de Google o Facebook PARA: ingresar a la red social sin necesidad de crear una cuenta de email válido.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario puede registrarse usando la cuenta de google o la de facebook
+- Si google o fb verifican que existe ese correo el usuario podra ingresar a la pagina principal de la red social
+- El registro debe poder hacerse facilmente desde cualquier dispositivo
+- No debe necesitar recargar la página para crear una cuenta (SPA)
+
+#### ✔ DEFINICION DE TERMINADO:
+- La funcionalidad cumple satisface los criterios de aceptación
+- Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- Debe estar desplegado en Github
+- El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-rev
+YO COMO: jugador de LOL, QUIERO: ver a todos los campeones (imagen y nombre)ordenados alfabéticamente, PARA: que la búsqueda se me haga mas fácil.
+
+#### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+Se utilizó la plantilla de la HU1 como prototipo de baja fidelidad de la HU2
+![prototipobajaHU1](https://user-images.githubusercontent.com/60791273/81743229-f834b400-9466-11ea-8950-140c156f1a38.png)
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+
+![prototipoaltaHU2](https://user-images.githubusercontent.com/60791273/81744882-6d08ed80-9469-11ea-9b15-b7bd880aae1b.png)
+
+
+### 3° HISTORIA DE USUARIO
+
+YO COMO: usuario loggeado QUIERO: poder crear, guardar, modificar en el mismo lugar (in place) y eliminar una publicación (post) privada o pública, que puede ser una frase o una imagen.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario podra crear una publicación o insertar una imagen en la página principal de la red social
+- El usuario al crear la publicación podrá guardarla
+- Una vez guardada la publicación, se podrá modificar su contenido
+- Una vez guardada la publicación, el usuario la puede eliminar completamente
+- El usuario puede modificar su publicación sin recargar la página(SPA)
+
+#### ✔ DEFINICION DE TERMINADO:
+- Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- Debe estar desplegado en Github
+- Debe ser responsive
+- El código ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- El diseño visual corresponde al prototipo de alta fidelidad
+
+#### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+
+![prototipobajaHOME](https://user-images.githubusercontent.com/60791273/81754594-31c3ea00-947c-11ea-8f12-e8171a73cdb6.png)
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+
+![prototipoaltaHOME](https://user-images.githubusercontent.com/60791273/81754598-32f51700-947c-11ea-952b-31b4f04e3799.png)
+
+### 4° HISTORIA DE USUARIO
+
+YO COMO: usuario loggeado, QUIERO: dar like y llevar un conteo de likes en mi publicación así como poder escribir, guardar, editar o eliminar un comentario en mi publicación.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario podra dar like a una publicacion
+- El usuario puede observar el total de likes que tiene su publicacion
+- El usuario puede agregar un comentario, asi mismo editarlo o eliminarlo en su publicacion
+- El usuario puede modificar su comentario sin recargar la pagina (SPA)
+
+#### ✔ DEFINICION DE TERMINADO:
+- Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- Debe estar desplegado en Github
+- Debe ser responsive
+- El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- El diseño visual corresponde al prototipo de alta fidelidad
+
+#### ✔ PROTOTIPO DE BAJA FIDELIDAD:
+
+![prototipobajaHOME](https://user-images.githubusercontent.com/60791273/81754594-31c3ea00-947c-11ea-8f12-e8171a73cdb6.png)
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+![prototipoaltaHU4](https://user-images.githubusercontent.com/60791273/81755077-65534400-947d-11ea-81bc-aac7c8e9fbba.png)
+
+
+### 5° HISTORIA DE USUARIO
+
+YO COMO: usuario loggeado QUIERO: poder ver todos los posts públicos y privados que he creado hasta ese momento, desde el más reciente hasta el más antiguo, así como la opción de poder cambiar la configuración de privacidad de mis post.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario podra ver en la pagina principal todos sus post publicados ordenados por fecha
+- Para cada publicacion se vera su estado (publico o privado) y tendra la opcion de modificarse
+
+#### ✔ DEFINICION DE TERMINADO:
+- Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- Debe estar desplegado en Github
+- Debe ser responsive
+- El codigo ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- El diseño visual corresponde al prototipo de alta fidelidad
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+
+![prototipoaltaHU5](https://user-images.githubusercontent.com/60791273/81756687-0ba14880-9482-11ea-906f-c1df464b1d4f.png)
+
+### 6° HISTORIA DE USUARIO
+
+YO COMO: usuario logueado QUIERO: poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
+
+#### ✔ CRITERIOS DE ACEPTACION:
+- El usuario debe poder visualizar sus datos de perfil y editarlos
+- El usuario podrá ver sus datos de perfil y modificarlos sin recargar la página (SPA)
+- El usuario podrá realizar esta acción desde cualquier dispositivo.
+
+#### ✔ DEFINICION DE TERMINADO:
+- Deben estar testeadas todas las funciones y pasar los test con mas de 90%
+- Debe estar desplegado en Github
+- Debe ser responsive
+- El código ha sido hecho, al menos en parte, en pair-programming y/o alguien le hizo code-review
+- El diseño visual corresponde al prototipo de alta fidelidad
+
+#### ✔ PROTOTIPO DE ALTA FIDELIDAD:
+
+![prototipoaltaprofile](https://user-images.githubusercontent.com/60791273/81755716-1efee480-947f-11ea-859d-86d107522e4c.png)
+
+
+
+***
+
+ Creando una Red Social
 
 Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
 
