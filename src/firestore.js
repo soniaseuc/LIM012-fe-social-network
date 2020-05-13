@@ -166,7 +166,7 @@ export const getStatus = () => {
                 ${validatePost(doc.data().img, doc.data().status, doc.id)}
                 <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
                 <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
-                <div class="notesIcons">
+                <div class="notesIcons, footerPost">
                 <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                 <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                 </div>
@@ -179,7 +179,7 @@ export const getStatus = () => {
           const post = document.createElement('section');
           post.className = 'publicationSection';
           post.innerHTML += `
-                <header>
+                <header class="headerPost">
                     <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
                     <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
                     <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
@@ -218,7 +218,7 @@ export const getStatus = () => {
 
           post.innerHTML += `
 
-                  <header>
+                  <header class="headerPost">
                       <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
                       <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
                       <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>

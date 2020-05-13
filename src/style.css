@@ -182,6 +182,13 @@ p span a {
   /* max-width: 50%; */
 }
 
+.footerPost {
+  background-color: #91BBE5;
+  height: 2rem;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+
 .showCircle {
   border: none;
   background-color: #aaaaaa;
@@ -243,6 +250,7 @@ p span a {
   border: 1px solid #aaaaaa;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  border-radius: .5rem;
 }
 
 .publicationSection header {
@@ -280,20 +288,36 @@ display: none;
 .nameTitlePublication {
   color: white;
   width: 100%;
+
   /* margin: 0 1rem; */
 
 }
+
+.headerUserName {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+.headerPost {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
 /* CONTAINER DEL TEXTO PUBLICADO */
 .notes {
   background-color: white;
   display: flex;
   flex-direction: column;
+  border-radius: .5rem;
+ 
 }
 /* SECTION DE ICONOS DE LA PUBLICACION */
 .notesIcons {
-  background-color: #E3E9EF;
+  background-color: #91BBE5;
   display: flex;
   flex-direction: row;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
   /* height: 30%; */
 }
 .cambioBtn{
