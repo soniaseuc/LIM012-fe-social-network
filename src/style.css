@@ -14,7 +14,12 @@ body {
 
 /* imagen de la laptop */
 .laptopPic {
-  width: 10rem;
+  width: 11rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+.laptopPic1 {
+  width: 11rem;
   margin-top: 3rem;
   margin-bottom: 4rem;
 }
@@ -160,7 +165,7 @@ p span a {
 .sharePublicationBox {
   border: 1px solid #aaaaaa;
   height: 99%;
-  border-radius: .5rem; 
+  border-radius: .5rem;
 }
 .who{
   background-color: aquamarine;
@@ -591,6 +596,62 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
     display: flex;
   }
 
+  .signInForm {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 3rem;
+    line-height: 3rem;
+  }
+
+  .laptopPic {
+    width: 20rem;
+    position: absolute;
+    margin-top: 20vh;
+    margin-bottom: 50vh;
+    margin-left: 10vw;
+    line-height: 0;
+    }
+
+  .laptopPic1 {
+    width: 20rem;
+    position: absolute;
+    margin-top: 25vh;
+    margin-bottom: 45vh;
+    margin-left: -40vw;
+    line-height: 0;
+    }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainSignIn {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-right: 10vw;
+    margin-left: 60vw;
+    line-height: 3rem;
+    height: 90vh;
+  }
+
+  .mainSignUp {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    line-height: 3rem;
+    height: 80vh;
+
+    margin-left: 10vw;
+    margin-top: 5rem;
+
+  }
+
   .homeContainer  {
     width: 100%;
     align-items: center;
@@ -613,6 +674,11 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
     /* width: 30%; */
     margin-left: 50%;
     width: 40%;
+    margin-top: -5%;
+  }
+
+  .sharePublicationBox {
+    margin-top: -8%;
   }
   ul{
     background-color: #F4A82C;
