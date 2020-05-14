@@ -217,7 +217,6 @@ export const getStatus = () => {
           post.className = 'publicationSection';
 
           post.innerHTML += `
-
                   <header class="headerPost">
                       <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
                       <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>

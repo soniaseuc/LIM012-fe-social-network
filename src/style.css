@@ -89,6 +89,13 @@ body {
   height: 2rem;  */
 }
 
+/* Icon imagen */
+.circle img {
+  width: 2rem;
+  height: 1.3rem;
+  margin: .3rem auto;
+}
+
 /* TRASH IMG */
 .figureContainerIcons label img{
   width: 2rem;
@@ -221,12 +228,7 @@ p span a {
   height: 2rem;
   margin: .4rem ;
 }
-/* Icon imagen */
-.circle img {
-  width: 2rem;
-  height: 1.3rem;
-  margin: .3rem auto;
-}
+
 
 /* Botones SELECT & COMPARTIR */
 .footerHomePublication .publicationBtn {
@@ -270,6 +272,9 @@ p span a {
   color: white;
   margin: .2rem auto;
 }
+
+
+
 /* TRASH BOTON */
 .figureContainerIcons {
   border: 1px solid #E3E9EF;
@@ -324,7 +329,7 @@ display: none;
   height: 20%;
   border: none;
   background-color: #C14D7C;
-  border-radius: .5rem;;
+  border-radius: .5rem;
   color: #f2f2f2;
   padding: .3rem;
   margin: .5rem;
