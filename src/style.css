@@ -45,6 +45,14 @@ body {
   text-align: center;
   line-height: 2rem;
 }
+.headerUserName {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+.headerPost {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
 
 /*section donde esta el email, password y el boton*/
 .formContainer {
@@ -278,11 +286,14 @@ display: none;
   /* margin: 0 1rem; */
 
 }
-/* CONTAINER DEL TEXTO PUBLICADO */
-.notes {
-  background-color: white;
+/* SECTION DE ICONOS DE LA PUBLICACION */
+.notesIcons {
+  background-color: #91BBE5;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  /* height: 30%; */
 }
 /* SECTION DE ICONOS DE LA PUBLICACION */
 .notesIcons {
@@ -384,6 +395,12 @@ h5 {
 .line {
   width: 100%;
   border-top: 1px solid #aaaaaa;
+}
+.footerPost {
+  background-color: #91BBE5;
+  height: 2rem;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
 }
 /* COMENTARIO INPUT */
 .comment input {
@@ -630,6 +647,8 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   .publicationSection{
     margin-left: 60%;
     width: 70%;
+    border-radius: .5rem ;
+
   }
 }
 

@@ -1,5 +1,5 @@
-import { signUp } from '../firebase.js';
-import { authentification } from '../authenticationRouter.js';
+import { signUp } from '../firestore-controller/firebase.js';
+import { authentification } from '../firestore-controller/authenticationRouter.js';
 
 
 export default () => {
