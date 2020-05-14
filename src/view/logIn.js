@@ -5,7 +5,7 @@ export default () => {
   const logInform = `
 
   <img class="laptopPic" src="./img/laptop.png" alt="laptopPic">
-  
+  <main class="mainSignIn">
     <h1>EducaChat</h1>
     
     <h2>La red de educación para jóvenes!</h2>
@@ -17,9 +17,9 @@ export default () => {
       <button class="btnSign" id="SignIn">Sign In</button>
     </section>
 
-  <p>O bien ingresa con...</p>
-    <input id="googleInput"></input>
-  <label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
+      <p>O bien ingresa con...</p>
+        <input id="googleInput"></input>
+      <label id="googleIcon" for=googleInput><img src="img/Google-Icon.svg"></img></label>
 
       <p>¿No tienes una cuenta? <span><a href="#/signUpform">Registrate</a></span></p>
   </main>
