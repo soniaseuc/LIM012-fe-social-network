@@ -1,4 +1,5 @@
 // import { getStatus } from './firestore.js';
+export const currentUserUid = () => firebase.auth().currentUser;
 
 
 export const authentification = () => {
@@ -6,7 +7,8 @@ export const authentification = () => {
     if (user) {
       // Take user to a different or home page
       // User is signed in
-      const myUser = firebase.auth().currentUser;
+
+      const myUser = currentUserUid();
       window.localStorage.setItem('email', myUser.email);
       window.location.hash = '#/home';
       if (myUser != null) {

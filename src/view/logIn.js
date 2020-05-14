@@ -1,5 +1,5 @@
-import { signIn, signInWithGoogle } from '../firebase.js';
-import { authentification } from '../authenticationRouter.js';
+import { signIn, signInWithGoogle } from '../firestore-controller/firebase.js';
+import { authentification } from '../firestore-controller/authenticationRouter.js';
 
 export default () => {
   const logInform = `

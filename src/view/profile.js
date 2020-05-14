@@ -1,5 +1,5 @@
-import { signOut } from '../firebase.js';
-import { authentification } from '../authenticationRouter.js';
+import { signOut } from '../firestore-controller/firebase.js';
+import { authentification } from '../firestore-controller/authenticationRouter.js';
 
 const navMenu = () => {
   const profileView = document.createElement('header');

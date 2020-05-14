@@ -1,6 +1,6 @@
-import { signOut } from '../firebase.js';
-import { authentification } from '../authenticationRouter.js';
-import { publishStatus, uploadImagePost } from '../firestore.js';
+import { signOut } from '../firestore-controller/firebase.js';
+import { authentification } from '../firestore-controller/authenticationRouter.js';
+import { publishStatus, uploadImagePost } from '../firestore-controller/firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 
 const perfil = () => {
