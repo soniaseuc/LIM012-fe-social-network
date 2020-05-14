@@ -1,4 +1,5 @@
 import { changeTmp } from './view-controller/router.js';
+// import logIn from './view/logIn.js';
 
 
 // // Your web app's Firebase configuration
@@ -51,5 +52,5 @@ li.forEach((el) => {
 });
 
 
-// data();
-// MVC para correr test
+const numeroDeEntradas = window.history.length;
+console.log(numeroDeEntradas);
