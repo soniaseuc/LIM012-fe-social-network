@@ -1,5 +1,7 @@
 import { components } from '../view/index.js';
-import { getStatus } from '../firestore-controller/firestore.js';
+import { posts } from '../view/components/post.js';
+
+// import { getStatus } from '../firestore-controller/firestore.js';
 
 // controlar el cambio de la vista == view-controler
 export const changeTmp = (hash) => {
@@ -20,7 +22,7 @@ export const changeTmp = (hash) => {
     { sectionMain.appendChild(components.home());
       // console.log(document.getElementById('mainElement'));
       // console.log(document.getElementById('comentarios'));
-      return getStatus();
+      return posts();
     }
     default:
       return sectionMain.appendChild(components.different());

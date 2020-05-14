@@ -1,5 +1,6 @@
 import { currentUserUid } from '../../firestore-controller/authenticationRouter.js';
-import { getStatus, editNote,
+import {
+  getStatus, editNote,
   deletePublication, changeVisibility,
 } from '../../firestore-controller/firestore.js';
 
@@ -27,10 +28,14 @@ export const posts = () => {
   statusPost.classList.add('postSection');
   mainElem.appendChild(statusPost);
   getStatus((array) => {
+    console.log(array);
     array.forEach((doc) => {
+      console.log(`soy doc ${doc.data().status}`);
       const currentUserId = currentUserUid();
       statusPost.innerHTML = '';
       if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
+        console.log(`HOLA publico if no ${currentUserId.uid}`);
+
         // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
         const post = document.createElement('section');
         post.className = 'publicationSection';
@@ -53,6 +58,8 @@ export const posts = () => {
                       `;
         statusPost.appendChild(post);
       } if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid) {
+        console.log(`HOLA privado if ${currentUserId.uid}`);
+
         // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
         // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
         const post = document.createElement('section');
@@ -90,6 +97,8 @@ export const posts = () => {
                       `;
         statusPost.appendChild(post);
       } if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid) {
+        console.log(`HOLA publico 2 if ${currentUserId.uid}`);
+
         // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
         // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
         const post = document.createElement('section');
