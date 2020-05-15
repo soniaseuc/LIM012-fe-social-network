@@ -2,6 +2,7 @@ import { signOut } from '../firestore-controller/firebase.js';
 import { authentification } from '../firestore-controller/authenticationRouter.js';
 import { publishStatus, uploadImagePost } from '../firestore-controller/firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
+import { posts } from './components/post.js';
 
 const perfil = () => {
   const perfilModal = `
@@ -324,12 +325,13 @@ export const mainPublicationForm = () => {
 };
 
 
-export const homeTemplate = () => {
+export const homeTemplate = (notes) => {
   const mainElem = document.createElement('main');
   mainElem.setAttribute('id', 'mainElement');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
+  mainElem.appendChild(posts(notes));
   mainElem.classList.add('homeContainer');
   return mainElem;
 };

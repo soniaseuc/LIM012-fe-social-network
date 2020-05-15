@@ -1,14 +1,13 @@
 import { components } from '../view/index.js';
-import { posts } from '../view/components/post.js';
+import { getStatus } from '../firestore-controller/firestore.js';
 
+// import { posts } from '../view/components/post.js';
 // import { getStatus } from '../firestore-controller/firestore.js';
-
 // controlar el cambio de la vista == view-controler
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
   const sectionMain = document.getElementById('logIn');
   sectionMain.innerHTML = '';
-
   switch (hash) {
     case '':
     case '#':
@@ -19,10 +18,12 @@ export const changeTmp = (hash) => {
     case '#/profile':
     { return sectionMain.appendChild(components[id]()); }
     case '#/home':
-    { sectionMain.appendChild(components.home());
-      // console.log(document.getElementById('mainElement'));
-      // console.log(document.getElementById('comentarios'));
-      return posts();
+    {
+      console.log(document.getElementById('mainElement'));
+      return getStatus((notes) => {
+        console.log(notes);
+        sectionMain.appendChild(components.home(notes));
+      });
     }
     default:
       return sectionMain.appendChild(components.different());

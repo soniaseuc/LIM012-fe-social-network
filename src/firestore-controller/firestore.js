@@ -65,11 +65,7 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
 // eslint-disable-next-line max-len
 // export const editNote = (idDoc, textarea) => firebase.firestore().collection('post').doc(idDoc).update({status: textarea});
 export const editNote = (idDoc, textarea) => {
-  // console.log('dentro de la funcion editNote');
-  // console.log(idDoc);
-  // console.log(pElToEdit);
   // const textareaEdited = document.getElementById(`textareaEdit-${doc.id}`).value;
-  // console.log(textareaEdited);
   firebase.firestore().collection('post').doc(idDoc).update({
     status: textarea,
     // img: file,
@@ -118,17 +114,15 @@ export const editNote = (idDoc, textarea) => {
 //   return postDeleteEdit;
 // };
 
-
 /*
 * READ DATABASE
 */
 export const getStatus = (callback) => {
-  // const currentUserUid = firebase.auth().currentUser;
   firebase.firestore().collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapShot) => {
       const data = [];
       querySnapShot.forEach((doc) => {
-        data.push(doc);
+        data.push(doc.data());
       });
       callback(data);
     });
