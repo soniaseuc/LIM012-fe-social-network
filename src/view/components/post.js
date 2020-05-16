@@ -21,31 +21,31 @@ const validatePost = (img, status, doc) => {
   return postTemplate;
 };
 
+
 export const posts = (array) => {
   // const mainElem = document.getElementById('mainElement');
   const statusPost = document.createElement('section');
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
-  // mainElem.appendChild(statusPost);
-  // const statusPost = document.getElementById('comentarios');
-  const post = document.createElement('section');
-  
   array.forEach((doc) => {
     const currentUserId = currentUserUid();
-    statusPost.innerHTML = '';
-    if (doc.visibility === 'public' && doc.id !== currentUserId.uid) {
+    if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
+      console.log(`HOLA ${doc.id} publico if not ${currentUserId.uid}`);
+      console.log(`HOLA ${doc.data().name} MI POST ES ${doc.data().status}`);
+      const post = document.createElement('section');
+      post.innerHTML = '';
       // B/C PUBLIC STATUS SHOULD BE DISPLAY TO EVERYONE
       post.className = 'publicationSection';
       post.setAttribute('id', `publicationSection-${doc.id}`);
       post.innerHTML += `
                   <header class="headerUserName">
-                      <h1 class="nameTitlePublication">${doc.name} </h1>
+                      <h1 class="nameTitlePublication">${doc.data().name} </h1>
                       <div id="ifPublicButMine"></div>
-                  </header>      
+                  </header>
                   <section class="notes" id="content">
-                      ${validatePost(doc.img, doc.status, doc.id)}
-                      <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.status}</textarea>
-                      <p class="softFont">Publicado ${doc.date.toDate()}</p>
+                      ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                      <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
+                      <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                       <div class="notesIcons, footerPost">
                       <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                       <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
@@ -53,19 +53,21 @@ export const posts = (array) => {
                   </section>
                       `;
       statusPost.appendChild(post);
-    } if (doc.visibility === 'private' && doc.id === currentUserId.uid) {
-      console.log(`HOLA privado if ${currentUserId.uid}`);
-
-      // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
-      // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
+    } if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid) {
+      console.log(`HOLA ${doc.id} privado if ${currentUserId.uid}`);
+      const post = document.createElement('section');
+      post.innerHTML = '';
       post.className = 'publicationSection';
+      post.setAttribute('id', `publicationSection-${doc.id}`);
+      // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
+      console.log(`HOLA ${doc.data().name} MI POST ES ${doc.data().status}`);
       post.innerHTML += `
                       <header>
                           <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
-                          <option value="private">${doc.visibility === 'private' ? 'Privado' : 'Publico'}</option>
-                          <option value="public">${doc.visibility === 'public' ? 'Privado' : 'Publico'}</option>
+                          <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+                          <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
                           </select>
-                          <h1 class="nameTitlePublication">${doc.name} </h1>
+                          <h1 class="nameTitlePublication">${doc.data().name} </h1>
                           <figure class="figureContainerIcons">
                             <input id="delete-${doc.id}" type="checkbox">
                             <label for="delete-${doc.id}">
@@ -80,9 +82,9 @@ export const posts = (array) => {
                           </figure>
                       </header>
                       <section class="notes" id="content">
-                          ${validatePost(doc.img, doc.status, doc.id)}
-                          <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.status}</textarea>
-                          <p class="softFont">Publicado ${doc.date.toDate()}</p>
+                          ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                          <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
+                          <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                           <div class="notesIcons">
                           <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                           <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
@@ -91,18 +93,21 @@ export const posts = (array) => {
                       </section>
                       `;
       statusPost.appendChild(post);
-    } if (doc.visibility === 'public' && doc.id === currentUserId.uid) {
-      console.log(`HOLA publico 2 if ${currentUserId.uid}`);
+    } if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid) {
+      console.log(`HOLA ${doc.id} publico if ${currentUserId.uid}`);
+      const post = document.createElement('section');
+      post.innerHTML = '';
       post.className = 'publicationSection';
+      post.setAttribute('id', `publicationSection-${doc.id}`);
       // B/C PRIVATE ESTATUS CAN ONLY BE SEEN BY THE CURRENT USER
-      // console.log(`HOLA ${currentUserUid.uid} MI POST ES ${doc.data().status}`);
+      console.log(`HOLA ${doc.data().name} MI POST ES ${doc.data().status}`);
       post.innerHTML += `
                         <header>
                             <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
-                            <option value="public">${doc.visibility === 'private' ? 'Privado' : 'Publico'}</option>
-                            <option value="private">${doc.visibility === 'public' ? 'Privado' : 'Publico'}</option>
+                            <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+                            <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
                             </select>
-                            <h1 class="nameTitlePublication">${doc.name} </h1>
+                            <h1 class="nameTitlePublication">${doc.data().name} </h1>
                             <figure class="figureContainerIcons">
                               <input id="delete-${doc.id}" type="checkbox">
                               <label for="delete-${doc.id}">
@@ -117,15 +122,15 @@ export const posts = (array) => {
                             </figure>
                         </header>
                         <section class="notes" id="content">
-                        ${validatePost(doc.img, doc.status, doc.id)}
-                            <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.status}</textarea>
-                            <p class="softFont">Publicado ${doc.date.toDate()}</p>
+                        ${validatePost(doc.data().img, doc.data().status, doc.id)}
+                            <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
+                            <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
                             <div class="notesIcons">
                             <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                             <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
                             <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                             </div>
-                        </section>      
+                        </section>
                         `;
       statusPost.appendChild(post);
     }
@@ -134,7 +139,6 @@ export const posts = (array) => {
     const btnDeleted = statusPost.querySelector(`#delete-${doc.id}`);
     if (btnDeleted) {
       console.log(btnDeleted);
-
       btnDeleted.addEventListener('click', () => {
         deletePublication(doc.id);
       });
@@ -143,8 +147,9 @@ export const posts = (array) => {
     // FUNCIONES PARA EDITAR PUBLICACION
     const publicOrPrivateSelector = statusPost.querySelector(`#publicOrPrivateSelector-${doc.id}`);
     // const publicationSection = statusPost.querySelector(`#publicationSection-${doc.id}`);
-    // console.log(publicOrPrivateSelector);
-    if (publicOrPrivateSelector != null && doc.id === currentUserId.uid) {
+    console.log(publicOrPrivateSelector);
+    if (publicOrPrivateSelector != null && doc.data().id === currentUserId.uid) {
+      console.log(publicOrPrivateSelector);
       publicOrPrivateSelector.addEventListener('change', (e) => {
         e.preventDefault();
         changeVisibility(doc.id, publicOrPrivateSelector.value);
@@ -152,10 +157,12 @@ export const posts = (array) => {
     }
 
     const modificar = document.getElementById(`edit-${doc.id}`);
+    console.log(modificar);
+    console.log(`edit-${doc.id}`);
+    console.log(`textareaEdit-${doc.id}`);
     const textareaEdit = document.getElementById(`textareaEdit-${doc.id}`);
     if (modificar) {
-      console.log(modificar);
-
+      console.log(`dentro de modificar ${modificar}`);
       // al hacer click en el boton del lapiz para editar publicacion
       modificar.addEventListener('click', (e) => {
         e.preventDefault();
@@ -163,11 +170,11 @@ export const posts = (array) => {
         textareaEdit.focus();
       });
     }
-
+    console.log(`btnSaveEdit-${doc.id}`);
     const btnEdit = document.getElementById(`btnSaveEdit-${doc.id}`);
+    console.log(btnEdit);
     if (btnEdit) {
-      console.log(btnEdit);
-
+      console.log(`dentro de ${btnEdit}`);
       // agregando evento de click al btn guardar cambio en la publicacion
       btnEdit.addEventListener('click', (e) => {
         e.preventDefault();
@@ -175,5 +182,5 @@ export const posts = (array) => {
       });
     }
   });
-  return post;
+  return statusPost;
 };
