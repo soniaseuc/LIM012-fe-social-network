@@ -19,7 +19,6 @@ export const changeTmp = (hash) => {
     { return sectionMain.appendChild(components[id]()); }
     case '#/home':
     {
-      console.log(document.getElementById('mainElement'));
       return getStatus((notes) => {
         console.log(notes);
         sectionMain.appendChild(components.home(notes));

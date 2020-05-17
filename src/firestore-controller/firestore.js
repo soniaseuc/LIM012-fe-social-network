@@ -122,7 +122,7 @@ export const getStatus = (callback) => {
     .onSnapshot((querySnapShot) => {
       const data = [];
       querySnapShot.forEach((doc) => {
-        data.push(doc.data());
+        data.push(doc);
       });
       callback(data);
     });
