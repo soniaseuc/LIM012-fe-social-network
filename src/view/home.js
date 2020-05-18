@@ -1,8 +1,8 @@
 import { signOut } from '../firestore-controller/firebase.js';
 import { authentification } from '../firestore-controller/authenticationRouter.js';
-import { publishStatus, uploadImagePost, getStatus } from '../firestore-controller/firestore.js';
+import { publishStatus, uploadImagePost } from '../firestore-controller/firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
-import { posts } from './components/post.js';
+// import { posts } from './components/post.js';
 
 const perfil = () => {
   const perfilModal = `
@@ -299,6 +299,8 @@ export const mainPublicationForm = () => {
     event.preventDefault();
     const optionsPublic = document.getElementById('optionsPublic');
     const currentUserUid = firebase.auth().currentUser.uid;
+    const userEmail = firebase.auth().currentUser.email;
+    const postDate = firebase.firestore.Timestamp.fromDate(new Date());
     const visivility = sectionPublication.querySelector('#optionsPublic').value;
     const userName = firebase.auth().currentUser.displayName;
     const status = textarea.value;
@@ -307,7 +309,7 @@ export const mainPublicationForm = () => {
     if (file) {
       iPost = localStorage.getItem('image');
       uploadImagePost(file, currentUserUid);
-      publishStatus(userName, status, visivility, iPost, currentUserUid);
+      publishStatus(userName, userEmail, status, postDate, visivility, iPost, currentUserUid);
       textarea.value = '';
       showPicture.src = '';
       showPicture.classList.add('displayNone');
@@ -315,7 +317,7 @@ export const mainPublicationForm = () => {
       window.localStorage.removeItem('image');
       optionsPublic.value = 'public';
     } else {
-      publishStatus(userName, status, visivility, iPost, currentUserUid);
+      publishStatus(userName, userEmail, status, postDate, visivility, iPost, currentUserUid);
       textarea.value = '';
       optionsPublic.value = 'public';
     }

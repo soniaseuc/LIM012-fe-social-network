@@ -33,14 +33,15 @@ export const changeVisibility = (postId, value) => {
 /*
 *  CLOUD FIRESTORE FUNCTIONS create publication
 */
-export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid) => {
+// eslint-disable-next-line max-len
+export const publishStatus = (userName, userEmail, statusPost, postDate, visibilityPost, imgPost, uid) => {
   // Create a new collection and a document
   firebase.firestore().collection('post').add({
     id: uid,
     name: userName,
-    email: firebase.auth().currentUser.email,
+    email: userEmail,
     status: statusPost,
-    date: firebase.firestore.Timestamp.fromDate(new Date()),
+    date: postDate,
     visibility: visibilityPost,
     img: imgPost,
   })
@@ -49,7 +50,7 @@ export const publishStatus = (userName, statusPost, visibilityPost, imgPost, uid
       console.log(`'Document written with ID: ${docRef.id}`);
       // console.log(docRef.visibility);
       // console.log(docRef.id);
-      document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
+      // document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
       const errorCode = error.code;

@@ -306,23 +306,23 @@ display: none;
 
 }
 /* SECTION DE ICONOS DE LA PUBLICACION */
-.notesIcons {
+/* .notesIcons {
   background-color: #91BBE5;
   display: flex;
   flex-direction: row;
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
-  /* height: 30%; */
-}
-.headerUserName {
+  /* height: 30%; *
+} */
+/* .headerUserName {
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
-}
+} */
 
-.headerPost {
+/* .headerPost {
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
-}
+} */
 
 /* CONTAINER DEL TEXTO PUBLICADO */
 .notes {
@@ -435,12 +435,12 @@ h5 {
   width: 100%;
   border-top: 1px solid #aaaaaa;
 }
-.footerPost {
+/* .footerPost {
   background-color: #91BBE5;
   height: 2rem;
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
-}
+} */
 /* COMENTARIO INPUT */
 .comment input {
   background-color: #FFC86D;

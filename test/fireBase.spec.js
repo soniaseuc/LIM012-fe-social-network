@@ -14,7 +14,7 @@ global.firebase = firebasemock.MockFirebaseSdk(
 // eslint-disable-next-line import/first
 import {
   signIn, signUp, signOut, signInWithGoogle,
-} from '../src/firebase.js';
+} from '../src/firestore-controller/firebase.js';
 
 describe('signIn', () => {
   it('debería porder iniciar sesion con email: paula@gmail.com y password: 123456', () => signIn('paula@gmail.com', '123456')

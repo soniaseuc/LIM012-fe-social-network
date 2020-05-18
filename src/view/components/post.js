@@ -26,7 +26,7 @@ export const posts = (array) => {
   // BEFORE POST!!!!
   const mainElem = document.getElementById('mainElement');
   const statusPost = document.createElement('section');
-  
+
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
 
@@ -152,6 +152,7 @@ export const posts = (array) => {
       console.log(btnDeleted);
       btnDeleted.addEventListener('click', () => {
         deletePublication(doc.id);
+        statusPost.innerHTML = '';
       });
     }
 
@@ -165,6 +166,7 @@ export const posts = (array) => {
         e.preventDefault();
         console.log(e.value);
         changeVisibility(doc.id, publicOrPrivateSelector.value);
+        statusPost.innerHTML = '';
       });
     }
 
@@ -191,6 +193,7 @@ export const posts = (array) => {
       btnEdit.addEventListener('click', (e) => {
         e.preventDefault();
         editNote(doc.id, textareaEdit.value);
+        statusPost.innerHTML = '';
       });
     }
   });
