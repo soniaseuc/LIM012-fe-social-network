@@ -26,11 +26,13 @@ export const posts = (array) => {
   // BEFORE POST!!!!
   const mainElem = document.getElementById('mainElement');
   const statusPost = document.createElement('section');
-  // statusPost.innerHTML = '';
+  
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
 
   mainElem.appendChild(statusPost);
+  statusPost.innerHTML = '';
+
   // const statusPost = document.getElementById('comentarios');
   // // const post = document.createElement('section');
   array.forEach((doc) => {
@@ -79,14 +81,14 @@ export const posts = (array) => {
                           </select>
                           <h1 class="nameTitlePublication">${doc.data().name} </h1>
                           <figure class="figureContainerIcons">
-                            <input id="delete-${doc.data().id}" type="checkbox">
-                            <label for="delete-${doc.data().id}">
+                            <input id="delete-${doc.id}" type="checkbox">
+                            <label for="delete-${doc.id}">
                                 <img src="img/icons/trash.svg">
                             </label>
                           </figure>
                           <figure class="figureContainerIcons">
-                            <input id="edit-${doc.data().id}" type="checkbox">
-                            <label for="edit-${doc.data().id}">
+                            <input id="edit-${doc.id}" type="checkbox">
+                            <label for="edit-${doc.id}">
                                 <img src="img/icons/modificar.svg">
                             </label>
                           </figure>
@@ -98,7 +100,7 @@ export const posts = (array) => {
                           <div class="notesIcons">
                           <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                           <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
-                          <button id="btnSaveEdit-${doc.data().id}" class="cambioBtn">Guardar Cambio</button>
+                          <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                           </div>
                       </section>
                       `;
@@ -119,14 +121,14 @@ export const posts = (array) => {
                             </select>
                             <h1 class="nameTitlePublication">${doc.data().name} </h1>
                             <figure class="figureContainerIcons">
-                              <input id="delete-${doc.data().id}" type="checkbox">
-                              <label for="delete-${doc.data().id}">
+                              <input id="delete-${doc.id}" type="checkbox">
+                              <label for="delete-${doc.id}">
                                   <img src="img/icons/trash.svg">
                               </label>
                             </figure>
                             <figure class="figureContainerIcons">
-                              <input id="edit-${doc.data().id}" type="checkbox">
-                              <label for="edit-${doc.data().id}">
+                              <input id="edit-${doc.id}" type="checkbox">
+                              <label for="edit-${doc.id}">
                                   <img src="img/icons/modificar.svg">
                               </label>
                             </figure>
@@ -138,7 +140,7 @@ export const posts = (array) => {
                             <div class="notesIcons">
                             <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
                             <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
-                            <button id="btnSaveEdit-${doc.data().id}" class="cambioBtn">Guardar Cambio</button>
+                            <button id="btnSaveEdit-${doc.id}" class="cambioBtn">Guardar Cambio</button>
                             </div>
                         </section>
                         `;

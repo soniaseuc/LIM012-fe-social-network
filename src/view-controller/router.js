@@ -2,6 +2,7 @@ import { components } from '../view/index.js';
 import { getStatus } from '../firestore-controller/firestore.js';
 
 import { posts } from '../view/components/post.js';
+
 // import { getStatus } from '../firestore-controller/firestore.js';
 // controlar el cambio de la vista == view-controler
 export const changeTmp = (hash) => {
