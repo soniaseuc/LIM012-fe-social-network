@@ -27,6 +27,7 @@ export const posts = (array) => {
   const statusPost = document.createElement('section');
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
+  
   array.forEach((doc) => {
     const currentUserId = currentUserUid();
     if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
