@@ -28,7 +28,14 @@ export const deletePublication = (e) => {
 export const changeVisibility = (postId, value) => {
   firebase.firestore().collection('post').doc(postId).update({
     visibility: value,
-  });
+  })
+    .then(() => {
+      console.log('Visibility successfully updated!');
+    })
+    .catch((error) => {
+    // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
+    });
 };
 /*
 *  CLOUD FIRESTORE FUNCTIONS create publication
