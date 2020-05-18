@@ -1,6 +1,6 @@
 import { signOut } from '../firestore-controller/firebase.js';
 import { authentification } from '../firestore-controller/authenticationRouter.js';
-import { publishStatus, uploadImagePost } from '../firestore-controller/firestore.js';
+import { publishStatus, uploadImagePost, getStatus } from '../firestore-controller/firestore.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 import { posts } from './components/post.js';
 
@@ -319,19 +319,28 @@ export const mainPublicationForm = () => {
       textarea.value = '';
       optionsPublic.value = 'public';
     }
+    const comentarios = document.getElementById('comentarios');
+    comentarios.innerHTML = '';
   });
 
   return sectionPublication;
 };
 
 
-export const homeTemplate = (notes) => {
+export const homeTemplate = () => {
   const mainElem = document.createElement('main');
   mainElem.setAttribute('id', 'mainElement');
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-  mainElem.appendChild(posts(notes));
+  // mainElem.appendChild(posts(notes));
+  // posts(notes);
+  // getStatus((notes) => {
+  //   console.log(notes);
+  //   posts(notes);
+  // });
+  // mainElem.appendChild(getStatus(posts(notes)));
+  // posts(notes);
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
