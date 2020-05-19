@@ -717,20 +717,19 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   }
   .homeAvatarContainer{
     width: 30%;
-    margin-right: 60%;
-    margin-bottom: -20%;
-    /* margin: 2rem 35rem; */
+    position: relative;
+    right: 20%;
   }
   .homePublicationContainer{
-    /* width: 30%; */
-    margin-left: 50%;
-    width: 40%;
-    margin-top: -5%;
+    width: 50%;
+    position: relative;
+    bottom: 38%;
+    left: 24%;
   }
 
-  .sharePublicationBox {
+  /* .sharePublicationBox {
     margin-top: -8%;
-  }
+  } */
   ul{
     background-color: #F4A82C;
     margin-bottom: 2rem;
@@ -742,13 +741,16 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
   }
   #comentarios {
     margin-top: 1rem;
-    width: 50%;
+    width: 65%;
+    position: relative;
+    bottom: 17%;
+    right: 6%;
   }
   .publicationSection{
     margin-left: 60%;
     width: 70%;
     border-radius: .5rem ;
-
+    border: 2px solid #aaaaaa;
   }
 }
 
