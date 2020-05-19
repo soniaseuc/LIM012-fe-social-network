@@ -1,7 +1,7 @@
 import { currentUserUid } from '../../firestore-controller/authenticationRouter.js';
 import {
   editNote,
-  deletePublication, changeVisibility,
+  deletePublication, changeVisibility, likeCounter,
 } from '../../firestore-controller/firestore.js';
 
 const validatePost = (img, status, doc) => {
@@ -20,6 +20,31 @@ const validatePost = (img, status, doc) => {
   // console.log(doc);
   return postTemplate;
 };
+const likeTemp = (doc) => {
+  let figure = '';
+  if (doc.data().like >= 0) {
+    figure = `
+    <figure class="circle">
+        <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
+        <input name="likeHeart" type="checkbox">
+        <label for="likeHeart">
+          <img src="img/icons/heart-solid.svg">
+        </label>
+    </figure>
+    `;
+  } else {
+    figure = `
+    <figure class="circle">
+        <span>${doc.data().like === undefined ? 0 : 0}</span>
+        <input name="likeHeart" type="checkbox">
+        <label for="likeHeart">
+          <img src="img/icons/heart-solid.svg">
+        </label>
+      </figure>
+    `;
+  }
+  return figure;
+};
 
 const publicNotCurrentUser = (doc) => {
   const section = document.createElement('section');
@@ -34,7 +59,7 @@ const publicNotCurrentUser = (doc) => {
       <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
       <div class="notesIcons, footerPost">
-      <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+ 
       <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
       </div>
   </section>
@@ -85,7 +110,7 @@ const privateCurrentUser = (doc) => {
       <textarea name="textareaEdit" class="displayNone">${doc.data().status}</textarea>
       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
       <div class="notesIcons">
-      <button id="likeHeart" class="circle displayNone"><img src="img/icons/heart-solid.svg"></button>
+      ${likeTemp(doc)}
       <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
       <button class="cambioBtn">Guardar Cambio</button>
       </div>
@@ -131,6 +156,15 @@ const privateCurrentUser = (doc) => {
       editNote(doc.id, textareaEdit.value);
     });
   }
+  const likeHeart = section.querySelector('[name="likeHeart"]');
+  console.log(likeHeart.checked);
+
+  likeHeart.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(e.target.checked);
+    const value = -1;
+    likeCounter(doc.id, value);
+  });
 
   return section;
 };
