@@ -60,12 +60,12 @@ const validateVisibility = (doc) => {
   return select;
 };
 
-const privateCurrentUser = (doc, currentUserId) => {
+const privateCurrentUser = (doc) => {
   const section = document.createElement('section');
   section.className = 'publicationSection';
   section.innerHTML = `
   <header>
-    ${validateVisibility(doc)}
+  ${validateVisibility(doc)}
     <h1 class="nameTitlePublication">${doc.data().name} </h1>
     <figure class="figureContainerIcons">
       <input name="delete" type="checkbox">
@@ -97,21 +97,18 @@ const privateCurrentUser = (doc, currentUserId) => {
   console.log(btnDeleted);
   btnDeleted.addEventListener('click', () => {
     deletePublication(doc.id);
-    // statusPost.innerHTML = '';
   });
 
 
   // FUNCIONES PARA EDITAR PUBLICACION
   const publicOrPrivateSelector = section.querySelector('.publicOrPrivateSelector');
-  // const publicationSection = statusPost.querySelector(`#publicationSection-${doc.id}`);
   // console.log(publicOrPrivateSelector);
-  if (publicOrPrivateSelector != null && doc.data().id === currentUserId.uid) {
+  if (publicOrPrivateSelector != null) {
     console.log(publicOrPrivateSelector.value);
     publicOrPrivateSelector.addEventListener('change', (e) => {
       e.preventDefault();
       console.log(e.target.value);
       changeVisibility(doc.id, publicOrPrivateSelector.value);
-      // statusPost.innerHTML = '';
     });
   }
 
@@ -121,21 +118,17 @@ const privateCurrentUser = (doc, currentUserId) => {
   modificar.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('dentro de boton modificar');
-
     textareaEdit.classList.remove('displayNone');
     textareaEdit.focus();
   });
 
-  // console.log(`btnSaveEdit-${doc.id}`);
+  // agregando evento de click al btn guardar cambio en la publicacion
   const btnEdit = section.querySelector('.cambioBtn');
   console.log(btnEdit); // null
   if (btnEdit) {
-    // console.log(`dentro de ${btnEdit}`);
-    // agregando evento de click al btn guardar cambio en la publicacion
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
       editNote(doc.id, textareaEdit.value);
-      // statusPost.innerHTML = '';
     });
   }
 
@@ -146,14 +139,13 @@ const privateCurrentUser = (doc, currentUserId) => {
 export const posts = (array) => {
   const currentUserId = currentUserUid();
   const post = document.createElement('section');
-
   array.forEach((doc) => {
     if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
       post.appendChild(publicNotCurrentUser(doc));
     } if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid) {
-      post.appendChild(privateCurrentUser(doc, currentUserId));
+      post.appendChild(privateCurrentUser(doc));
     } if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid) {
-      post.appendChild(privateCurrentUser(doc, currentUserId));
+      post.appendChild(privateCurrentUser(doc));
     }
   });
   return post;

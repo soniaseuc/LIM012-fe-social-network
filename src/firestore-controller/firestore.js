@@ -1,7 +1,6 @@
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deletePublication = (e) => firebase.firestore().collection('post').doc(e).delete();
 export const deletePublication = (e) => {
-  // console.log(e.target.id);
   firebase.firestore().collection('post').doc(e).delete()
     .then(() => {
       console.log('Document successfully deleted!');
@@ -53,11 +52,7 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
     img: imgPost,
   })
     .then((docRef) => {
-      // console.log(uid);
       console.log(`'Document written with ID: ${docRef.id}`);
-      // console.log(docRef.visibility);
-      // console.log(docRef.id);
-      // document.querySelector('[placeholder="¿Que quieres compartir?"]').value = '';
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -73,10 +68,8 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
 // eslint-disable-next-line max-len
 // export const editNote = (idDoc, textarea) => firebase.firestore().collection('post').doc(idDoc).update({status: textarea});
 export const editNote = (idDoc, textarea) => {
-  // const textareaEdited = document.getElementById(`textareaEdit-${doc.id}`).value;
   firebase.firestore().collection('post').doc(idDoc).update({
     status: textarea,
-    // img: file,
   })
     .then(() => {
       console.log('Document successfully updated!');
@@ -86,41 +79,6 @@ export const editNote = (idDoc, textarea) => {
       console.error('Error updating document: ', error);
     });
 };
-
-// FUNCION PARA MOSTRAR EL BOTON EDITAR Y ELIMINAR CUANDO ES PUBLICO
-// ${ifPublicButMine(doc.id, doc.data().id)}
-// PORQUE ANTES SOLO MOSTRABA ESOS BOTONES CUANDO ERA PRIVADO
-// const ifPublicButMine = (doc, userId) => {
-//   console.log('dentro de ifPublivButMine');
-//   const postDeleteEdit = document.getElementById('ifPublicButMine');
-//   const currentUserUid = firebase.auth().currentUser;
-//   // const postDeleteEdit = document.createElement('section');
-//   // postDeleteEdit.innerHTML = '';
-//   console.log(`${userId} =?= ${currentUserUid.uid}`);
-//   if (userId === currentUserUid.uid) {
-//     console.log(`dentro de ${userId} == ${currentUserUid.uid}`);
-//     const post = document.createElement('section');
-//     post.innerHTML += `
-//     <figure class="figureContainerIcons">
-//     <input id="delete-${doc.id}" type="checkbox">
-//     <label for="delete-${doc.id}">
-//         <img src="img/icons/trash.svg">
-//     </label>
-//   </figure>
-//   <figure class="figureContainerIcons">
-//     <input id="edit-${doc.id}" type="checkbox">
-//     <label for="edit-${doc.id}">
-//         <img src="img/icons/modificar.svg">
-//     </label>
-//   </figure>
-//   `;
-//     postDeleteEdit.innerHTML = post;
-//   } else {
-//     console.log('dentro del else ifPublicButMine');
-//     // postDeleteEdit.innerHTML = '';
-//   }
-//   return postDeleteEdit;
-// };
 
 /*
 * READ DATABASE
@@ -137,14 +95,8 @@ export const getStatus = (callback) => {
 };
 
 // FIRESTORAGE
-// const storage = firebase.storage();
 export const uploadImagePost = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
   refStorage.put(file);
   // console.log(`soy file de firestore.js ${refStorage}`);
 };
-
-// const createTemp = () => {
-//   const publicationSection = document.getElementsByClassName('publicationSection');
-//   const header = document.createElement('header');
-// };
