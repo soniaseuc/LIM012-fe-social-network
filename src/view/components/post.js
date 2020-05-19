@@ -41,27 +41,30 @@ const publicNotCurrentUser = (doc) => {
   return section;
 };
 
-// if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid)
-// // b/c the keyvalue of visivility should be shown as the selected option when reading a post
-// <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
-// <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-// <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-// if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid);
+const validateVisibility = (doc) => {
+  let select = '';
+  if (doc.data().visibility === 'private') {
+    select = `    
+    <select  class="publicOrPrivateSelector">
+      <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+      <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+    </select>`;
+  } else {
+    select = `    
+    <select class="publicOrPrivateSelector">
+      <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+      <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+    </select>`;
+  }
+  return select;
+};
 
-// <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-// <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-// </select>
-// </select>
-
-const privateCurrentUser = (doc, currentUserId) => {
+const privateCurrentUser = (doc) => {
   const section = document.createElement('section');
 
   section.innerHTML = `
   <header>
-    <select class="publicOrPrivateSelector">
-    <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-    <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-    </select>
+  ${validateVisibility(doc)}
     <h1 class="nameTitlePublication">${doc.data().name} </h1>
     <figure class="figureContainerIcons">
       <input name="delete" type="checkbox">
@@ -93,21 +96,18 @@ const privateCurrentUser = (doc, currentUserId) => {
   console.log(btnDeleted);
   btnDeleted.addEventListener('click', () => {
     deletePublication(doc.id);
-    // statusPost.innerHTML = '';
   });
 
 
   // FUNCIONES PARA EDITAR PUBLICACION
   const publicOrPrivateSelector = section.querySelector('.publicOrPrivateSelector');
-  // const publicationSection = statusPost.querySelector(`#publicationSection-${doc.id}`);
   // console.log(publicOrPrivateSelector);
-  if (publicOrPrivateSelector != null && doc.data().id === currentUserId.uid) {
+  if (publicOrPrivateSelector != null) {
     console.log(publicOrPrivateSelector.value);
     publicOrPrivateSelector.addEventListener('change', (e) => {
       e.preventDefault();
       console.log(e.target.value);
       changeVisibility(doc.id, publicOrPrivateSelector.value);
-      // statusPost.innerHTML = '';
     });
   }
 
@@ -117,21 +117,17 @@ const privateCurrentUser = (doc, currentUserId) => {
   modificar.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('dentro de boton modificar');
-
     textareaEdit.classList.remove('displayNone');
     textareaEdit.focus();
   });
 
-  // console.log(`btnSaveEdit-${doc.id}`);
+  // agregando evento de click al btn guardar cambio en la publicacion
   const btnEdit = section.querySelector('.cambioBtn');
   console.log(btnEdit); // null
   if (btnEdit) {
-    // console.log(`dentro de ${btnEdit}`);
-    // agregando evento de click al btn guardar cambio en la publicacion
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
       editNote(doc.id, textareaEdit.value);
-      // statusPost.innerHTML = '';
     });
   }
 
@@ -140,24 +136,18 @@ const privateCurrentUser = (doc, currentUserId) => {
 
 
 export const posts = (array) => {
-  // BEFORE POST!!!!
-  // const statusPost = document.getElementById('comentarios');
-  // // const post = document.createElement('section');
   const currentUserId = currentUserUid();
   const post = document.createElement('section');
   post.className = 'publicationSection';
-
   // post.innerHTML = '';
-
   array.forEach((doc) => {
     if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
       post.appendChild(publicNotCurrentUser(doc));
     } if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid) {
-      post.appendChild(privateCurrentUser(doc, currentUserId));
+      post.appendChild(privateCurrentUser(doc));
     } if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid) {
-      post.appendChild(privateCurrentUser(doc, currentUserId));
+      post.appendChild(privateCurrentUser(doc));
     }
   });
   return post;
-  // return mainElem.appendChild(statusPost);
 };

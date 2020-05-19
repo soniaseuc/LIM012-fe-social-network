@@ -27,29 +27,31 @@ import {
   publishStatus, getStatus, deletePublication, editNote, changeVisibility,
 } from '../src/firestore-controller/firestore.js';
 
-describe('crear y mostrar post', () => {
-  it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
-    .then(() => getStatus(
-      (data) => {
-        const result = data.find(note => note.status === 'me llamo test sunday. Puedes verlo?');
-        expect(result.status).toBe('me llamo test sunday. Puedes verlo?');
-        done();
-      },
-    )));
-});
 
 // describe('crear y mostrar post', () => {
 // eslint-disable-next-line max-len
-//   it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
-//     .then(() => {
-//       const callback = (data) => {
+// it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
+//     .then(() => getStatus(
+//       (data) => {
 //         const result = data.find(note => note.status === 'me llamo test sunday. Puedes verlo?');
 //         expect(result.status).toBe('me llamo test sunday. Puedes verlo?');
 //         done();
-//       };
-//       getStatus(callback);
-//     }));
+//       },
+//     )));
 // });
+
+describe('crear y mostrar post', () => {
+// eslint-disable-next-line max-len
+  it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
+    .then(() => {
+      const callback = (data) => {
+        const result = data.find(note => note.status === 'me llamo test sunday. Puedes verlo?');
+        expect(result.status).toBe('me llamo test sunday. Puedes verlo?');
+        done();
+      };
+      getStatus(callback);
+    }));
+});
 
 it('Debería poder modificar una nota', done => editNote('abc1d', 'me llamo test sunday')
   .then(() => getStatus(
