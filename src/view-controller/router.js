@@ -8,7 +8,7 @@ import { posts } from '../view/components/post.js';
 export const changeTmp = (hash) => {
   const id = hash.split('/')[1];
   const sectionMain = document.getElementById('logIn');
-  const comentarios = document.getElementById('comentarios');
+  // const comentarios = document.getElementById('comentarios');
   sectionMain.innerHTML = '';
   switch (hash) {
     case '':
@@ -22,15 +22,18 @@ export const changeTmp = (hash) => {
     case '#/home':
     {
       // return
-      getStatus((notes) => {
-        console.log(notes);
-        posts(notes);
-        if (comentarios) {
-          comentarios.innerHTML = '';
-        }
-      //   sectionMain.appendChild(components.home(notes));
+      // getStatus((notes) => {
+      //   console.log(notes);
+      //   posts(notes);
+      //   // if (comentarios) {
+      //   //   comentarios.innerHTML = '';
+      //   // }
+      // //   sectionMain.appendChild(components.home(notes));
+      // });
+      return getStatus((notes) => {
+        sectionMain.innerHTML = '';
+        sectionMain.appendChild(components.home(notes));
       });
-      return sectionMain.appendChild(components.home());
     }
     default:
       return sectionMain.appendChild(components.different());
