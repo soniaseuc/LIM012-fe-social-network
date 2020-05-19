@@ -23,6 +23,7 @@ const validatePost = (img, status, doc) => {
 
 const publicNotCurrentUser = (doc) => {
   const section = document.createElement('section');
+  section.className = 'publicationSection';
   section.innerHTML = `
   <header class="headerUserName">
       <h1 class="nameTitlePublication">${doc.data().name} </h1>
@@ -41,27 +42,30 @@ const publicNotCurrentUser = (doc) => {
   return section;
 };
 
-// if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid)
-// // b/c the keyvalue of visivility should be shown as the selected option when reading a post
-// <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
-// <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-// <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-// if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid);
-
-// <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-// <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-// </select>
-// </select>
+const validateVisibility = (doc) => {
+  let select = '';
+  if (doc.data().visibility === 'private') {
+    select = `    
+    <select  class="publicOrPrivateSelector">
+      <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+      <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+    </select>`;
+  } else {
+    select = `    
+    <select class="publicOrPrivateSelector">
+      <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+      <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+    </select>`;
+  }
+  return select;
+};
 
 const privateCurrentUser = (doc, currentUserId) => {
   const section = document.createElement('section');
-
+  section.className = 'publicationSection';
   section.innerHTML = `
   <header>
-    <select class="publicOrPrivateSelector">
-    <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
-    <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
-    </select>
+    ${validateVisibility(doc)}
     <h1 class="nameTitlePublication">${doc.data().name} </h1>
     <figure class="figureContainerIcons">
       <input name="delete" type="checkbox">
@@ -140,14 +144,8 @@ const privateCurrentUser = (doc, currentUserId) => {
 
 
 export const posts = (array) => {
-  // BEFORE POST!!!!
-  // const statusPost = document.getElementById('comentarios');
-  // // const post = document.createElement('section');
   const currentUserId = currentUserUid();
   const post = document.createElement('section');
-  post.className = 'publicationSection';
-
-  // post.innerHTML = '';
 
   array.forEach((doc) => {
     if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
@@ -159,5 +157,4 @@ export const posts = (array) => {
     }
   });
   return post;
-  // return mainElem.appendChild(statusPost);
 };

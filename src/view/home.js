@@ -285,6 +285,7 @@ export const mainPublicationForm = () => {
       localStorage.removeItem('image');
       showPicture.classList.add('displayNone');
       cancelUpload.classList.add('displayNone');
+      // localStorage.setItem('image', '');
     });
 
     file = e.target.files[0];
@@ -322,8 +323,6 @@ export const mainPublicationForm = () => {
       textarea.value = '';
       optionsPublic.value = 'public';
     }
-    const comentarios = document.getElementById('comentarios');
-    comentarios.innerHTML = '';
   });
 
   return sectionPublication;
