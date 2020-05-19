@@ -41,6 +41,17 @@ const publicNotCurrentUser = (doc) => {
   return section;
 };
 
+// if (doc.data().visibility === 'private' && doc.data().id === currentUserId.uid)
+// // b/c the keyvalue of visivility should be shown as the selected option when reading a post
+// <select id="publicOrPrivateSelector-${doc.id}" class="publicOrPrivateSelector">
+// <option value="private">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+// <option value="public">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+// if (doc.data().visibility === 'public' && doc.data().id === currentUserId.uid);
+
+// <option value="public">${doc.data().visibility === 'private' ? 'Privado' : 'Publico'}</option>
+// <option value="private">${doc.data().visibility === 'public' ? 'Privado' : 'Publico'}</option>
+// </select>
+// </select>
 
 const privateCurrentUser = (doc, currentUserId) => {
   const section = document.createElement('section');
