@@ -304,8 +304,6 @@ export const mainPublicationForm = () => {
       textarea.value = '';
       optionsPublic.value = 'public';
     }
-    const comentarios = document.getElementById('comentarios');
-    comentarios.innerHTML = '';
   });
 
   return sectionPublication;

@@ -82,15 +82,10 @@ body {
 }
 
 /* PORQUE LA IMAGEN EN PREVIEW ERA GRANDE Y DEFORMADA */
-/* .homePublicationContainer img {
+.homePublicationContainer img {
   border: none;
   width: 80%;
   height: 40%;
-} */
-.homePublicationContainer img {
-  border: none;
-  width: 30%;
-  height: 30%;
 }
 
 .circlePink img{
@@ -756,7 +751,3 @@ a:hover{background: #000; color:#fff; border:1px solid #000;} */
 
   }
 }
-
-
-
-

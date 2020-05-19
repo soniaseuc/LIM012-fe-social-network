@@ -37,6 +37,12 @@ export const changeVisibility = (postId, value) => {
       console.error('Error updating document: ', error);
     });
 };
+
+export const likeCounter = (docId, value) => {
+  firebase.firestore().collection('post').doc(docId).update({
+    like: firebase.firestore.FieldValue.increment(value),
+  });
+};
 /*
 *  CLOUD FIRESTORE FUNCTIONS create publication
 */
@@ -51,6 +57,7 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
     date: postDate,
     visibility: visibilityPost,
     img: imgPost,
+    like: 0,
   })
     .then((docRef) => {
       console.log(`'Document written with ID: ${docRef.id}`);
