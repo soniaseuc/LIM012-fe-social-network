@@ -1,3 +1,4 @@
+
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deletePublication = (e) => firebase.firestore().collection('post').doc(e).delete();
 export const deletePublication = (e) => {
