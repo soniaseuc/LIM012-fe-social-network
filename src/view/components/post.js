@@ -23,6 +23,7 @@ const validatePost = (img, status, doc) => {
 
 const publicNotCurrentUser = (doc) => {
   const section = document.createElement('section');
+  section.className = 'publicationSection';
   section.innerHTML = `
   <header class="headerUserName">
       <h1 class="nameTitlePublication">${doc.data().name} </h1>
@@ -61,7 +62,7 @@ const validateVisibility = (doc) => {
 
 const privateCurrentUser = (doc) => {
   const section = document.createElement('section');
-
+  section.className = 'publicationSection';
   section.innerHTML = `
   <header>
   ${validateVisibility(doc)}
@@ -138,8 +139,6 @@ const privateCurrentUser = (doc) => {
 export const posts = (array) => {
   const currentUserId = currentUserUid();
   const post = document.createElement('section');
-  post.className = 'publicationSection';
-  // post.innerHTML = '';
   array.forEach((doc) => {
     if (doc.data().visibility === 'public' && doc.data().id !== currentUserId.uid) {
       post.appendChild(publicNotCurrentUser(doc));

@@ -211,25 +211,6 @@ const avatarProfile = () => {
   return sectionProfile;
 };
 
-// const publicationCreated = () => {
-//   const publicationSection = document.createElement('section');
-//   publicationSection.setAttribute('id', 'publicationSection');
-//   publicationSection.classList.add('publicationSection');
-//   // firebase.firestore().collection('post').onSnapshot((querySnapshot) => {
-//   //   // allPosts.innerHTML = '';
-//   //   querySnapshot.forEach((doc) => {
-//   publicationSection.innerHTML = `
-//         <section id="statusPost">
-
-//         </section>
-//         `;
-//   // });
-//   // });
-//   // console.log(getStatus());
-//   return publicationSection;
-// };
-
-
 export const mainPublicationForm = () => {
   const publication = `
     <div class="sharePublicationBox">
@@ -285,6 +266,7 @@ export const mainPublicationForm = () => {
       localStorage.removeItem('image');
       showPicture.classList.add('displayNone');
       cancelUpload.classList.add('displayNone');
+      // localStorage.setItem('image', '');
     });
 
     file = e.target.files[0];
@@ -337,20 +319,12 @@ export const homeTemplate = (notes) => {
   mainElem.appendChild(navMenu());
   mainElem.appendChild(avatarProfile());
   mainElem.appendChild(mainPublicationForm());
-
   const statusPost = document.createElement('section');
   statusPost.setAttribute('id', 'comentarios');
   statusPost.classList.add('postSection');
   statusPost.innerHTML = '';
   statusPost.appendChild(posts(notes));
   mainElem.appendChild(statusPost);
-  // posts(notes);
-  // getStatus((notes) => {
-  //   console.log(notes);
-  //   posts(notes);
-  // });
-  // mainElem.appendChild(getStatus(posts(notes)));
-  // posts(notes);
   mainElem.classList.add('homeContainer');
   return mainElem;
 };
