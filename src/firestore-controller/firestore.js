@@ -38,9 +38,18 @@ export const changeVisibility = (postId, value) => {
     });
 };
 
-export const likeCounter = (docId, value) => {
-  firebase.firestore().collection('post').doc(docId).update({
+export const likeCounter = (doc, value, user) => {
+  firebase.firestore().collection('post').doc(doc.id).update({
     like: firebase.firestore.FieldValue.increment(value),
+    arrayUidLikes: doc.data().arrayUidLikes.push([{ currentUserId: user.uid },
+    ]),
+  });
+};
+
+export const dislikeCounter = (doc, value, user) => {
+  firebase.firestore().collection('post').doc(doc.id).update({
+    like: firebase.firestore.FieldValue.increment(value),
+    arrayUidLikes: doc.data().arrayUidLikes.filter(elem => elem.currentUserId !== user.uid),
   });
 };
 /*
@@ -58,6 +67,7 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
     visibility: visibilityPost,
     img: imgPost,
     like: 0,
+    arrayUidLikes: [],
   })
     .then((docRef) => {
       console.log(`'Document written with ID: ${docRef.id}`);

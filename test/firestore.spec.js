@@ -55,8 +55,8 @@ describe('crear y mostrar post', () => {
   it('Debería porder agregar una nota', done => publishStatus(doc.name, doc.email, doc.status, doc.date, doc.visibility, doc.img, doc.id)
     .then(() => {
       const callback = (data) => {
-        const result = data.find(note => note.data().status === 'me llamo test sunday. Puedes verlo?');
-        expect(result.data().status).toEqual('me llamo test sunday. Puedes verlo?');
+        const result = data.find(note => note.data().status === 'Puedes verme?');
+        expect(result.data().status).toEqual('Puedes verme?');
         done();
       };
       getStatus(callback);
@@ -67,7 +67,7 @@ it('Debería poder modificar una nota', done => editNote('abc1d', 'me llamo test
   .then(() => getStatus(
     (data) => {
       const result = data.find(note => note.id === 'abc1d');
-      expect(result.status).toBe('me llamo test sunday');
+      expect(result.data().status).toBe('me llamo test sunday');
       done();
     },
   )));
