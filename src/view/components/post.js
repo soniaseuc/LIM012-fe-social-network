@@ -59,7 +59,7 @@ const publicNotCurrentUser = (doc) => {
       <textarea id="textareaEdit-${doc.id}" class="displayNone">${doc.data().status}</textarea>
       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
       <div class="notesIcons, footerPost">
- 
+      ${likeTemp(doc)}
       <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
       </div>
   </section>
@@ -162,7 +162,7 @@ const privateCurrentUser = (doc) => {
   likeHeart.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(e.target.checked);
-    const value = -1;
+    const value = 1;
     likeCounter(doc.id, value);
   });
 
