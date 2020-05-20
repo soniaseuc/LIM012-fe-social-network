@@ -166,11 +166,8 @@ const privateCurrentUser = (doc) => {
     // likeHeart.setAttribute('disabled', false);
     console.log(e.target.checked);
     console.log('entre al click');
-
     const value = 1;
     likeCounter(doc.id, value, currentUserId);
-
-
     // likeHeart.setAttribute('disabled', true);
     // likeHeart.Enabled = false;
     // console.log(likeHeart.checked);
@@ -181,15 +178,6 @@ const privateCurrentUser = (doc) => {
   //   e.preventDefault();
   //   console.log(e.target.checked);
   //   console.log('entre al blclick');
-  //   const value = -1;
-  //   likeCounter(doc.id, value);
-  // });
-
-
-  // likeHeart.addEventListener('change', (e) => {
-  //   e.preventDefault();
-  //   console.log('entre al change');
-  //   console.log(e.target.checked);
   //   const value = -1;
   //   likeCounter(doc.id, value);
   // });
