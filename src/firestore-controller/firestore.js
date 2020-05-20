@@ -1,15 +1,14 @@
 
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deletePublication = (e) => firebase.firestore().collection('post').doc(e).delete();
-export const deletePublication = (e) => {
-  firebase.firestore().collection('post').doc(e).delete()
-    .then(() => {
-      console.log('Document successfully deleted!');
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
-};
+export const deletePublication = e => firebase.firestore().collection('post').doc(e).delete()
+  .then(() => {
+    console.log('Document successfully deleted!');
+  })
+  .catch((error) => {
+    console.error('Error removing document: ', error);
+  });
+
 
 // FIRESTORE STORAGE DELETE FILE
 // export const deleteImagePost = (file, uid) => {
@@ -25,78 +24,71 @@ export const deletePublication = (e) => {
 // };
 
 
-export const changeVisibility = (postId, value) => {
-  firebase.firestore().collection('post').doc(postId).update({
-    visibility: value,
+export const changeVisibility = (postId, value) => firebase.firestore().collection('post').doc(postId).update({
+  visibility: value,
+})
+  .then(() => {
+    console.log('Visibility successfully updated!');
   })
-    .then(() => {
-      console.log('Visibility successfully updated!');
-    })
-    .catch((error) => {
+  .catch((error) => {
     // The document probably doesn't exist.
-      console.error('Error updating document: ', error);
-    });
-};
-
-export const likeCounter = (doc, value, user) => {
-  firebase.firestore().collection('post').doc(doc.id).update({
-    like: firebase.firestore.FieldValue.increment(value),
-    arrayUidLikes: doc.data().arrayUidLikes.push([{ currentUserId: user.uid },
-    ]),
+    console.error('Error updating document: ', error);
   });
-};
 
-export const dislikeCounter = (doc, value, user) => {
-  firebase.firestore().collection('post').doc(doc.id).update({
-    like: firebase.firestore.FieldValue.increment(value),
-    arrayUidLikes: doc.data().arrayUidLikes.filter(elem => elem.currentUserId !== user.uid),
-  });
-};
+
+export const likeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
+  like: firebase.firestore.FieldValue.increment(value),
+  arrayUidLikes: doc.data().arrayUidLikes.push([{ currentUserId: user.uid },
+  ]),
+});
+
+
+export const dislikeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
+  like: firebase.firestore.FieldValue.increment(value),
+  arrayUidLikes: doc.data().arrayUidLikes.filter(elem => elem.currentUserId !== user.uid),
+});
+
 /*
 *  CLOUD FIRESTORE FUNCTIONS create publication
-*/
+*/ // Create a new collection and a document
 // eslint-disable-next-line max-len
-export const publishStatus = (userName, userEmail, statusPost, postDate, visibilityPost, imgPost, uid) => {
-  // Create a new collection and a document
-  firebase.firestore().collection('post').add({
-    id: uid,
-    name: userName,
-    email: userEmail,
-    status: statusPost,
-    date: postDate,
-    visibility: visibilityPost,
-    img: imgPost,
-    like: 0,
-    arrayUidLikes: [],
+export const publishStatus = (userName, userEmail, statusPost, postDate, visibilityPost, imgPost, uid) => firebase.firestore().collection('post').add({
+  id: uid,
+  name: userName,
+  email: userEmail,
+  status: statusPost,
+  date: postDate,
+  visibility: visibilityPost,
+  img: imgPost,
+  like: 0,
+  arrayUidLikes: [],
+})
+  .then((docRef) => {
+    console.log(`'Document written with ID: ${docRef.id}`);
   })
-    .then((docRef) => {
-      console.log(`'Document written with ID: ${docRef.id}`);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Error adding document: ', errorCode);
-      console.error('Error errorMessage adding document: ', errorMessage);
-      return errorCode;
-    });
-};
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error('Error adding document: ', errorCode);
+    console.error('Error errorMessage adding document: ', errorMessage);
+    return errorCode;
+  });
 
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 // eslint-disable-next-line max-len
 // export const editNote = (idDoc, textarea) => firebase.firestore().collection('post').doc(idDoc).update({status: textarea});
-export const editNote = (idDoc, textarea) => {
-  firebase.firestore().collection('post').doc(idDoc).update({
-    status: textarea,
+export const editNote = (idDoc, textarea) => firebase.firestore().collection('post').doc(idDoc).update({
+  status: textarea,
+})
+  .then(() => {
+    console.log('Document successfully updated!');
   })
-    .then(() => {
-      console.log('Document successfully updated!');
-    })
-    .catch((error) => {
-      // The document probably doesn't exist.
-      console.error('Error updating document: ', error);
-    });
-};
+  .catch((error) => {
+    // The document probably doesn't exist.
+    console.error('Error updating document: ', error);
+  });
+
 
 /*
 * READ DATABASE

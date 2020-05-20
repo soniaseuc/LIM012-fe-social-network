@@ -77,7 +77,7 @@ it('Debería poder modificar si es publico o privado', done => changeVisibility(
   .then(() => getStatus(
     (data) => {
       const result = data.find(note => note.id === 'abc1d');
-      expect(result.visibility).toBe('private');
+      expect(result.data().visibility).toBe('private');
       done();
     },
   )));
