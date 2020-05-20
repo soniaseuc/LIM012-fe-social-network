@@ -1,3 +1,4 @@
+
 // FUNCION QUE BORRA PUBLICACIONES
 // export const deletePublication = (e) => firebase.firestore().collection('post').doc(e).delete();
 export const deletePublication = e => firebase.firestore().collection('post').doc(e).delete()
@@ -5,20 +6,19 @@ export const deletePublication = e => firebase.firestore().collection('post').do
     console.error('Error removing document: ', error);
   });
 
-// FIRESTORE STORAGE DELETE FILE
-// export const deleteImagePost = (file, uid) => {
-//   // Create a reference to the file to delete
-//   const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-//   // Delete the file
-//   desertRef.delete().then(() => {
-//     // File deleted successfully
-//   }).catch((error) => {
-//     // Uh-oh, an error occurred!
-//     console.log(error.message);
-//   });
-// };
-
-
+/** FIRESTORE STORAGE DELETE FILE
+  export const deleteImagePost = (file, uid) => {
+    // Create a reference to the file to delete
+    const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
+    // Delete the file
+    desertRef.delete().then(() => {
+      // File deleted successfully
+    }).catch((error) => {
+      // Uh-oh, an error occurred!
+      console.log(error.message);
+    });
+};
+*/
 export const changeVisibility = (postId, value) => firebase.firestore().collection('post').doc(postId).update({
   visibility: value,
 })
@@ -26,15 +26,19 @@ export const changeVisibility = (postId, value) => firebase.firestore().collecti
     // The document probably doesn't exist.
     console.error('Error updating document: ', error);
   });
+export const likeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
+  like: firebase.firestore.FieldValue.increment(value),
+  arrayUidLikes: doc.data().arrayUidLikes.push([{ currentUserId: user.uid },
+  ]),
+});
 
-export const likeCounter = (docId, value) => {
-  firebase.firestore().collection('post').doc(docId).update({
-    like: firebase.firestore.FieldValue.increment(value),
-  });
-};
+export const dislikeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
+  like: firebase.firestore.FieldValue.increment(value),
+  arrayUidLikes: doc.data().arrayUidLikes.filter(elem => elem.currentUserId !== user.uid),
+});
 /*
 *  CLOUD FIRESTORE FUNCTIONS create publication
-*/
+*/ // Create a new collection and a document
 // eslint-disable-next-line max-len
 export const publishStatus = (userName, userEmail, statusPost, postDate, visibilityPost, imgPost, uid) => firebase.firestore().collection('post').add({
   id: uid,
@@ -52,7 +56,6 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
     console.error('Error adding document: ', errorCode);
     console.error('Error errorMessage adding document: ', errorMessage);
   });
-
 
 // FUNCIÓN PARA ACTUALIZAR LOS POSTS
 // eslint-disable-next-line max-len

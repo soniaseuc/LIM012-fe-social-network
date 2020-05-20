@@ -1,7 +1,8 @@
 import { currentUserUid } from '../../firestore-controller/authenticationRouter.js';
 import {
   editNote,
-  deletePublication, changeVisibility, likeCounter,
+  deletePublication, changeVisibility,
+  likeCounter,
 } from '../../firestore-controller/firestore.js';
 
 const validatePost = (img, status, doc) => {
@@ -26,7 +27,7 @@ const likeTemp = (doc) => {
     figure = `
     <figure class="circle">
         <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
-        <input name="likeHeart" type="checkbox">
+        <input name="likeHeart" type="checkbox" disabled="true">
         <label for="likeHeart">
           <img src="img/icons/heart-solid.svg">
         </label>
@@ -40,9 +41,10 @@ const likeTemp = (doc) => {
         <label for="likeHeart">
           <img src="img/icons/heart-solid.svg">
         </label>
-      </figure>
+    </figure>
     `;
   }
+
   return figure;
 };
 
@@ -156,15 +158,26 @@ const privateCurrentUser = (doc) => {
       editNote(doc.id, textareaEdit.value);
     });
   }
+
   const likeHeart = section.querySelector('[name="likeHeart"]');
+  const currentUserId = currentUserUid();
   console.log(likeHeart.checked);
 
   likeHeart.addEventListener('click', (e) => {
-    e.preventDefault();
+    // likeHeart.setAttribute('disabled', false);
     console.log(e.target.checked);
     const value = 1;
-    likeCounter(doc.id, value);
+    likeCounter(doc.id, value, currentUserId);
   });
+
+  // const removelikeHeart = section.querySelector('[name="likeHeart"]');
+  // removelikeHeart.addEventListener('dblclick', (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.checked);
+  //   console.log('entre al blclick');
+  //   const value = -1;
+  //   likeCounter(doc.id, value);
+  // });
 
   return section;
 };

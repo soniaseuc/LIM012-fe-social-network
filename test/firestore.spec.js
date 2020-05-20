@@ -38,14 +38,23 @@ import {
 //     )));
 // });
 
+const doc = {
+  id: '38cj4',
+  name: 'prueba',
+  email: 'prueba@gmail.com',
+  status: 'Puedes verme?',
+  date: '30/4/2020 10:05:11',
+  visibility: 'public',
+  img: '',
+};
+
 describe('crear y mostrar post', () => {
 // eslint-disable-next-line max-len
-  it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
-    //  la funcion que publica un post creea un documento en el mock server => promesa
+  it('Debería porder agregar una nota', done => publishStatus(doc.name, doc.email, doc.status, doc.date, doc.visibility, doc.img, doc.id)
     .then(() => {
       const callback = (data) => {
-        const result = data.find(note => note.data().status === 'me llamo test sunday. Puedes verlo?');
-        expect(result.data().status).toBe('me llamo test sunday. Puedes verlo?');
+        const result = data.find(note => note.data().status === 'Puedes verme?');
+        expect(result.data().status).toEqual('Puedes verme?');
         done();
       };
       getStatus(callback);
