@@ -68,9 +68,9 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
-    console.error('Error adding document: ', errorCode);
-    console.error('Error errorMessage adding document: ', errorMessage);
+    // const errorMessage = error.message;
+    // console.error('Error adding document: ', errorCode);
+    // console.error('Error errorMessage adding document: ', errorMessage);
     return errorCode;
   });
 
@@ -102,11 +102,4 @@ export const getStatus = (callback) => {
       });
       callback(data);
     });
-};
-
-// FIRESTORAGE
-export const uploadImagePost = (file, uid) => {
-  const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-  refStorage.put(file);
-  // console.log(`soy file de firestore.js ${refStorage}`);
 };

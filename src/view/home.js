@@ -1,6 +1,7 @@
 import { signOut } from '../firestore-controller/firebase.js';
 import { authentification } from '../firestore-controller/authenticationRouter.js';
-import { publishStatus, uploadImagePost } from '../firestore-controller/firestore.js';
+import { publishStatus } from '../firestore-controller/firestore.js';
+import { uploadImagePost } from '../firestore-controller/firebase-storage.js';
 import { posts } from './components/post.js';
 // import { deleteNoteOnClick } from '../firestore-controller.js';
 // import { posts } from './components/post.js';

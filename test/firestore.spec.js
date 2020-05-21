@@ -12,8 +12,8 @@ const firestoreTest = {
           date: '5/5/2020 10:05:11',
           visibility: 'public',
           img: '',
-
-
+          like: 0,
+          arrayUidLikes: [],
         },
       },
     },
@@ -25,6 +25,7 @@ global.firebase = new MockFirebase(firestoreTest, { isNaiveSnapshotListenerEnabl
 // eslint-disable-next-line import/first
 import {
   publishStatus, getStatus, deletePublication, editNote, changeVisibility,
+  // likeCounter,
 } from '../src/firestore-controller/firestore.js';
 
 
@@ -48,6 +49,8 @@ const doc = {
   date: '30/4/2020 10:05:11',
   visibility: 'public',
   img: '',
+  like: 0,
+  arrayUidLikes: [],
 };
 
 describe('crear y mostrar post', () => {
@@ -81,6 +84,15 @@ it('Debería poder modificar si es publico o privado', done => changeVisibility(
       done();
     },
   )));
+
+// it('Debería poder agregar un like a un post', done => likeCounter(doc, value, user)
+//   .then(() => getStatus(
+//     (data) => {
+//       const result = data.find(note => note.id === 'doc.id');
+//       expect(result.data().arrayUidLikes[currentUserId]).toEqual(user.uid);
+//       done();
+//     },
+//   )));
 
 
 it('Debería poder eliminar una nota', done => deletePublication('abc1d')
