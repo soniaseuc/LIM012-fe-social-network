@@ -2,7 +2,7 @@ import { currentUserUid } from '../../firestore-controller/authenticationRouter.
 import {
   editNote,
   deletePublication, changeVisibility,
-  likeCounter,
+  likeCounter, dislikeCounter,
 } from '../../firestore-controller/firestore.js';
 
 const validatePost = (img, status, doc) => {
@@ -22,30 +22,43 @@ const validatePost = (img, status, doc) => {
   return postTemplate;
 };
 const likeTemp = (doc) => {
-  let figure = '';
+  let div = '';
   if (doc.data().like >= 0) {
-    figure = `
-    <figure class="circle">
-        <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
-        <input name="likeHeart" type="checkbox" disabled="true">
+    // este no marca
+    div = `
+    <div class="likes">
         <label for="likeHeart">
+        <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
+          <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>
-    </figure>
+    </div>
     `;
   } else {
-    figure = `
-    <figure class="circle">
-        <span>${doc.data().like === undefined ? 0 : 0}</span>
-        <input name="likeHeart" type="checkbox">
+    // este si hace click
+    div = `
+    <div class="likes">
         <label for="likeHeart">
+        <span>${doc.data().like === undefined ? 0 : 0}</span>
+          <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>
-    </figure>
+    </div>
     `;
   }
 
-  return figure;
+  return div;
+};
+
+const likes = (doc) => {
+  const user = currentUserUid();
+  if (doc.data().arrayUidLikes.some(x => x.currentUserId === user.uid)) {
+    const value = -1;
+    dislikeCounter(doc, value, user);
+  } else {
+    const value = 1;
+    likeCounter(doc, value, user);
+  }
 };
 
 const publicNotCurrentUser = (doc) => {
@@ -62,12 +75,17 @@ const publicNotCurrentUser = (doc) => {
       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
       <div class="notesIcons, footerPost">
       ${likeTemp(doc)}
-      <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
       </div>
   </section>
   `;
+  const likeHeart = section.querySelector('[for="likeHeart"]');
+  likeHeart.addEventListener('click', (e) => {
+    e.preventDefault();
+    likes(doc);
+  });
   return section;
 };
+
 
 const validateVisibility = (doc) => {
   let select = '';
@@ -113,7 +131,6 @@ const privateCurrentUser = (doc) => {
       <p class="softFont">Publicado ${doc.data().date.toDate()}</p>
       <div class="notesIcons">
       ${likeTemp(doc)}
-      <button id="likeHeart" class="circlePink displayNone"><img src="img/icons/comments.svg"></button>
       <button class="cambioBtn">Guardar Cambio</button>
       </div>
   </section>
@@ -158,25 +175,28 @@ const privateCurrentUser = (doc) => {
       editNote(doc.id, textareaEdit.value);
     });
   }
-
-  const likeHeart = section.querySelector('[name="likeHeart"]');
-  const currentUserId = currentUserUid();
-  console.log(likeHeart.checked);
-
+  // console.log(doc.data().arrayUidLikes);
+  const likeHeart = section.querySelector('[for="likeHeart"]');
   likeHeart.addEventListener('click', (e) => {
-    // likeHeart.setAttribute('disabled', false);
-    console.log(e.target.checked);
-    const value = 1;
-    likeCounter(doc.id, value, currentUserId);
+    e.preventDefault();
+    likes(doc);
   });
-
-  // const removelikeHeart = section.querySelector('[name="likeHeart"]');
-  // removelikeHeart.addEventListener('dblclick', (e) => {
+  // window.addEventListener('click', (e) => {
+  //   console.log(e.target);
+  // });
+  // console.log(`soy array ${Object.values(doc.data().arrayUidLikes)}`);
+  // likeHeart.addEventListener('click', (e) => {
+  //   // likeHeart.setAttribute('disabled', false);
+  //   // console.log(e.target.checked);
   //   e.preventDefault();
-  //   console.log(e.target.checked);
-  //   console.log('entre al blclick');
-  //   const value = -1;
-  //   likeCounter(doc.id, value);
+  // console.log('j');
+  //   // if (doc.data().arrayUidLikes.some(x => x.currentUserId === user.uid)) {
+  //   //   const value = -1;
+  //   //   dislikeCounter(doc.id, value, user);
+  //   // } else {
+  //   //   const value = 1;
+  //   //   likeCounter(doc.id, value, user);
+  //   // }
   // });
 
   return section;

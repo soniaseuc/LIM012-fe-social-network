@@ -215,6 +215,22 @@ p span a {
 .softFont{
   color: #7f8c8d;
 }
+.likes {
+  border: 1px solid  #F4A82C;
+  background-color: #F4A82C;
+  border-radius: 2rem;
+  width: 3.4rem;
+  height: 2.4rem;
+  margin: 0 .1rem;
+}
+.likes input{
+  display: none;
+}
+.likes img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: .4rem auto;
+}
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 
 .footerHomePublication {

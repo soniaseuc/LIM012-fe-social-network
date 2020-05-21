@@ -28,7 +28,7 @@ export const changeVisibility = (postId, value) => firebase.firestore().collecti
   });
 export const likeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
   like: firebase.firestore.FieldValue.increment(value),
-  arrayUidLikes: doc.data().arrayUidLikes.push([{ currentUserId: user.uid },
+  arrayUidLikes: doc.data().arrayUidLikes.concat([{ currentUserId: user.uid },
   ]),
 });
 
@@ -49,6 +49,7 @@ export const publishStatus = (userName, userEmail, statusPost, postDate, visibil
   visibility: visibilityPost,
   img: imgPost,
   like: 0,
+  arrayUidLikes: [],
 })
   .catch((error) => {
     const errorCode = error.code;
@@ -84,6 +85,6 @@ export const getStatus = (callback) => {
 // FIRESTORAGE
 export const uploadImagePost = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-  refStorage.put(file);
+  return refStorage.put(file);
   // console.log(`soy file de firestore.js ${refStorage}`);
 };
