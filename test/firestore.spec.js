@@ -74,14 +74,14 @@ describe('crear y mostrar post', () => {
       };
       getStatus(callback);
     }));
-// it('Debería poder agregar un like a un post', done => likeCounter(doc, value, user)
-//   .then(() => getStatus(
-//     (data) => {
-//       const result = data.find(note => note.id === 'doc.id');
-//       expect(result.data().arrayUidLikes[currentUserId]).toEqual(user.uid);
-//       done();
-//     },
-//   )));
+  // it('Debería poder agregar un like a un post', done => likeCounter(doc, value, user)
+  //   .then(() => getStatus(
+  //     (data) => {
+  //       const result = data.find(note => note.id === 'doc.id');
+  //       expect(result.data().arrayUidLikes[currentUserId]).toEqual(user.uid);
+  //       done();
+  //     },
+  //   )));
 
 
   it('Debería poder modificar si es publico o privado', done => changeVisibility('abc1d', 'private')

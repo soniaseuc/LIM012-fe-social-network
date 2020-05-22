@@ -2,7 +2,7 @@
 import firebasemock from 'firebase-mock';
 
 jest.mock('../src/firestore-controller/firebase-storage.js', () => {
-  const firebasemock = require('firebase-mock');
+  // const firebasemock = require('firebase-mock');
   const mockauth = new firebasemock.MockAuthentication();
   const mockfirestore = new firebasemock.MockFirestore();
   return new firebasemock.MockFirebaseSdk(
