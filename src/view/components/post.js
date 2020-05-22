@@ -27,8 +27,8 @@ const likeTemp = (doc) => {
     // este no marca
     div = `
     <div class="likes">
+    <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
         <label for="likeHeart">
-        <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
           <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>
@@ -38,8 +38,8 @@ const likeTemp = (doc) => {
     // este si hace click
     div = `
     <div class="likes">
+    <span>${doc.data().like === undefined ? 0 : 0}</span>
         <label for="likeHeart">
-        <span>${doc.data().like === undefined ? 0 : 0}</span>
           <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>

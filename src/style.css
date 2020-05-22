@@ -216,12 +216,17 @@ p span a {
   color: #7f8c8d;
 }
 .likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   border: 1px solid  #F4A82C;
   background-color: #F4A82C;
   border-radius: 2rem;
-  width: 3.4rem;
-  height: 2.4rem;
-  margin: 0 .1rem;
+  width: 4rem;
+  height: 2rem;
+}
+.likes label{
+
 }
 .likes input{
   display: none;
@@ -229,7 +234,7 @@ p span a {
 .likes img{
   width: 2rem;
   height: 1.5rem;
-  margin: .4rem auto;
+  margin: 0;
 }
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 
@@ -355,6 +360,8 @@ display: none;
   flex-direction: row;
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
+padding: .3rem;
+
   /* height: 30%; */
 }
 .cambioBtn{
@@ -364,7 +371,7 @@ display: none;
   border-radius: .5rem;
   color: #f2f2f2;
   padding: .3rem;
-  margin: .5rem;
+  margin: 0 .5rem;
 }
 
 /* IMAGENES DE LOS ICONS EN PUBLICACION */
