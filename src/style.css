@@ -230,6 +230,12 @@ p span a {
   border-radius: 2rem;
   width: 4rem;
   height: 2rem;
+<<<<<<< HEAD
+=======
+}
+.likes label{
+
+>>>>>>> ebe96a305e749eae8108a4578201fc960a3c7987
 }
 /* .likes label{
 
@@ -237,7 +243,15 @@ p span a {
 .likes input{
   display: none;
 }
+<<<<<<< HEAD
 
+=======
+.likes img{
+  width: 2rem;
+  height: 1.5rem;
+  margin: 0;
+}
+>>>>>>> ebe96a305e749eae8108a4578201fc960a3c7987
 /*franja azul donde esta la opcion de publicar y si es publico o privado*/
 
 .footerHomePublication {
