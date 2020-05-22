@@ -40,7 +40,7 @@ body {
   margin: 1rem;
 }
 
- /* Seccion SignIn y SignUp en el html*/
+/* Seccion SignIn y SignUp en el html*/
 #logIn {
   background: linear-gradient(#FFFFFF, #F4A82C);
   height: 100vh;
@@ -103,7 +103,6 @@ body {
   height: 1.3rem;
   margin: .3rem auto;
 }
-
 .likes img{
   width: 2rem;
   height: 1.5rem;
@@ -116,6 +115,7 @@ body {
   height: 1.5rem;
   margin: .4rem auto;
 }
+
 
 #googleIcon img {
   width: 30px;
@@ -300,8 +300,6 @@ p span a {
   color: white;
   margin: .2rem auto;
 }
-
-
 
 /* TRASH BOTON */
 .figureContainerIcons {
