@@ -27,8 +27,8 @@ const likeTemp = (doc) => {
     // este no marca
     div = `
     <div class="likes">
+    <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
         <label for="likeHeart">
-        <span>${doc.data().like === undefined ? 0 : doc.data().like}</span>
           <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>
@@ -38,8 +38,8 @@ const likeTemp = (doc) => {
     // este si hace click
     div = `
     <div class="likes">
+    <span>${doc.data().like === undefined ? 0 : 0}</span>
         <label for="likeHeart">
-        <span>${doc.data().like === undefined ? 0 : 0}</span>
           <input name="likeHeart" type="checkbox">
           <img src="img/icons/heart-solid.svg">
         </label>
@@ -138,7 +138,7 @@ const privateCurrentUser = (doc) => {
 
   // agregando evento de click al btn eliminar un post
   const btnDeleted = section.querySelector('[for="delete"]');
-  console.log(btnDeleted);
+  // console.log(btnDeleted);
   btnDeleted.addEventListener('click', () => {
     deletePublication(doc.id);
   });
@@ -148,10 +148,10 @@ const privateCurrentUser = (doc) => {
   const publicOrPrivateSelector = section.querySelector('.publicOrPrivateSelector');
   // console.log(publicOrPrivateSelector);
   if (publicOrPrivateSelector != null) {
-    console.log(publicOrPrivateSelector.value);
+    // console.log(publicOrPrivateSelector.value);
     publicOrPrivateSelector.addEventListener('change', (e) => {
       e.preventDefault();
-      console.log(e.target.value);
+      // console.log(e.target.value);
       changeVisibility(doc.id, publicOrPrivateSelector.value);
     });
   }
@@ -161,14 +161,14 @@ const privateCurrentUser = (doc) => {
   // al hacer click en el boton del lapiz para editar publicacion
   modificar.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('dentro de boton modificar');
+    // console.log('dentro de boton modificar');
     textareaEdit.classList.remove('displayNone');
     textareaEdit.focus();
   });
 
   // agregando evento de click al btn guardar cambio en la publicacion
   const btnEdit = section.querySelector('.cambioBtn');
-  console.log(btnEdit); // null
+  // console.log(btnEdit); // null
   if (btnEdit) {
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
