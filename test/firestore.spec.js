@@ -26,20 +26,9 @@ global.firebase = new MockFirebase(firestoreTest, { isNaiveSnapshotListenerEnabl
 import {
   publishStatus, getStatus, deletePublication, editNote, changeVisibility,
   // likeCounter,
+  // dislikeCounter,
 } from '../src/firestore-controller/firestore.js';
 
-
-// describe('crear y mostrar post', () => {
-// eslint-disable-next-line max-len
-// it('Debería porder agregar una nota', done => publishStatus('test Sunday', 'test@gmail.com', 'me llamo test sunday. Puedes verlo?', '5/5/2020 10:05:11', 'public', '', 'lv0i9')
-//     .then(() => getStatus(
-//       (data) => {
-//         const result = data.find(note => note.status === 'me llamo test sunday. Puedes verlo?');
-//         expect(result.status).toBe('me llamo test sunday. Puedes verlo?');
-//         done();
-//       },
-//     )));
-// });
 
 const doc = {
   id: '38cj4',
@@ -74,11 +63,12 @@ describe('crear y mostrar post', () => {
       };
       getStatus(callback);
     }));
-  // it('Debería poder agregar un like a un post', done => likeCounter(doc, value, user)
+
+  // it('Debería poder agregar un like a un post', done => likeCounter('abc1d', 1, 'Paula')
   //   .then(() => getStatus(
   //     (data) => {
-  //       const result = data.find(note => note.id === 'doc.id');
-  //       expect(result.data().arrayUidLikes[currentUserId]).toEqual(user.uid);
+  //       const result = data.find(note => note.id === 'abc1d');
+  //       expect(result.data().arrayUidLikes[]).toEqual('Paula');
   //       done();
   //     },
   //   )));
@@ -92,6 +82,7 @@ describe('crear y mostrar post', () => {
         done();
       },
     )));
+
   it('Debería poder eliminar una nota', done => deletePublication('abc1d')
     .then(() => getStatus(
       (data) => {

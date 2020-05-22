@@ -6,19 +6,6 @@ export const deletePublication = e => firebase.firestore().collection('post').do
     console.error('Error removing document: ', error);
   });
 
-/** FIRESTORE STORAGE DELETE FILE
-  export const deleteImagePost = (file, uid) => {
-    // Create a reference to the file to delete
-    const desertRef = firebase.storage().ref(`imgPost/${uid}/${file.name}`);
-    // Delete the file
-    desertRef.delete().then(() => {
-      // File deleted successfully
-    }).catch((error) => {
-      // Uh-oh, an error occurred!
-      console.log(error.message);
-    });
-};
-*/
 export const changeVisibility = (postId, value) => firebase.firestore().collection('post').doc(postId).update({
   visibility: value,
 })
@@ -26,6 +13,7 @@ export const changeVisibility = (postId, value) => firebase.firestore().collecti
     // The document probably doesn't exist.
     console.error('Error updating document: ', error);
   });
+
 export const likeCounter = (doc, value, user) => firebase.firestore().collection('post').doc(doc.id).update({
   like: firebase.firestore.FieldValue.increment(value),
   arrayUidLikes: doc.data().arrayUidLikes.concat([{ currentUserId: user.uid },

@@ -21,6 +21,7 @@ const validatePost = (img, status, doc) => {
   // console.log(doc);
   return postTemplate;
 };
+
 const likeTemp = (doc) => {
   let div = '';
   if (doc.data().like >= 0) {
@@ -34,17 +35,17 @@ const likeTemp = (doc) => {
         </label>
     </div>
     `;
-  } else {
-    // este si hace click
-    div = `
-    <div class="likes">
-    <span>${doc.data().like === undefined ? 0 : 0}</span>
-        <label for="likeHeart">
-          <input name="likeHeart" type="checkbox">
-          <img src="img/icons/heart-solid.svg">
-        </label>
-    </div>
-    `;
+  // } else {
+  //   // este si hace click
+  //   div = `
+  //   <div class="likes">
+  //   <span>${doc.data().like === undefined ? 0 : 0}</span>
+  //       <label for="likeHeart">
+  //         <input name="likeHeart" type="checkbox">
+  //         <img src="img/icons/heart-solid.svg">
+  //       </label>
+  //   </div>
+  //   `;
   }
 
   return div;
@@ -138,7 +139,6 @@ const privateCurrentUser = (doc) => {
 
   // agregando evento de click al btn eliminar un post
   const btnDeleted = section.querySelector('[for="delete"]');
-  // console.log(btnDeleted);
   btnDeleted.addEventListener('click', () => {
     deletePublication(doc.id);
   });
@@ -146,58 +146,39 @@ const privateCurrentUser = (doc) => {
 
   // FUNCIONES PARA EDITAR PUBLICACION
   const publicOrPrivateSelector = section.querySelector('.publicOrPrivateSelector');
-  // console.log(publicOrPrivateSelector);
   if (publicOrPrivateSelector != null) {
-    // console.log(publicOrPrivateSelector.value);
     publicOrPrivateSelector.addEventListener('change', (e) => {
       e.preventDefault();
-      // console.log(e.target.value);
       changeVisibility(doc.id, publicOrPrivateSelector.value);
     });
   }
 
   const modificar = section.querySelector('[for="edit"]');
   const textareaEdit = section.querySelector('[name="textareaEdit"]');
+
   // al hacer click en el boton del lapiz para editar publicacion
   modificar.addEventListener('click', (e) => {
     e.preventDefault();
-    // console.log('dentro de boton modificar');
     textareaEdit.classList.remove('displayNone');
     textareaEdit.focus();
   });
 
   // agregando evento de click al btn guardar cambio en la publicacion
   const btnEdit = section.querySelector('.cambioBtn');
-  // console.log(btnEdit); // null
+
   if (btnEdit) {
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
       editNote(doc.id, textareaEdit.value);
     });
   }
+
   // console.log(doc.data().arrayUidLikes);
   const likeHeart = section.querySelector('[for="likeHeart"]');
   likeHeart.addEventListener('click', (e) => {
     e.preventDefault();
     likes(doc);
   });
-  // window.addEventListener('click', (e) => {
-  //   console.log(e.target);
-  // });
-  // console.log(`soy array ${Object.values(doc.data().arrayUidLikes)}`);
-  // likeHeart.addEventListener('click', (e) => {
-  //   // likeHeart.setAttribute('disabled', false);
-  //   // console.log(e.target.checked);
-  //   e.preventDefault();
-  // console.log('j');
-  //   // if (doc.data().arrayUidLikes.some(x => x.currentUserId === user.uid)) {
-  //   //   const value = -1;
-  //   //   dislikeCounter(doc.id, value, user);
-  //   // } else {
-  //   //   const value = 1;
-  //   //   likeCounter(doc.id, value, user);
-  //   // }
-  // });
 
   return section;
 };
