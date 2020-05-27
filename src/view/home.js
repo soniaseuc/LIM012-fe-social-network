@@ -3,8 +3,6 @@ import { authentification } from '../firestore-controller/authenticationRouter.j
 import { publishStatus } from '../firestore-controller/firestore.js';
 import { uploadImagePost } from '../firestore-controller/firebase-storage.js';
 import { posts } from './components/post.js';
-// import { deleteNoteOnClick } from '../firestore-controller.js';
-// import { posts } from './components/post.js';
 
 const perfil = () => {
   const perfilModal = `
@@ -32,7 +30,7 @@ const perfil = () => {
       </div>
       <div class="footer">
         <button id="btnEditProfile">Confirm Change</button>
-        <span>... Sus datos de perfil actualizados solo se visualizaran una vez recargada la pagina</span>
+        <span>... Sus datos de perfil actualizados se visualizaran cuando regrese a la pagina principal</span>
       </div>
     </div>
   </div>
@@ -120,7 +118,6 @@ const perfil = () => {
   editButton.addEventListener('click', () => {
     // event.preventDefault();
     editInformation();
-    // window.location.reload();
     const user = firebase.auth().currentUser;
     if (displayNameField.value && photoField.value) {
       // console.log('name & foto');
@@ -177,6 +174,7 @@ const navMenu = () => {
     signOut();
     authentification();
   });
+
   return headerMenu;
 };
 
@@ -194,8 +192,6 @@ const avatarProfile = () => {
   const sectionProfile = document.createElement('section');
   sectionProfile.classList.add('homeAvatarContainer');
   sectionProfile.innerHTML = avatar;
-  // const userEmail = myCurrentUser();
-  // console.log(userEmail);
   sectionProfile.querySelector('#myUserName').innerHTML = `Bienvenid@ usuari@:${window.localStorage.getItem('email')}`;
 
   // show edit profile
@@ -209,6 +205,7 @@ const avatarProfile = () => {
       console.log('Ocurrio un error cargando la foto y nombre cambiado');
     }
   });
+
   return sectionProfile;
 };
 

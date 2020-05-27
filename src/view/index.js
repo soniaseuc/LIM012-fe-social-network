@@ -1,16 +1,15 @@
-import SignUpform from './signUp.js';
-import LogInform from './logIn.js';
-import { homeTemplate } from './home.js';
-import { profileTemplate } from './profile.js';
 import Different from './404.js';
-
+import { homeTemplate } from './home.js';
+import LogInform from './logIn.js';
+// import { profileTemplate } from './profile.js';
+import SignUpform from './signUp.js';
 
 const components = {
-  logInform: LogInform,
-  signUpform: SignUpform,
   different: Different,
   home: homeTemplate,
-  profile: profileTemplate,
+  logInform: LogInform,
+  // profile: profileTemplate,
+  signUpform: SignUpform,
 };
 
 export { components };

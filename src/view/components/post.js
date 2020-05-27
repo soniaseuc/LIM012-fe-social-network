@@ -18,7 +18,6 @@ const validatePost = (img, status, doc) => {
         <p class="textComent" id="pEdit-${doc}">${status}</p>    
         `;
   }
-  // console.log(doc);
   return postTemplate;
 };
 
@@ -36,7 +35,7 @@ const likeTemp = (doc) => {
     </div>
     `;
   // } else {
-  //   // este si hace click
+  //   // bc before it counted negative number
   //   div = `
   //   <div class="likes">
   //   <span>${doc.data().like === undefined ? 0 : 0}</span>

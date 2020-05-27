@@ -22,7 +22,6 @@ const img = {
 it('Deberia poder subir una img al storage', (done) => {
   const response = uploadImagePost(img.file, img.uid);
   console.log(response.fullPath);
-
   try {
     // console.log(response);
     expect(response.fullPath).toEqual(`imgPost/${img.uid}/${img.file.name}`);

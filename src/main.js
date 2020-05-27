@@ -17,16 +17,14 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// export const storage = firebase.storage();
-
-
 const init = () => {
   changeTmp(window.location.hash);
   window.addEventListener('hashchange', () => changeTmp(window.location.hash));
 };
 window.addEventListener('load', init);
 
-// AGREGAR O ELIMINAR CLASE A <LI>,ACTIVAR AL HACER CLICK
+// Eliminar o agregar una clase a los elementos li del menu hamburguesa
+// al hacer click se activa
 const ul = document.querySelector('ul');
 const li = document.querySelectorAll('li');
 
@@ -36,7 +34,6 @@ li.forEach((el) => {
     el.classList.add('active');
   });
 });
-
 
 // const numeroDeEntradas = window.history.length;
 // console.log(numeroDeEntradas);
